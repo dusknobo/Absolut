@@ -36,7 +36,9 @@ Modelica.Units.SI.EnergyFlowRate W "Work in W";
 equation
 port_v_a.m_flow + port_v_b.m_flow = 0;
 
-Tsuc = Medium_v.saturationTemperature(port_v_a.p);
+Tsuc = Medium_v.temperature(Medium_v.setState_phX(port_v_a.p, h1, {1}));
+assert(Pr_set >= 1, "Compressor pressure ratio must be at least one");
+assert(eff_is > 0 and eff_is <= 1, "Compressor isentropic efficiency must be in (0, 1]");
 
 port_v_a.h_outflow = Medium_v.specificEnthalpy(Medium_v.setState_pTX(
     port_v_a.p,
@@ -54,19 +56,20 @@ s2 = Medium_v.specificEntropy(Medium_v.setState_phX(
     {1}));
 
 h1 = inStream(port_v_a.h_outflow);
-h2s = Medium_v.specificEnthalpy(Medium_v.setState_psX(
+h2s = if Pr_set == 1 then h1 else Medium_v.specificEnthalpy(Medium_v.setState_psX(
     port_v_b.p,
     s2s,
     {1}));
 
-W_spec = (1/M)*Tsuc*R*(gamma/(gamma-1))*(Pr^((gamma-1)/(gamma))-1);
-W = 1000*W_spec*port_v_a.m_flow;
+// One adiabatic energy balance for both reported power and outlet enthalpy.
+W_spec = (port_v_b.h_outflow - h1)/1000;
+W = port_v_a.m_flow*(port_v_b.h_outflow - h1);
 
 Pr = Pr_set;
 
-eff_is = (h2s - inStream(port_v_a.h_outflow))/(port_v_b.h_outflow - inStream(port_v_a.h_outflow));
+port_v_b.h_outflow = h1 + (h2s - h1)/eff_is;
 
-T2s = Medium_v.temperature(Medium_v.setState_psX(
+T2s = if Pr_set == 1 then Tsuc else Medium_v.temperature(Medium_v.setState_psX(
     port_v_b.p,
     s2s,
     {1}));
@@ -83,6 +86,6 @@ T2 = Medium_v.temperature(Medium_v.setState_phX(
           fillPattern=FillPattern.Solid)}),                      Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     Documentation(info="<html>
-<p>Under construction</p>
+<p>Forward-flow adiabatic compressor. Outlet enthalpy follows the isentropic efficiency and reported power equals the enthalpy-flow rise. At unit pressure ratio, enthalpy and power changes are exactly zero.</p>
 </html>"));
 end Compressor;

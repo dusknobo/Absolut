@@ -65,4 +65,5 @@ equation
 <p><b><span style=\"font-family: MS Shell Dlg 2;\">References:</span></b></p>
 <p><span style=\"font-family: MS Shell Dlg 2;\">[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</span></p>
 </html>"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end CondensationEvaporation;

@@ -1,0 +1,90 @@
+"OpenModelica v1.27.0-dev-390-g7f4d387df9 (64-bit)"
+
+
+
+
+"Notification: Buildings requested package Modelica of version 4.0.0. Modelica 4.1.0 is used instead which states that it is fully compatible without conversion script needed.
+Notification: Absolut requested package Modelica of version 4.0.0. Modelica 4.1.0 is used instead which states that it is fully compatible without conversion script needed.
+Notification: Absolut requested package ModelicaServices of version 4.0.0. ModelicaServices 4.1.0 is used instead which states that it is fully compatible without conversion script needed.
+"
+
+""
+true
+MSL_VERSION=4.1.0
+
+"Check of ComponentTests.EvaporatorsSeriesHeatStep completed successfully.
+Class ComponentTests.EvaporatorsSeriesHeatStep has 242 equation(s) and 242 variable(s).
+121 of these are trivial equation(s)."
+"Notification: Buildings requested package Modelica of version 4.0.0. Modelica 4.1.0 is used instead which states that it is fully compatible without conversion script needed.
+Notification: Absolut requested package Modelica of version 4.0.0. Modelica 4.1.0 is used instead which states that it is fully compatible without conversion script needed.
+Notification: Absolut requested package ModelicaServices of version 4.0.0. ModelicaServices 4.1.0 is used instead which states that it is fully compatible without conversion script needed.
+"
+record SimulationResult
+    resultFile = "E:/OMmodel/OpenModelica/build/publish_github/staging/build/components_msl_4.1.0/EvaporatorsSeriesHeatStep/model_res.csv",
+    simulationOptions = "startTime = 0.0, stopTime = 1200.0, numberOfIntervals = 500, tolerance = 1e-8, method = 'dassl', fileNamePrefix = 'model', options = '', outputFormat = 'csv', variableFilter = '.*', cflags = '', simflags = '-w -lv=LOG_STATS'",
+    messages = "LOG_ASSERT        | warning | [C:/Users/hz/AppData/Roaming/.openmodelica/libraries/Modelica 4.1.0+maint.om/Fluid/Sources.mo:13:3-20:44:writable]
+|                 | |       | The following assertion has been violated at time 0.000000
+|                 | |       | ((vaporSink.d >= 0.0 and vaporSink.d <= 1e5)) --> \"Variable violating min/max constraint: 0.0 <= vaporSink.d <= 1e5, has value: -0.100166\"
+LOG_SUCCESS       | info    | The initialization finished successfully without homotopy method.
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:63:3-63:62:writable]
+|                 | |       | The following assertion has been violated at time 2.400000
+|                 | |       | ((integratedMass1 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= integratedMass1, has value: -1.77838e-06\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:64:3-64:62:writable]
+|                 | |       | The following assertion has been violated at time 2.400000
+|                 | |       | ((integratedMass2 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= integratedMass2, has value: -0.000954693\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:65:3-65:66:writable]
+|                 | |       | The following assertion has been violated at time 2.400000
+|                 | |       | ((integratedMassTotal >= 0.0)) --> \"Variable violating min constraint: 0.0 <= integratedMassTotal, has value: -0.000956472\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:70:3-70:57:writable]
+|                 | |       | The following assertion has been violated at time 2.400000
+|                 | |       | ((massChange1 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= massChange1, has value: -1.77838e-06\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:71:3-71:57:writable]
+|                 | |       | The following assertion has been violated at time 2.400000
+|                 | |       | ((massChange2 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= massChange2, has value: -0.000954693\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:72:3-72:61:writable]
+|                 | |       | The following assertion has been violated at time 7.200000
+|                 | |       | ((r_mass1 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= r_mass1, has value: -5.25553e-15\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:74:3-74:81:writable]
+|                 | |       | The following assertion has been violated at time 12.000000
+|                 | |       | ((r_massTotal >= 0.0)) --> \"Variable violating min constraint: 0.0 <= r_massTotal, has value: -8.48887e-15\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:73:3-73:61:writable]
+|                 | |       | The following assertion has been violated at time 55.200000
+|                 | |       | ((r_mass2 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= r_mass2, has value: -1.75554e-15\"
+LOG_STATS         | info    | ### STATISTICS ###
+|                 | |       | | timer
+|                 | |       | | |    0.0120746s          reading init.xml
+|                 | |       | | |    0.0020864s          reading info.xml
+|                 | |       | | |    0.0008663s [  0.5%] pre-initialization
+|                 | |       | | |    0.0008757s [  0.5%] initialization
+|                 | |       | | |     6.17e-05s [  0.0%] steps
+|                 | |       | | |    0.0028044s [  1.5%] solver (excl. callbacks)
+|                 | |       | | |    0.0622596s [ 33.3%] creating output-file
+|                 | |       | | |    0.0005172s [  0.3%] event-handling
+|                 | |       | | |    0.0032509s [  1.7%] overhead
+|                 | |       | | |     0.116109s [ 62.2%] simulation
+|                 | |       | | |     0.186745s [100.0%] total
+|                 | |       | | events
+|                 | |       | | |     2 state events
+|                 | |       | | |     0 time events
+|                 | |       | | solver: dassl
+|                 | |       | | |   544 steps taken
+|                 | |       | | |   636 calls of functionODE
+|                 | |       | | |    90 evaluations of jacobian
+|                 | |       | | |     8 error test failures
+|                 | |       | | |     0 convergence test failures
+|                 | |       | | | 0.0173158s time of jacobian evaluation
+LOG_SUCCESS       | info    | The simulation finished successfully.
+",
+    timeFrontend = 0.8566668,
+    timeBackend = 0.2060225,
+    timeSimCode = 0.0578055,
+    timeTemplates = 0.7380782,
+    timeCompile = 5.1205039,
+    timeSimulation = 0.3674295,
+    timeTotal = 7.3469553
+end SimulationResult;
+"Notification: Buildings requested package Modelica of version 4.0.0. Modelica 4.1.0 is used instead which states that it is fully compatible without conversion script needed.
+Notification: Absolut requested package Modelica of version 4.0.0. Modelica 4.1.0 is used instead which states that it is fully compatible without conversion script needed.
+Notification: Absolut requested package ModelicaServices of version 4.0.0. ModelicaServices 4.1.0 is used instead which states that it is fully compatible without conversion script needed.
+Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts.
+"

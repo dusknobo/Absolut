@@ -1,0 +1,17 @@
+// Run with OpenModelica as the current working directory.
+// Required versions are intentional; do not auto-convert to another MSL version.
+if not loadModel(Modelica, {"4.0.0"}, requireExactVersion=true) then
+  print(getErrorString());
+  exit(1);
+end if;
+if not loadFile("../Buildings 12.0.0/package.mo") then
+  print(getErrorString());
+  exit(1);
+end if;
+if not loadFile("Absolut/package.mo") then
+  print(getErrorString());
+  exit(1);
+end if;
+setCommandLineOptions("--preOptModules-=evalFunc");
+getVersion();
+getErrorString();

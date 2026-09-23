@@ -21,4 +21,5 @@ equation
       Interval=0.001,
       Tolerance=1e-05,
       __Dymola_Algorithm="Dassl"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end LMTD;

@@ -1,0 +1,87 @@
+{
+  "timestamp_utc": "2026-09-23T13:36:32.689572+00:00",
+  "compiler": "OpenModelica v1.27.0-dev-390-g7f4d387df9 (64-bit)",
+  "modelica": "4.0.0",
+  "buildings": "12.0.0",
+  "mode": "regression",
+  "translation_flags": "--preOptModules-=evalFunc",
+  "method": "dassl",
+  "simulation_flags": "",
+  "max_output_intervals": 2000,
+  "source_sha256": "abb1525064244fc19fade165e465d4558bea960f72aaffd9a9cffb4f33e437a1",
+  "regression_source_sha256": "be0dd68fc9e415d6a0d9b6d48a5b7fb3eead8e200538d25662e2b0fe4f8019da",
+  "results": [
+    {
+      "model": "Regression.FlashingLiBrConservation",
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 21.25,
+      "log": "build\\sim\\regression\\ef6f2cd250\\omc.log",
+      "status": "pass",
+      "errors": [
+        "    messages = \"LOG_ASSERT        | warning | [C:/Users/hz/AppData/Roaming/.openmodelica/libraries/Modelica 4.0.0+maint.om/Fluid/Sources.mo:13:3-20:44:writable]",
+        "|                 | |       | The following assertion has been violated at time 0.000000"
+      ],
+      "expected_stop": 240.0,
+      "original_intervals": 2400,
+      "output_intervals": 2000,
+      "final_time": 240.0,
+      "rows": 2009,
+      "finite": true,
+      "result": "build\\sim\\regression\\ef6f2cd250\\model_res.csv"
+    },
+    {
+      "model": "Regression.GibbsSecondDerivative",
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 10.91,
+      "log": "build\\sim\\regression\\b0a389d845\\omc.log",
+      "status": "pass",
+      "errors": [],
+      "expected_stop": 1.0,
+      "original_intervals": 100,
+      "output_intervals": 100,
+      "final_time": 1.0,
+      "rows": 102,
+      "finite": true,
+      "result": "build\\sim\\regression\\b0a389d845\\model_res.csv"
+    },
+    {
+      "model": "Regression.MediumRoundTrip",
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 15.27,
+      "log": "build\\sim\\regression\\8edd551cf6\\omc.log",
+      "status": "pass",
+      "errors": [],
+      "expected_stop": 1.0,
+      "original_intervals": 10,
+      "output_intervals": 10,
+      "final_time": 1.0,
+      "rows": 12,
+      "finite": true,
+      "result": "build\\sim\\regression\\8edd551cf6\\model_res.csv"
+    },
+    {
+      "model": "Regression.StableLogMean",
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 17.19,
+      "log": "build\\sim\\regression\\698e04b4ae\\omc.log",
+      "status": "pass",
+      "errors": [],
+      "expected_stop": 1.0,
+      "original_intervals": 100,
+      "output_intervals": 100,
+      "final_time": 1.0,
+      "rows": 102,
+      "finite": true,
+      "result": "build\\sim\\regression\\698e04b4ae\\model_res.csv"
+    }
+  ],
+  "summary": {
+    "pass": 4,
+    "fail": 0,
+    "blocked": 0
+  }
+}

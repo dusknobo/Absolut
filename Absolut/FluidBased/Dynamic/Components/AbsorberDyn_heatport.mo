@@ -5,9 +5,9 @@ model AbsorberDyn_heatport "Absorber with heat Transfer"
     replaceable package Medium_l = Absolut.Media.LiBrH2O;
 
  parameter Boolean use_vaporization = false  "Add vaporization eq. (dh * der(m_v)) to correct energy balance equation and improve consistency." annotation(Dialog(tab="Advanced"));
- parameter Boolean m_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+ parameter Boolean m_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
  parameter Boolean mXLiBr_state = false "use LiBr mass as a state" annotation(Dialog(tab="Advanced"));
- parameter Boolean U_state = false "use U as a state" annotation(Dialog(tab="Advanced"));
+ parameter Boolean U_state = true "use U as a state" annotation(Dialog(tab="Advanced"));
  parameter Boolean p_state = false "use p as a state" annotation(Dialog(tab="Advanced"));
 
  // Start values...
@@ -70,9 +70,9 @@ model AbsorberDyn_heatport "Absorber with heat Transfer"
     h(start=Medium_v.specificEnthalpy(Medium_v.setState_pTX(p_start, T_start, X_v_start))))
     "Vapor medium";
   Medium_l.BaseProperties medium_l(
-    p(start=p_start, stateSelect = StateSelect.default),
-    T(start=T_start, stateSelect = StateSelect.default),
-    Xi(start=X_l_start[1:Medium_l.nXi], each stateSelect = StateSelect.default),
+    p(start=p_start, stateSelect = StateSelect.prefer),
+    T(start=T_start, stateSelect = StateSelect.prefer),
+    Xi(start=X_l_start[1:Medium_l.nXi], each stateSelect = StateSelect.prefer),
     h(start=Medium_l.specificEnthalpy(Medium_l.setState_pTX(p_start, T_start, X_l_start))))
     "Liquid medium";
 
@@ -101,7 +101,7 @@ Modelica.Fluid.Interfaces.FluidPort_a port_v_a(redeclare package Medium =
 
 // Internal ...
   Modelica.Units.SI.MassFraction X_LiBr(min=0.1, start=X_LiBr_start);
-  Modelica.Units.SI.AbsolutePressure p(stateSelect = if p_state then StateSelect.always else StateSelect.default, start=p_start)
+  Modelica.Units.SI.AbsolutePressure p(stateSelect = if p_state then StateSelect.always else StateSelect.prefer, start=p_start)
     "Liquid-vapor equilibrium pressure in the vessel";
 Modelica.Blocks.Interfaces.RealOutput Hb_flow( unit="W") "Heat flow across boundaries or energy source/sink"
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));

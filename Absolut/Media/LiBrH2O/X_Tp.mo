@@ -1,8 +1,8 @@
 within Absolut.Media.LiBrH2O;
 function X_Tp "Mass fraction as function of temperature and pressure"
-  input MassFraction T "LiBr mass fraction in the solution";
+  input Temperature T "Temperature of the solution";
   input Modelica.Units.SI.Pressure p "Saturated pressure of the solution";
-  output Temperature X_H2O "Temperature of the LiBr solution";
+  output MassFraction X_H2O "Water mass fraction in the solution";
 
 algorithm
 

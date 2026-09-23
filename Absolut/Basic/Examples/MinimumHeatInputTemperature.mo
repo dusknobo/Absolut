@@ -34,5 +34,6 @@ equation
 <p><br><b>References:</b></p>
 <p>[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</p>
 </html>"),
-    __Dymola_Commands(file="Resources/Basic/MinimumTemperature.mos" "MinimumTemperature"));
+    __Dymola_Commands(file="modelica://Absolut/Resources/Basic/MinimumTemperature.mos" "MinimumTemperature"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end MinimumHeatInputTemperature;

@@ -90,6 +90,7 @@ equation
       Interval=1,
       Tolerance=1e-06,
       __Dymola_Algorithm="Dassl"),
-    __Dymola_Commands(file="Resources\Static\Components\Validation\FlashingWater.mos"
+    __Dymola_Commands(file="modelica://Absolut/Resources/Static/Components/Validation/FlashingWater.mos"
         "Simulate and plot"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end FlashingWater;

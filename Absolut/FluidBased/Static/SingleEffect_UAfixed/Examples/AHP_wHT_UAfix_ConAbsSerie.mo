@@ -48,6 +48,8 @@ extends Modelica.Icons.Example;
   Modelica.Blocks.Sources.RealExpression MassFlowRate(y=0.05)
     annotation (Placement(transformation(extent={{-40,-30},{-20,-10}})));
   AbsorberStatic_wHT_UAfix abs(
+    useClosedLoopMassBalance=true,
+    useClosedLoopSaltBalance=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_sol,
     redeclare package Medium_ext = Medium_l,
@@ -186,4 +188,5 @@ equation
       StopTime=61,
       Interval=0.1,
       Tolerance=1e-07));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end AHP_wHT_UAfix_ConAbsSerie;

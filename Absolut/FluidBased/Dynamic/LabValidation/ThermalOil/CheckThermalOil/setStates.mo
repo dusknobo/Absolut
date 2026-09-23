@@ -23,4 +23,5 @@ equation
       StopTime=380,
       Interval=1,
       __Dymola_Algorithm="Dassl"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end setStates;

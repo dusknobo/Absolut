@@ -2,6 +2,7 @@ within Absolut.FluidBased.Dynamic.Components.Validation;
 model AHPse_Dyn_internalHEX
   "Absorption heat pump model with internal HEX"
 extends Modelica.Icons.Example;
+  inner Modelica.Fluid.System system "System defaults made explicit for OpenModelica";
 
   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
   replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
@@ -114,7 +115,7 @@ parameter Boolean allowFlowReversal=true
     redeclare
       Absolut.FluidBased.Static.Components.HEX.PlateHeatExchangerEffectivenessNTU
       hex(
-      Q_flow_nominal=3105,
+      Q_flow_nominal=-3105,
       T_a1_nominal=305.87,
       T_a2_nominal=362.51) "Hex with variable UA")
     annotation (Placement(transformation(extent={{-24,4},{32,46}})));
@@ -214,6 +215,7 @@ equation
 <p><br><b>References:</b></p>
 <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
 </html>"),
-    __Dymola_Commands(file="Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
+    __Dymola_Commands(file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
         "AHP_se_dynamic_Table63"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end AHPse_Dyn_internalHEX;

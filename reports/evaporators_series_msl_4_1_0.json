@@ -1,0 +1,2169 @@
+{
+  "timestamp_utc": "2026-09-23T13:47:13.499686+00:00",
+  "compiler": "OpenModelica v1.27.0-dev-390-g7f4d387df9 (64-bit)",
+  "source_sha256": "abb1525064244fc19fade165e465d4558bea960f72aaffd9a9cffb4f33e437a1",
+  "test_source_sha256": "e6b01682ed445d2715f59915eca1a89d1b9f46f5c4e35f3f97cf3debb1e0c764",
+  "modelica": "4.1.0",
+  "buildings": "12.0.0",
+  "translation_flags": "--preOptModules-=evalFunc -d=initialization",
+  "method": "dassl",
+  "inventory": [
+    {
+      "name": "Absolut.Basic.Blocks.CarnotSingleEffectAHP",
+      "path": "Absolut/Basic/Blocks/CarnotSingleEffectAHP.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.Basic.Blocks.DDT_AHT",
+      "path": "Absolut/Basic/Blocks/DDT_AHT.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.Basic.Blocks.EER_CarnotSingleEffectAHP",
+      "path": "Absolut/Basic/Blocks/EER_CarnotSingleEffectAHP.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.Basic.Blocks.EER_DoubleEffectAHP",
+      "path": "Absolut/Basic/Blocks/EER_DoubleEffectAHP.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.Basic.Blocks.EER_HalfEffectAHP",
+      "path": "Absolut/Basic/Blocks/EER_HalfEffectAHP.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.Basic.Blocks.EER_SingleEffectAHP",
+      "path": "Absolut/Basic/Blocks/EER_SingleEffectAHP.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.Basic.Blocks.EER_TripleEffectAHP",
+      "path": "Absolut/Basic/Blocks/EER_TripleEffectAHP.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.Basic.Blocks.package",
+      "path": "Absolut/Basic/Blocks/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.Basic.Blocks.Tfiring",
+      "path": "Absolut/Basic/Blocks/Tfiring.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.Basic.Blocks.ZeroOrderSingleEffectAHP",
+      "path": "Absolut/Basic/Blocks/ZeroOrderSingleEffectAHP.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.Basic.Blocks.ZeroOrderSingleEffectAHP_ext",
+      "path": "Absolut/Basic/Blocks/ZeroOrderSingleEffectAHP_ext.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.Basic.Examples.CoolingCOP",
+      "path": "Absolut/Basic/Examples/CoolingCOP.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Basic.Examples.CoolingCOP_SingleEffectAHP",
+      "path": "Absolut/Basic/Examples/CoolingCOP_SingleEffectAHP.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Basic.Examples.DDT10_AHP",
+      "path": "Absolut/Basic/Examples/DDT10_AHP.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Basic.Examples.DDT10_AHT",
+      "path": "Absolut/Basic/Examples/DDT10_AHT.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Basic.Examples.HeatingCOP_SingleEffectAHP",
+      "path": "Absolut/Basic/Examples/HeatingCOP_SingleEffectAHP.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Basic.Examples.MinimumHeatInputTemperature",
+      "path": "Absolut/Basic/Examples/MinimumHeatInputTemperature.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Basic.Examples.package",
+      "path": "Absolut/Basic/Examples/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Basic.Functions.COP_CarnotSingleEffectAHP_TeThTc",
+      "path": "Absolut/Basic/Functions/COP_CarnotSingleEffectAHP_TeThTc.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Basic.Functions.COP_SingleEffectAHP_TcTh",
+      "path": "Absolut/Basic/Functions/COP_SingleEffectAHP_TcTh.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Basic.Functions.DDT",
+      "path": "Absolut/Basic/Functions/DDT.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Basic.Functions.EER_CarnotSingleEffectAHP_TeThTc",
+      "path": "Absolut/Basic/Functions/EER_CarnotSingleEffectAHP_TeThTc.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Basic.Functions.EER_DoubleEffectAHP_TeTh",
+      "path": "Absolut/Basic/Functions/EER_DoubleEffectAHP_TeTh.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Basic.Functions.EER_HalfEffectAHP_TeTh",
+      "path": "Absolut/Basic/Functions/EER_HalfEffectAHP_TeTh.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Basic.Functions.EER_SingleEffectAHP_TeTh",
+      "path": "Absolut/Basic/Functions/EER_SingleEffectAHP_TeTh.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Basic.Functions.EER_TripleEffectAHP_TeTh",
+      "path": "Absolut/Basic/Functions/EER_TripleEffectAHP_TeTh.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Basic.Functions.package",
+      "path": "Absolut/Basic/Functions/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.Basic.Functions.Tfiring_TeTcdT",
+      "path": "Absolut/Basic/Functions/Tfiring_TeTcdT.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Basic.package",
+      "path": "Absolut/Basic/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.AHP.AHP",
+      "path": "Absolut/FluidBased/Dynamic/AHP/AHP.mo",
+      "kind": "model",
+      "scope": "system_assembly"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.AHP.AHP_hex_extended",
+      "path": "Absolut/FluidBased/Dynamic/AHP/AHP_hex_extended.mo",
+      "kind": "model",
+      "scope": "system_assembly"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.AHP.AHP_internal_hex",
+      "path": "Absolut/FluidBased/Dynamic/AHP/AHP_internal_hex.mo",
+      "kind": "model",
+      "scope": "system_assembly"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.AHP.AHP_nocp",
+      "path": "Absolut/FluidBased/Dynamic/AHP/AHP_nocp.mo",
+      "kind": "model",
+      "scope": "system_assembly"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.AHP.AHP_pump",
+      "path": "Absolut/FluidBased/Dynamic/AHP/AHP_pump.mo",
+      "kind": "model",
+      "scope": "system_assembly"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.AHP.AHP_pump_hex_extended",
+      "path": "Absolut/FluidBased/Dynamic/AHP/AHP_pump_hex_extended.mo",
+      "kind": "model",
+      "scope": "system_assembly"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.AHP.AHP_pump_hex_extended_compressorHighP",
+      "path": "Absolut/FluidBased/Dynamic/AHP/AHP_pump_hex_extended_compressorHighP.mo",
+      "kind": "model",
+      "scope": "system_assembly"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.AHP.AHP_pump_hex_extended_compressorLowP",
+      "path": "Absolut/FluidBased/Dynamic/AHP/AHP_pump_hex_extended_compressorLowP.mo",
+      "kind": "model",
+      "scope": "system_assembly"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.AHP.package",
+      "path": "Absolut/FluidBased/Dynamic/AHP/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.AbsorberDyn_heatport",
+      "path": "Absolut/FluidBased/Dynamic/Components/AbsorberDyn_heatport.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.AbsorberDyn_internalHEX",
+      "path": "Absolut/FluidBased/Dynamic/Components/AbsorberDyn_internalHEX.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.BaseClasses.package",
+      "path": "Absolut/FluidBased/Dynamic/Components/BaseClasses/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.BaseClasses.ReferenceData",
+      "path": "Absolut/FluidBased/Dynamic/Components/BaseClasses/ReferenceData.mo",
+      "kind": "model",
+      "scope": "reference_constants"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.CondenserDyn_heatport",
+      "path": "Absolut/FluidBased/Dynamic/Components/CondenserDyn_heatport.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.CondenserDyn_internalHEX",
+      "path": "Absolut/FluidBased/Dynamic/Components/CondenserDyn_internalHEX.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport",
+      "path": "Absolut/FluidBased/Dynamic/Components/EvaporatorDyn_heatport.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_internalHEX",
+      "path": "Absolut/FluidBased/Dynamic/Components/EvaporatorDyn_internalHEX.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.GeneratorDyn_heatport",
+      "path": "Absolut/FluidBased/Dynamic/Components/GeneratorDyn_heatport.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.GeneratorDyn_internalHEX",
+      "path": "Absolut/FluidBased/Dynamic/Components/GeneratorDyn_internalHEX.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.package",
+      "path": "Absolut/FluidBased/Dynamic/Components/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_heatport",
+      "path": "Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_heatport.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_heatport_extended",
+      "path": "Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_heatport_extended.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_heatport_nocp",
+      "path": "Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_heatport_nocp.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_internalHEX",
+      "path": "Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_internalHEX.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_pump_extended",
+      "path": "Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_pump_extended.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.Validation.EvaporatorsSeries_heatport",
+      "path": "Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.Components.Validation.package",
+      "path": "Absolut/FluidBased/Dynamic/Components/Validation/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.Data.package",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/Data/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.Data.sBSc_1m_Cfg0_20220804",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/Data/sBSc_1m_Cfg0_20220804.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.package",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.Test_AHX_wcp_extended_wheatloss_pump_controlled",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/Test_AHX_wcp_extended_wheatloss_pump_controlled.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.CheckThermalOil.package",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/CheckThermalOil/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.CheckThermalOil.Pr",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/CheckThermalOil/Pr.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.CheckThermalOil.PropertiesExport",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/CheckThermalOil/PropertiesExport.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.CheckThermalOil.setStates",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/CheckThermalOil/setStates.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.der_specificHeatCapacityCp_ext",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/der_specificHeatCapacityCp_ext.mo",
+      "kind": "function",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.enthalpyOfLiquid",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/enthalpyOfLiquid.mo",
+      "kind": "function",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.package",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.specificHeatCapacityCp_ext",
+      "path": "Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/specificHeatCapacityCp_ext.mo",
+      "kind": "function",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Dynamic.package",
+      "path": "Absolut/FluidBased/Dynamic/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.package",
+      "path": "Absolut/FluidBased/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.AHE.Examples.AHE_abs_con_serie",
+      "path": "Absolut/FluidBased/Static/AHE/Examples/AHE_abs_con_serie.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.AHE.Examples.AHX_all_parallel",
+      "path": "Absolut/FluidBased/Static/AHE/Examples/AHX_all_parallel.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.AHE.Examples.package",
+      "path": "Absolut/FluidBased/Static/AHE/Examples/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.AHE.package",
+      "path": "Absolut/FluidBased/Static/AHE/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.BaseClasses.ChenMTD",
+      "path": "Absolut/FluidBased/Static/BaseClasses/ChenMTD.mo",
+      "kind": "partial model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.BaseClasses.LMTD",
+      "path": "Absolut/FluidBased/Static/BaseClasses/LMTD.mo",
+      "kind": "partial model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.BaseClasses.logMeanPositive",
+      "path": "Absolut/FluidBased/Static/BaseClasses/logMeanPositive.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.BaseClasses.MTD",
+      "path": "Absolut/FluidBased/Static/BaseClasses/MTD.mo",
+      "kind": "partial model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.BaseClasses.package",
+      "path": "Absolut/FluidBased/Static/BaseClasses/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.BaseClasses.Test.ChenMTD",
+      "path": "Absolut/FluidBased/Static/BaseClasses/Test/ChenMTD.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.BaseClasses.Test.LMTD",
+      "path": "Absolut/FluidBased/Static/BaseClasses/Test/LMTD.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.BaseClasses.Test.MTD",
+      "path": "Absolut/FluidBased/Static/BaseClasses/Test/MTD.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.BaseClasses.Test.package",
+      "path": "Absolut/FluidBased/Static/BaseClasses/Test/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.Compressor",
+      "path": "Absolut/FluidBased/Static/Components/Compressor.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.FlashingLiBr",
+      "path": "Absolut/FluidBased/Static/Components/FlashingLiBr.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.FlashingWater",
+      "path": "Absolut/FluidBased/Static/Components/FlashingWater.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.HEX.ConstantEffectiveness",
+      "path": "Absolut/FluidBased/Static/Components/HEX/ConstantEffectiveness.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.HEX.package",
+      "path": "Absolut/FluidBased/Static/Components/HEX/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.HEX.PlateHeatExchangerEffectivenessNTU",
+      "path": "Absolut/FluidBased/Static/Components/HEX/PlateHeatExchangerEffectivenessNTU.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.HEX.simpleHX",
+      "path": "Absolut/FluidBased/Static/Components/HEX/simpleHX.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.package",
+      "path": "Absolut/FluidBased/Static/Components/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.Pump",
+      "path": "Absolut/FluidBased/Static/Components/Pump.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.PumpW",
+      "path": "Absolut/FluidBased/Static/Components/PumpW.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.Validation.FlashingLiBr",
+      "path": "Absolut/FluidBased/Static/Components/Validation/FlashingLiBr.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.Validation.FlashingWater",
+      "path": "Absolut/FluidBased/Static/Components/Validation/FlashingWater.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.Validation.package",
+      "path": "Absolut/FluidBased/Static/Components/Validation/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Components.Validation.PumpLiBr",
+      "path": "Absolut/FluidBased/Static/Components/Validation/PumpLiBr.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.DoubleEffect.CondenserStatic_de_UAfix",
+      "path": "Absolut/FluidBased/Static/DoubleEffect/CondenserStatic_de_UAfix.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.DoubleEffect.LowGeneratorStatic",
+      "path": "Absolut/FluidBased/Static/DoubleEffect/LowGeneratorStatic.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.DoubleEffect.LowGeneratorStatic_serie",
+      "path": "Absolut/FluidBased/Static/DoubleEffect/LowGeneratorStatic_serie.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.DoubleEffect.package",
+      "path": "Absolut/FluidBased/Static/DoubleEffect/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.DoubleEffect.Validation.AHP_pf_de_UAfix",
+      "path": "Absolut/FluidBased/Static/DoubleEffect/Validation/AHP_pf_de_UAfix.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.DoubleEffect.Validation.AHP_sf_de_UAfix",
+      "path": "Absolut/FluidBased/Static/DoubleEffect/Validation/AHP_sf_de_UAfix.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.DoubleEffect.Validation.package",
+      "path": "Absolut/FluidBased/Static/DoubleEffect/Validation/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.package",
+      "path": "Absolut/FluidBased/Static/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Resorption.AbsorberStatic_wHT_UAfix_Resorption_ext",
+      "path": "Absolut/FluidBased/Static/Resorption/AbsorberStatic_wHT_UAfix_Resorption_ext.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Resorption.package",
+      "path": "Absolut/FluidBased/Static/Resorption/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Resorption.Validation.package",
+      "path": "Absolut/FluidBased/Static/Resorption/Validation/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.Resorption.Validation.Resorption",
+      "path": "Absolut/FluidBased/Static/Resorption/Validation/Resorption.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_intern.AbsorberStatic",
+      "path": "Absolut/FluidBased/Static/SingleEffect_intern/AbsorberStatic.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_intern.BaseClasses.package",
+      "path": "Absolut/FluidBased/Static/SingleEffect_intern/BaseClasses/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_intern.CondenserStatic",
+      "path": "Absolut/FluidBased/Static/SingleEffect_intern/CondenserStatic.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_intern.EvaporatorStatic",
+      "path": "Absolut/FluidBased/Static/SingleEffect_intern/EvaporatorStatic.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_intern.Examples.package",
+      "path": "Absolut/FluidBased/Static/SingleEffect_intern/Examples/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_intern.GeneratorStatic",
+      "path": "Absolut/FluidBased/Static/SingleEffect_intern/GeneratorStatic.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_intern.package",
+      "path": "Absolut/FluidBased/Static/SingleEffect_intern/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_intern.Validation.AHP_se_eps",
+      "path": "Absolut/FluidBased/Static/SingleEffect_intern/Validation/AHP_se_eps.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_intern.Validation.AHP_se_eps_p_XLiBr",
+      "path": "Absolut/FluidBased/Static/SingleEffect_intern/Validation/AHP_se_eps_p_XLiBr.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_intern.Validation.package",
+      "path": "Absolut/FluidBased/Static/SingleEffect_intern/Validation/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix",
+      "path": "Absolut/FluidBased/Static/SingleEffect_UAfixed/AbsorberStatic_wHT_UAfix.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_UAfixed.CondenserStatic_wHT_UAfix",
+      "path": "Absolut/FluidBased/Static/SingleEffect_UAfixed/CondenserStatic_wHT_UAfix.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_UAfixed.EvaporatorStatic_wHT_UAfix",
+      "path": "Absolut/FluidBased/Static/SingleEffect_UAfixed/EvaporatorStatic_wHT_UAfix.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_UAfixed.Examples.AHP_wHT_UAfix_ConAbsSerie",
+      "path": "Absolut/FluidBased/Static/SingleEffect_UAfixed/Examples/AHP_wHT_UAfix_ConAbsSerie.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_UAfixed.Examples.package",
+      "path": "Absolut/FluidBased/Static/SingleEffect_UAfixed/Examples/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_UAfixed.GeneratorStatic_wHT_UAfix",
+      "path": "Absolut/FluidBased/Static/SingleEffect_UAfixed/GeneratorStatic_wHT_UAfix.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_UAfixed.package",
+      "path": "Absolut/FluidBased/Static/SingleEffect_UAfixed/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_UAfixed.Validation.AHP_se_UAfix_eps",
+      "path": "Absolut/FluidBased/Static/SingleEffect_UAfixed/Validation/AHP_se_UAfix_eps.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.SingleEffect_UAfixed.Validation.package",
+      "path": "Absolut/FluidBased/Static/SingleEffect_UAfixed/Validation/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.TypeII.AbsorberStatic_wHT_UAfix_TypeII",
+      "path": "Absolut/FluidBased/Static/TypeII/AbsorberStatic_wHT_UAfix_TypeII.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.TypeII.AbsorberStatic_wHT_UAfix_TypeII_ext",
+      "path": "Absolut/FluidBased/Static/TypeII/AbsorberStatic_wHT_UAfix_TypeII_ext.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.TypeII.EvaporatorStatic_wHT_UAfix_TypeII",
+      "path": "Absolut/FluidBased/Static/TypeII/EvaporatorStatic_wHT_UAfix_TypeII.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.TypeII.GeneratorStatic_wHT_UAfix_TypeII",
+      "path": "Absolut/FluidBased/Static/TypeII/GeneratorStatic_wHT_UAfix_TypeII.mo",
+      "kind": "model",
+      "scope": "component"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.TypeII.package",
+      "path": "Absolut/FluidBased/Static/TypeII/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.TypeII.Validation.AHPTypeII_UAfix_HXeps",
+      "path": "Absolut/FluidBased/Static/TypeII/Validation/AHPTypeII_UAfix_HXeps.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.FluidBased.Static.TypeII.Validation.package",
+      "path": "Absolut/FluidBased/Static/TypeII/Validation/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.ChemicalPotential.ChemicalPotential_w",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/ChemicalPotential/ChemicalPotential_w.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.ChemicalPotential.package",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/ChemicalPotential/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.Gibbs.der_derT_Gibbs",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/der_derT_Gibbs.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.Gibbs.der_Gibbs",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/der_Gibbs.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.Gibbs.derp_derT_Gibbs",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derp_derT_Gibbs.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.Gibbs.derp_Gibbs",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derp_Gibbs.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.Gibbs.derT_derT_Gibbs",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derT_derT_Gibbs.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.Gibbs.derT_Gibbs",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derT_Gibbs.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.Gibbs.derX_Gibbs",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derX_Gibbs.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.Gibbs.GibbsSmoothOrder",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/GibbsSmoothOrder.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.Gibbs.package",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.HeatCapacity.der_HeatCapacity",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/der_HeatCapacity.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.HeatCapacity.derp_HeatCapacity",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/derp_HeatCapacity.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.HeatCapacity.derT_HeatCapacity",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/derT_HeatCapacity.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.HeatCapacity.derX_HeatCapacity",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/derX_HeatCapacity.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.HeatCapacity.package",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.CheckDerivatives.package",
+      "path": "Absolut/Media/LiBrH2O/CheckDerivatives/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.chemicalPotential_s_TXp",
+      "path": "Absolut/Media/LiBrH2O/chemicalPotential_s_TXp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.chemicalPotential_w_TXp",
+      "path": "Absolut/Media/LiBrH2O/chemicalPotential_w_TXp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.chemicalPotential_w_TXp_der",
+      "path": "Absolut/Media/LiBrH2O/chemicalPotential_w_TXp_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.crystallizationtemperature_T",
+      "path": "Absolut/Media/LiBrH2O/crystallizationtemperature_T.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.crystallizationtemperature_X",
+      "path": "Absolut/Media/LiBrH2O/crystallizationtemperature_X.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.density_SSC_TXp",
+      "path": "Absolut/Media/LiBrH2O/density_SSC_TXp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.density_SSC_TXp_der",
+      "path": "Absolut/Media/LiBrH2O/density_SSC_TXp_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.dewPoint_Kaita_TX",
+      "path": "Absolut/Media/LiBrH2O/dewPoint_Kaita_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.dewPoint_Kaita_TX_der",
+      "path": "Absolut/Media/LiBrH2O/dewPoint_Kaita_TX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.dewPoint_Kaita_TX_der_der",
+      "path": "Absolut/Media/LiBrH2O/dewPoint_Kaita_TX_der_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.dynamicViscosity_SSC_TX",
+      "path": "Absolut/Media/LiBrH2O/dynamicViscosity_SSC_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.dynamicViscosity_SSC_TX_der",
+      "path": "Absolut/Media/LiBrH2O/dynamicViscosity_SSC_TX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.heatOfDilution_SSC_TXp",
+      "path": "Absolut/Media/LiBrH2O/heatOfDilution_SSC_TXp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.package",
+      "path": "Absolut/Media/LiBrH2O/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.pressure_dTX",
+      "path": "Absolut/Media/LiBrH2O/pressure_dTX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.pressure_dTX_func",
+      "path": "Absolut/Media/LiBrH2O/pressure_dTX_func.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.density_Chua_TX",
+      "path": "Absolut/Media/LiBrH2O/References/density_Chua_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.density_Chua_TX_der",
+      "path": "Absolut/Media/LiBrH2O/References/density_Chua_TX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.dewPoint_McNelly_TX",
+      "path": "Absolut/Media/LiBrH2O/References/dewPoint_McNelly_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.dewPoint_McNelly_TX_der",
+      "path": "Absolut/Media/LiBrH2O/References/dewPoint_McNelly_TX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.dewPoint_Patterson_TX",
+      "path": "Absolut/Media/LiBrH2O/References/dewPoint_Patterson_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.package",
+      "path": "Absolut/Media/LiBrH2O/References/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.saturationPressure_Kaita_TX",
+      "path": "Absolut/Media/LiBrH2O/References/saturationPressure_Kaita_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.saturationPressure_Kaita_TX_der",
+      "path": "Absolut/Media/LiBrH2O/References/saturationPressure_Kaita_TX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.saturationPressure_Kaita_TX_der_der",
+      "path": "Absolut/Media/LiBrH2O/References/saturationPressure_Kaita_TX_der_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.saturationPressure_McNelly_TX",
+      "path": "Absolut/Media/LiBrH2O/References/saturationPressure_McNelly_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.saturationPressure_UemuraHasaba_TX",
+      "path": "Absolut/Media/LiBrH2O/References/saturationPressure_UemuraHasaba_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.specificEnthalpy_Kayta_TX",
+      "path": "Absolut/Media/LiBrH2O/References/specificEnthalpy_Kayta_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.specificEnthalpy_Kayta_TX_der",
+      "path": "Absolut/Media/LiBrH2O/References/specificEnthalpy_Kayta_TX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.specificEnthalpy_McNelly_TX",
+      "path": "Absolut/Media/LiBrH2O/References/specificEnthalpy_McNelly_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.specificEnthalpy_McNelly_TX_der",
+      "path": "Absolut/Media/LiBrH2O/References/specificEnthalpy_McNelly_TX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.specificHeatCapacity_IyokiandUemura_TX",
+      "path": "Absolut/Media/LiBrH2O/References/specificHeatCapacity_IyokiandUemura_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.specificHeatCapacity_Jeter_TX",
+      "path": "Absolut/Media/LiBrH2O/References/specificHeatCapacity_Jeter_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.specificHeatCapacity_Patterson_TX",
+      "path": "Absolut/Media/LiBrH2O/References/specificHeatCapacity_Patterson_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.specificHeatCapacity_Rockenfeller_TX",
+      "path": "Absolut/Media/LiBrH2O/References/specificHeatCapacity_Rockenfeller_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.specificHeatCapacity_Rockenfeller_TX_der",
+      "path": "Absolut/Media/LiBrH2O/References/specificHeatCapacity_Rockenfeller_TX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.temperature_McNelly_dewPointX",
+      "path": "Absolut/Media/LiBrH2O/References/temperature_McNelly_dewPointX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.temperature_McNelly_dewPointX_der",
+      "path": "Absolut/Media/LiBrH2O/References/temperature_McNelly_dewPointX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.temperature_ThemoSysPro_hX",
+      "path": "Absolut/Media/LiBrH2O/References/temperature_ThemoSysPro_hX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.References.temperature_ThermoSysPro_hX_der",
+      "path": "Absolut/Media/LiBrH2O/References/temperature_ThermoSysPro_hX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.saturationPressure_TX",
+      "path": "Absolut/Media/LiBrH2O/saturationPressure_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.saturationPressure_TX_func",
+      "path": "Absolut/Media/LiBrH2O/saturationPressure_TX_func.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.saturationPressure_TX_funcR2ph",
+      "path": "Absolut/Media/LiBrH2O/saturationPressure_TX_funcR2ph.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.saturationPressure_TX_funcR2pT",
+      "path": "Absolut/Media/LiBrH2O/saturationPressure_TX_funcR2pT.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificEnthalpy_SSC_TXp",
+      "path": "Absolut/Media/LiBrH2O/specificEnthalpy_SSC_TXp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificEnthalpy_SSC_TXp_der",
+      "path": "Absolut/Media/LiBrH2O/specificEnthalpy_SSC_TXp_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificEnthalpy_SSC_TXp_inv",
+      "path": "Absolut/Media/LiBrH2O/specificEnthalpy_SSC_TXp_inv.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificEntropy_SSC_TXp",
+      "path": "Absolut/Media/LiBrH2O/specificEntropy_SSC_TXp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificEntropy_SSC_TXp_der",
+      "path": "Absolut/Media/LiBrH2O/specificEntropy_SSC_TXp_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_der",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derp",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derp_der",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derp_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derp_der_der",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derp_der_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derp_derT",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derp_derT.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derp_derX",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derp_derX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derT",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derT.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derT_der",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derT_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derT_der_check",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derT_der_check.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derT_derp",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derT_derp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derT_derT",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derT_derT.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derT_derX",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derT_derX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derX",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derX_der",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derX_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derX_derp",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derX_derp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derX_derT",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derX_derT.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derX_derX",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derX_derX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_logT",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_logT.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_so",
+      "path": "Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_so.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificHeatCapacity_SSC_TXp",
+      "path": "Absolut/Media/LiBrH2O/specificHeatCapacity_SSC_TXp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificHeatCapacity_SSC_TXp_der",
+      "path": "Absolut/Media/LiBrH2O/specificHeatCapacity_SSC_TXp_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificHeatCapacity_SSC_TXp_derp",
+      "path": "Absolut/Media/LiBrH2O/specificHeatCapacity_SSC_TXp_derp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificHeatCapacity_SSC_TXp_derT",
+      "path": "Absolut/Media/LiBrH2O/specificHeatCapacity_SSC_TXp_derT.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificHeatCapacity_SSC_TXp_derX",
+      "path": "Absolut/Media/LiBrH2O/specificHeatCapacity_SSC_TXp_derX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.specificInternalEnergy_TXp",
+      "path": "Absolut/Media/LiBrH2O/specificInternalEnergy_TXp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.temperature_Gen_Xp",
+      "path": "Absolut/Media/LiBrH2O/temperature_Gen_Xp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.temperature_hXp",
+      "path": "Absolut/Media/LiBrH2O/temperature_hXp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.temperature_hXp_func",
+      "path": "Absolut/Media/LiBrH2O/temperature_hXp_func.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.temperature_Kaita_Xp_func",
+      "path": "Absolut/Media/LiBrH2O/temperature_Kaita_Xp_func.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.temperature_Xp",
+      "path": "Absolut/Media/LiBrH2O/temperature_Xp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.temperature_Xp_der",
+      "path": "Absolut/Media/LiBrH2O/temperature_Xp_der.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.temperature_Xp_func",
+      "path": "Absolut/Media/LiBrH2O/temperature_Xp_func.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.temperature_Xp_funcR2pT",
+      "path": "Absolut/Media/LiBrH2O/temperature_Xp_funcR2pT.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.thermalConductivity_SSC_TX",
+      "path": "Absolut/Media/LiBrH2O/thermalConductivity_SSC_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Utilities.cristalitzation_TX",
+      "path": "Absolut/Media/LiBrH2O/Utilities/cristalitzation_TX.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Utilities.package",
+      "path": "Absolut/Media/LiBrH2O/Utilities/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.CondensationEvaporation",
+      "path": "Absolut/Media/LiBrH2O/Validation/CondensationEvaporation.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.cp",
+      "path": "Absolut/Media/LiBrH2O/Validation/cp.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.Density",
+      "path": "Absolut/Media/LiBrH2O/Validation/Density.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.Desorption",
+      "path": "Absolut/Media/LiBrH2O/Validation/Desorption.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.Enthalpy",
+      "path": "Absolut/Media/LiBrH2O/Validation/Enthalpy.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.MixingOfFluids",
+      "path": "Absolut/Media/LiBrH2O/Validation/MixingOfFluids.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.package",
+      "path": "Absolut/Media/LiBrH2O/Validation/package.mo",
+      "kind": "package",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.Pumping",
+      "path": "Absolut/Media/LiBrH2O/Validation/Pumping.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.SSC",
+      "path": "Absolut/Media/LiBrH2O/Validation/SSC.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.ThorttlingLiBr",
+      "path": "Absolut/Media/LiBrH2O/Validation/ThorttlingLiBr.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.Validation.ThorttlingWater",
+      "path": "Absolut/Media/LiBrH2O/Validation/ThorttlingWater.mo",
+      "kind": "model",
+      "scope": "existing_example_or_media_test"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.X_Tp",
+      "path": "Absolut/Media/LiBrH2O/X_Tp.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.LiBrH2O.X_Tp_func",
+      "path": "Absolut/Media/LiBrH2O/X_Tp_func.mo",
+      "kind": "function",
+      "scope": "function_not_component"
+    },
+    {
+      "name": "Absolut.Media.package",
+      "path": "Absolut/Media/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    },
+    {
+      "name": "Absolut.package",
+      "path": "Absolut/package.mo",
+      "kind": "package",
+      "scope": "namespace"
+    }
+  ],
+  "results": [
+    {
+      "case": "EvaporatorsSeriesFeedStep",
+      "model": "ComponentTests.EvaporatorsSeriesFeedStep",
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport",
+      "scenario": "Two evaporators in refrigerant-vapor series: FeedStep",
+      "residual_limits": {
+        "r_mass1": 1e-05,
+        "r_mass2": 1e-05,
+        "r_massTotal": 1e-05,
+        "r_energy1": 2,
+        "r_energy2": 2,
+        "r_energyTotal": 2,
+        "r_seriesMass": 1e-10,
+        "r_seriesEnergy": 1e-05
+      },
+      "ranges": {
+        "eva1.T": [
+          273.16,
+          310
+        ],
+        "eva2.T": [
+          273.16,
+          310
+        ],
+        "eva1.p": [
+          611.657,
+          4000
+        ],
+        "eva2.p": [
+          611.657,
+          4000
+        ],
+        "liquidFraction1": [
+          0.4,
+          0.6
+        ],
+        "liquidFraction2": [
+          0.4,
+          0.6
+        ],
+        "m_feed": [
+          0.00019,
+          0.00041
+        ],
+        "m_series": [
+          0.0001,
+          0.001
+        ],
+        "m_out": [
+          0.0002,
+          0.002
+        ],
+        "dp_series": [
+          1,
+          300
+        ],
+        "eva1.Qb_flow": [
+          999,
+          1401
+        ],
+        "eva2.Qb_flow": [
+          799,
+          1101
+        ]
+      },
+      "excursions": {
+        "massChange2": {
+          "min_at_most": -0.25
+        },
+        "m_feed": {
+          "min_at_most": 0.00021,
+          "max_at_least": 0.00039
+        },
+        "massChange1": {
+          "min_at_most": -0.07
+        }
+      },
+      "notes": "Liquid feed enters stage 1 only; stage 2 consumes its initial charge. Vapor connectors are joined through an adiabatic resistance. Per-stage and overall boundary-flux inventory checks; no added DUT balance equations.",
+      "stop": 1200,
+      "tolerance": 1e-08,
+      "strict_initialization": true,
+      "case_source_sha256": "6ad0a68095e26955544bd86f0ca6c7475530966cc582437e8a4065345084f9ad",
+      "case_spec_sha256": "ff6a863c507de549eb9d3030efebb4a74031bca0dd628dbb73610e55ce012c0f",
+      "validation_key": "b675a3582ef9711f07241c3167e89ae2f5549c5d7073b9df2c5cae68f1394575",
+      "executed_utc": "2026-09-23T13:47:26.783206+00:00",
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 9.97,
+      "log": "build\\components_msl_4.1.0\\EvaporatorsSeriesFeedStep\\omc.log",
+      "status": "pass",
+      "failure_stage": null,
+      "diagnostics": [
+        "    messages = \"LOG_ASSERT        | warning | [C:/Users/hz/AppData/Roaming/.openmodelica/libraries/Modelica 4.1.0+maint.om/Fluid/Sources.mo:13:3-20:44:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:63:3-63:62:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:64:3-64:62:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:65:3-65:66:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:70:3-70:57:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:71:3-71:57:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:72:3-72:61:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:74:3-74:81:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:73:3-73:61:writable]"
+      ],
+      "warning_count": 1,
+      "equations": 242,
+      "variables": 242,
+      "fixture_equation_count_equal": true,
+      "loaded_modelica_version_matches": true,
+      "successful_simulation": true,
+      "initialization": {
+        "pass": true,
+        "success": true,
+        "translation_errors": [],
+        "initialization_adjustments": [],
+        "runtime_domain_errors": [],
+        "nonlinear_retries": 0
+      },
+      "result": "build\\components_msl_4.1.0\\EvaporatorsSeriesFeedStep\\model_res.csv",
+      "rows": 504,
+      "finite": true,
+      "first_time": 0.0,
+      "final_time": 1200.0,
+      "maximum_residuals": {
+        "r_mass1": 1.752764600126966e-14,
+        "r_mass2": 1.63202784619898e-14,
+        "r_massTotal": 2.09277040141842e-14,
+        "r_energy1": 7.512426236644387e-10,
+        "r_energy2": 1.207808963954449e-09,
+        "r_energyTotal": 1.59343471750617e-09,
+        "r_seriesMass": 0.0,
+        "r_seriesEnergy": 0.0
+      },
+      "observed_ranges": {
+        "m_feed": [
+          0.0002,
+          0.0004
+        ],
+        "massChange1": [
+          -0.1262268301352449,
+          0.0
+        ],
+        "liquidFraction2": [
+          0.4921366583868028,
+          0.5
+        ],
+        "m_series": [
+          0.0004,
+          0.0004156552314396849
+        ],
+        "eva1.Qb_flow": [
+          1000.0,
+          1000.0
+        ],
+        "eva2.T": [
+          283.8939791418522,
+          284.0009833160033
+        ],
+        "eva1.p": [
+          1391.395912041895,
+          1400.001704670365
+        ],
+        "dp_series": [
+          100.0,
+          103.9138078599212
+        ],
+        "eva2.p": [
+          1290.771125059236,
+          1300.0
+        ],
+        "massChange2": [
+          -0.3927387221459142,
+          0.0
+        ],
+        "m_out": [
+          0.0007261690004738847,
+          0.0007999999999999999
+        ],
+        "liquidFraction1": [
+          0.4974688857114211,
+          0.5
+        ],
+        "eva2.Qb_flow": [
+          800.0,
+          800.0
+        ],
+        "eva1.T": [
+          285.0260433595037,
+          285.1194836033834
+        ]
+      },
+      "physics_failures": [],
+      "artifact_sha256": {
+        "log": "6cd737c78e345f3d93aeacdd4214174aa29d6688ee5d0e3d6872fa59a63e7d5e",
+        "result": "a0afec409ef0d9da74a13475a31e59b83aabb222c0fd031355a176f2930a1c2e"
+      }
+    },
+    {
+      "case": "EvaporatorsSeriesHeatStep",
+      "model": "ComponentTests.EvaporatorsSeriesHeatStep",
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport",
+      "scenario": "Two evaporators in refrigerant-vapor series: HeatStep",
+      "residual_limits": {
+        "r_mass1": 1e-05,
+        "r_mass2": 1e-05,
+        "r_massTotal": 1e-05,
+        "r_energy1": 2,
+        "r_energy2": 2,
+        "r_energyTotal": 2,
+        "r_seriesMass": 1e-10,
+        "r_seriesEnergy": 1e-05
+      },
+      "ranges": {
+        "eva1.T": [
+          273.16,
+          310
+        ],
+        "eva2.T": [
+          273.16,
+          310
+        ],
+        "eva1.p": [
+          611.657,
+          4000
+        ],
+        "eva2.p": [
+          611.657,
+          4000
+        ],
+        "liquidFraction1": [
+          0.4,
+          0.6
+        ],
+        "liquidFraction2": [
+          0.4,
+          0.6
+        ],
+        "m_feed": [
+          0.00019,
+          0.00041
+        ],
+        "m_series": [
+          0.0001,
+          0.001
+        ],
+        "m_out": [
+          0.0002,
+          0.002
+        ],
+        "dp_series": [
+          1,
+          300
+        ],
+        "eva1.Qb_flow": [
+          999,
+          1401
+        ],
+        "eva2.Qb_flow": [
+          799,
+          1101
+        ]
+      },
+      "excursions": {
+        "massChange2": {
+          "min_at_most": -0.25
+        },
+        "m_series": {
+          "min_at_most": 0.00043,
+          "max_at_least": 0.0005
+        },
+        "m_out": {
+          "min_at_most": 0.0008,
+          "max_at_least": 0.00095
+        }
+      },
+      "notes": "Liquid feed enters stage 1 only; stage 2 consumes its initial charge. Vapor connectors are joined through an adiabatic resistance. Per-stage and overall boundary-flux inventory checks; no added DUT balance equations.",
+      "stop": 1200,
+      "tolerance": 1e-08,
+      "strict_initialization": true,
+      "case_source_sha256": "bcf070d24cdd48e859b66c71e5a7150d5fa929d25f54c7e6c2f46a190f0ae3f2",
+      "case_spec_sha256": "d963c35c61f706ffc33f1b15fb9597742649a91d85e2ce41f888743f62756d11",
+      "validation_key": "b675a3582ef9711f07241c3167e89ae2f5549c5d7073b9df2c5cae68f1394575",
+      "executed_utc": "2026-09-23T13:47:13.539072+00:00",
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 14.11,
+      "log": "build\\components_msl_4.1.0\\EvaporatorsSeriesHeatStep\\omc.log",
+      "status": "pass",
+      "failure_stage": null,
+      "diagnostics": [
+        "    messages = \"LOG_ASSERT        | warning | [C:/Users/hz/AppData/Roaming/.openmodelica/libraries/Modelica 4.1.0+maint.om/Fluid/Sources.mo:13:3-20:44:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:63:3-63:62:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:64:3-64:62:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:65:3-65:66:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:70:3-70:57:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:71:3-71:57:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:72:3-72:61:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:74:3-74:81:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:73:3-73:61:writable]"
+      ],
+      "warning_count": 1,
+      "equations": 242,
+      "variables": 242,
+      "fixture_equation_count_equal": true,
+      "loaded_modelica_version_matches": true,
+      "successful_simulation": true,
+      "initialization": {
+        "pass": true,
+        "success": true,
+        "translation_errors": [],
+        "initialization_adjustments": [],
+        "runtime_domain_errors": [],
+        "nonlinear_retries": 0
+      },
+      "result": "build\\components_msl_4.1.0\\EvaporatorsSeriesHeatStep\\model_res.csv",
+      "rows": 506,
+      "finite": true,
+      "first_time": 0.0,
+      "final_time": 1200.0,
+      "maximum_residuals": {
+        "r_mass1": 2.259997744502584e-14,
+        "r_mass2": 3.760880495917718e-14,
+        "r_massTotal": 4.019007349143067e-14,
+        "r_energy1": 1.86992110684514e-09,
+        "r_energy2": 2.579326974228024e-09,
+        "r_energyTotal": 1.658918336033821e-09,
+        "r_seriesMass": 0.0,
+        "r_seriesEnergy": 0.0
+      },
+      "observed_ranges": {
+        "m_feed": [
+          0.0004,
+          0.0004
+        ],
+        "liquidFraction2": [
+          0.4910302123698205,
+          0.5
+        ],
+        "m_series": [
+          0.0004,
+          0.0005596881773219275
+        ],
+        "eva1.Qb_flow": [
+          1000.0,
+          1400.0
+        ],
+        "eva2.T": [
+          283.9037673861628,
+          284.2924336480905
+        ],
+        "eva1.p": [
+          1393.325931267856,
+          1465.354248318944
+        ],
+        "dp_series": [
+          100.0,
+          139.9220443304819
+        ],
+        "eva2.p": [
+          1291.612935941102,
+          1325.432203988462
+        ],
+        "massChange2": [
+          -0.4490117291211853,
+          0.0
+        ],
+        "m_out": [
+          0.0007329034875288125,
+          0.001003457631907695
+        ],
+        "liquidFraction1": [
+          0.4976901933764714,
+          0.5
+        ],
+        "eva2.Qb_flow": [
+          800.0,
+          1100.0
+        ],
+        "eva1.T": [
+          285.0470433214412,
+          285.8130320552818
+        ]
+      },
+      "physics_failures": [],
+      "artifact_sha256": {
+        "log": "c5913cd13976e7ddd51e2c51972e262e752dd3a872409b038471b37c40039331",
+        "result": "a7b50394a241b31399856820b8e194ade91ff8deac1104ad7148a1ff24483375"
+      }
+    },
+    {
+      "case": "EvaporatorsSeriesNominal",
+      "model": "ComponentTests.EvaporatorsSeriesNominal",
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport",
+      "scenario": "Two evaporators in refrigerant-vapor series: Nominal",
+      "residual_limits": {
+        "r_mass1": 1e-05,
+        "r_mass2": 1e-05,
+        "r_massTotal": 1e-05,
+        "r_energy1": 2,
+        "r_energy2": 2,
+        "r_energyTotal": 2,
+        "r_seriesMass": 1e-10,
+        "r_seriesEnergy": 1e-05
+      },
+      "ranges": {
+        "eva1.T": [
+          273.16,
+          310
+        ],
+        "eva2.T": [
+          273.16,
+          310
+        ],
+        "eva1.p": [
+          611.657,
+          4000
+        ],
+        "eva2.p": [
+          611.657,
+          4000
+        ],
+        "liquidFraction1": [
+          0.4,
+          0.6
+        ],
+        "liquidFraction2": [
+          0.4,
+          0.6
+        ],
+        "m_feed": [
+          0.00019,
+          0.00041
+        ],
+        "m_series": [
+          0.0001,
+          0.001
+        ],
+        "m_out": [
+          0.0002,
+          0.002
+        ],
+        "dp_series": [
+          1,
+          300
+        ],
+        "eva1.Qb_flow": [
+          999,
+          1401
+        ],
+        "eva2.Qb_flow": [
+          799,
+          1101
+        ]
+      },
+      "excursions": {
+        "massChange2": {
+          "min_at_most": -0.25
+        }
+      },
+      "notes": "Liquid feed enters stage 1 only; stage 2 consumes its initial charge. Vapor connectors are joined through an adiabatic resistance. Per-stage and overall boundary-flux inventory checks; no added DUT balance equations.",
+      "stop": 1200,
+      "tolerance": 1e-08,
+      "strict_initialization": true,
+      "case_source_sha256": "4b1cab20b080d8d901bf27d91729d5857272748623d1bb42a598590ea25d6134",
+      "case_spec_sha256": "f56a89e02436d1bbe8d9ced41e77087dcaf42cfe208e3c71c51afc47726a50e9",
+      "validation_key": "b675a3582ef9711f07241c3167e89ae2f5549c5d7073b9df2c5cae68f1394575",
+      "executed_utc": "2026-09-23T13:47:13.539072+00:00",
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 13.16,
+      "log": "build\\components_msl_4.1.0\\EvaporatorsSeriesNominal\\omc.log",
+      "status": "pass",
+      "failure_stage": null,
+      "diagnostics": [
+        "    messages = \"LOG_ASSERT        | warning | [C:/Users/hz/AppData/Roaming/.openmodelica/libraries/Modelica 4.1.0+maint.om/Fluid/Sources.mo:13:3-20:44:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:63:3-63:62:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:64:3-64:62:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:65:3-65:66:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:70:3-70:57:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:71:3-71:57:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:72:3-72:61:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:74:3-74:81:writable]",
+        "LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:73:3-73:61:writable]"
+      ],
+      "warning_count": 1,
+      "equations": 242,
+      "variables": 242,
+      "fixture_equation_count_equal": true,
+      "loaded_modelica_version_matches": true,
+      "successful_simulation": true,
+      "initialization": {
+        "pass": true,
+        "success": true,
+        "translation_errors": [],
+        "initialization_adjustments": [],
+        "runtime_domain_errors": [],
+        "nonlinear_retries": 0
+      },
+      "result": "build\\components_msl_4.1.0\\EvaporatorsSeriesNominal\\model_res.csv",
+      "rows": 504,
+      "finite": true,
+      "first_time": 0.0,
+      "final_time": 1200.0,
+      "maximum_residuals": {
+        "r_mass1": 1.594384346770283e-14,
+        "r_mass2": 1.590394482775537e-14,
+        "r_massTotal": 2.09277040141842e-14,
+        "r_energy1": 8.894858183339238e-10,
+        "r_energy2": 1.42244971357286e-09,
+        "r_energyTotal": 2.117303665727377e-09,
+        "r_seriesMass": 0.0,
+        "r_seriesEnergy": 0.0
+      },
+      "observed_ranges": {
+        "m_feed": [
+          0.0004,
+          0.0004
+        ],
+        "liquidFraction2": [
+          0.4921346808471601,
+          0.5
+        ],
+        "m_series": [
+          0.0004,
+          0.0004156552314396849
+        ],
+        "eva1.Qb_flow": [
+          1000.0,
+          1000.0
+        ],
+        "eva2.T": [
+          283.8918282461776,
+          284.0009833160033
+        ],
+        "eva1.p": [
+          1390.87573360236,
+          1400.001704670365
+        ],
+        "dp_series": [
+          100.0,
+          103.9138078599212
+        ],
+        "eva2.p": [
+          1290.586207974786,
+          1300.0
+        ],
+        "massChange2": [
+          -0.3928321537086816,
+          0.0
+        ],
+        "m_out": [
+          0.0007246896637982845,
+          0.0007999999999999999
+        ],
+        "liquidFraction1": [
+          0.499884216366906,
+          0.5
+        ],
+        "eva2.Qb_flow": [
+          800.0,
+          800.0
+        ],
+        "eva1.T": [
+          285.0203790691721,
+          285.1194836033834
+        ]
+      },
+      "physics_failures": [],
+      "artifact_sha256": {
+        "log": "0aceb50de07c98b07a92d84c934f09a511ca334f20bc1f7afba3cedf93fbd670",
+        "result": "960832de711b38e6858c749581dcec22cf0daf092a4aed1adad2c92924ae6d9e"
+      }
+    }
+  ],
+  "case_summary": {
+    "pass": 3,
+    "fail": 0
+  },
+  "components": [
+    {
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport",
+      "status": "pass",
+      "cases": [
+        "EvaporatorsSeriesFeedStep",
+        "EvaporatorsSeriesHeatStep",
+        "EvaporatorsSeriesNominal"
+      ]
+    }
+  ],
+  "component_summary": {
+    "pass": 1,
+    "fail": 0
+  },
+  "uncovered_components": [
+    "Absolut.Basic.Blocks.CarnotSingleEffectAHP",
+    "Absolut.Basic.Blocks.DDT_AHT",
+    "Absolut.Basic.Blocks.EER_CarnotSingleEffectAHP",
+    "Absolut.Basic.Blocks.EER_DoubleEffectAHP",
+    "Absolut.Basic.Blocks.EER_HalfEffectAHP",
+    "Absolut.Basic.Blocks.EER_SingleEffectAHP",
+    "Absolut.Basic.Blocks.EER_TripleEffectAHP",
+    "Absolut.Basic.Blocks.Tfiring",
+    "Absolut.Basic.Blocks.ZeroOrderSingleEffectAHP",
+    "Absolut.Basic.Blocks.ZeroOrderSingleEffectAHP_ext",
+    "Absolut.FluidBased.Dynamic.Components.AbsorberDyn_heatport",
+    "Absolut.FluidBased.Dynamic.Components.AbsorberDyn_internalHEX",
+    "Absolut.FluidBased.Dynamic.Components.CondenserDyn_heatport",
+    "Absolut.FluidBased.Dynamic.Components.CondenserDyn_internalHEX",
+    "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_internalHEX",
+    "Absolut.FluidBased.Dynamic.Components.GeneratorDyn_heatport",
+    "Absolut.FluidBased.Dynamic.Components.GeneratorDyn_internalHEX",
+    "Absolut.FluidBased.Static.BaseClasses.ChenMTD",
+    "Absolut.FluidBased.Static.BaseClasses.LMTD",
+    "Absolut.FluidBased.Static.BaseClasses.MTD",
+    "Absolut.FluidBased.Static.Components.Compressor",
+    "Absolut.FluidBased.Static.Components.FlashingLiBr",
+    "Absolut.FluidBased.Static.Components.FlashingWater",
+    "Absolut.FluidBased.Static.Components.HEX.ConstantEffectiveness",
+    "Absolut.FluidBased.Static.Components.HEX.PlateHeatExchangerEffectivenessNTU",
+    "Absolut.FluidBased.Static.Components.HEX.simpleHX",
+    "Absolut.FluidBased.Static.Components.Pump",
+    "Absolut.FluidBased.Static.Components.PumpW",
+    "Absolut.FluidBased.Static.DoubleEffect.CondenserStatic_de_UAfix",
+    "Absolut.FluidBased.Static.DoubleEffect.LowGeneratorStatic",
+    "Absolut.FluidBased.Static.DoubleEffect.LowGeneratorStatic_serie",
+    "Absolut.FluidBased.Static.Resorption.AbsorberStatic_wHT_UAfix_Resorption_ext",
+    "Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix",
+    "Absolut.FluidBased.Static.SingleEffect_UAfixed.CondenserStatic_wHT_UAfix",
+    "Absolut.FluidBased.Static.SingleEffect_UAfixed.EvaporatorStatic_wHT_UAfix",
+    "Absolut.FluidBased.Static.SingleEffect_UAfixed.GeneratorStatic_wHT_UAfix",
+    "Absolut.FluidBased.Static.SingleEffect_intern.AbsorberStatic",
+    "Absolut.FluidBased.Static.SingleEffect_intern.CondenserStatic",
+    "Absolut.FluidBased.Static.SingleEffect_intern.EvaporatorStatic",
+    "Absolut.FluidBased.Static.SingleEffect_intern.GeneratorStatic",
+    "Absolut.FluidBased.Static.TypeII.AbsorberStatic_wHT_UAfix_TypeII",
+    "Absolut.FluidBased.Static.TypeII.AbsorberStatic_wHT_UAfix_TypeII_ext",
+    "Absolut.FluidBased.Static.TypeII.EvaporatorStatic_wHT_UAfix_TypeII",
+    "Absolut.FluidBased.Static.TypeII.GeneratorStatic_wHT_UAfix_TypeII"
+  ],
+  "complete_coverage": false
+}

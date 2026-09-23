@@ -50,5 +50,6 @@ equation
 <p><br><br><b>References:</b></p>
 <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
 </html>"),
-    __Dymola_Commands(file="Resources\Static\Components\Validation\PumpLiBr.mos" "Plot"));
+    __Dymola_Commands(file="modelica://Absolut/Resources/Static/Components/Validation/PumpLiBr.mos" "Plot"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end PumpLiBr;

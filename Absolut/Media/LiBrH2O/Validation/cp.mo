@@ -169,11 +169,12 @@ equation
       Interval=1,
       Tolerance=1e-07,
       __Dymola_Algorithm="Dassl"),__Dymola_Commands(file="modelica://Absolut/Resources/Media/Validation/cp/cp.mos"
-        "Simulate and export cp values for validation purposes", file="Resources/Media/Validation/cp/cp_plot.mos" "Plot"),
+        "Simulate and export cp values for validation purposes", file="modelica://Absolut/Resources/Media/Validation/cp/cp_plot.mos" "Plot"),
     Documentation(info="<html>
 <p>This model is used to calculate the specific heat capacity for different mass fractions of LiBr at equilibrium for different temperatures. </p>
 <p>The points calculated correspond (to be compared with) to the ones published by Yuan Z. and Herold K.E. in [1], see Table 1. </p>
 <p><br><b>References:</b></p>
 <p>[1] Z. Yuan &amp; K.E. Herold (2005) Specific Heat Measurements on Aqueous Lithium Bromide, HVAC&amp;R Research, 11:3, 361-375. </p>
 </html>"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end cp;

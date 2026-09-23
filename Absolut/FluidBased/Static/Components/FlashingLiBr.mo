@@ -43,7 +43,7 @@ model FlashingLiBr
   Modelica.Units.SI.MassFraction X_LiBr_in(start=X_LiBr_start);
   Modelica.Units.SI.MassFraction X_LiBr_out_intern(start=X_LiBr_start);
 
-  Modelica.Units.SI.Temperature T_out_intern_auxiliar;
+  Modelica.Units.SI.Temperature T_out_intern_auxiliar(start=T_out_start);
 
 // Internal
   Modelica.Blocks.Interfaces.RealOutput T_out(unit="K", start=T_out_start, nominal = 300)
@@ -69,6 +69,8 @@ parameter Real Q_intern_start = 0.05     annotation(Dialog(tab = "Initialization
 
   Modelica.Units.SI.SpecificEnthalpy h_out_v;
   Real Q_intern(min=0,max=1, start=Q_intern_start);
+  Real Q_raw(start=Q_intern_start)
+    "Unclipped vapor fraction for detecting the transition to subcooled liquid";
 
 
   //Entropy
@@ -109,15 +111,19 @@ port_l_b.h_outflow = Medium_l.specificEnthalpy_SSC_TXp(T_out, 1-X_LiBr_out, port
 //T_out_intern = Medium_l.temperature_Xp(1 - X_LiBr_out_intern, port_l_b.p);
 Modelica.Media.Water.WaterIF97_ph.specificGibbsEnergy(Modelica.Media.Water.WaterIF97_ph.setState_pTX(p=port_l_b.p, T=T_out_intern, X={1})) = Medium_l.chemicalPotential_w_TXp(T_out_intern,1-X_LiBr_out_intern,port_l_b.p);
 
-Q_intern = max(0,min(1,(X_LiBr_out_intern - X_LiBr_in)/X_LiBr_out_intern));
+Q_raw = (X_LiBr_out_intern - X_LiBr_in)/X_LiBr_out_intern;
+Q_intern = max(0,min(1,Q_raw));
 
+// Diagnostic temperature: use the physical inverse branch (273.5 to 600 K).
+// An implicit inversion lets compiler-generated iteration variables start at 0 K.
 T_out_intern_auxiliar = Medium_l.temperature_hXp(h_out,1-X_LiBr_out,port_l_b.p);
-//h_out = Medium_l.specificEnthalpy_SSC_TXp(T_out_intern_auxiliar,1-X_LiBr_out,port_l_b.p);
 
 //port_v_b.m_flow = Buildings.Utilities.Math.Functions.regStep(Q_intern,-Q*port_a.m_flow,0, 0.00001);
 port_v_b.m_flow = -Q*port_a.m_flow;
 
-if Q_intern <= 0 then
+// The event indicator must cross zero. A clipped quality can stay at zero
+// without updating the active branch in a solver with event hysteresis.
+if Q_raw <= 0 then
       Q = 0;
       X_LiBr_out = X_LiBr_in;
       h_out = Medium_l.specificEnthalpy_SSC_TXp(T_out,1-X_LiBr_out,port_l_b.p);

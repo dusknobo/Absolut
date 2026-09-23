@@ -400,7 +400,7 @@ which is assumed to be constant.
   end setState_dTX;
 
   redeclare function extends setState_phX "Return the thermodynamic state as function of pressure p, specific enthalpy h and composition X or Xi"
-
+  protected
   parameter Real a = 0.00334662;
   parameter Real b = 0.63494688;
   algorithm

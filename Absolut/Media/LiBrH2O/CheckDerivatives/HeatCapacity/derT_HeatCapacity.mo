@@ -50,4 +50,5 @@ model derT_HeatCapacity "Check for implemented derivatives for heat capacity"
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end derT_HeatCapacity;

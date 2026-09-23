@@ -53,4 +53,5 @@ model ChemicalPotential_w
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end ChemicalPotential_w;

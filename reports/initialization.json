@@ -1,0 +1,300 @@
+{
+  "timestamp_utc": "2026-09-23T13:40:40.090386+00:00",
+  "translation_flags": "--preOptModules-=evalFunc -d=initialization",
+  "source_sha256": "abb1525064244fc19fade165e465d4558bea960f72aaffd9a9cffb4f33e437a1",
+  "test_source_sha256": {
+    "initialization.py": "03caca1259d5bcd62c0ab4b21b0f6585c796835e702d1d0e548baf5dabc42b8f",
+    "verify.py": "449d27b41b6aeefa85382680acb79c1b81f0f4f4e6477d5fecdbd8bacffe80b2"
+  },
+  "summary": {
+    "pass": 6,
+    "fail": 0
+  },
+  "results": [
+    {
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 87.7,
+      "log": "build\\initialization\\4.0.0\\heatport\\omc.log",
+      "model": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_heatport",
+      "modelica": "4.0.0",
+      "translation_errors": [],
+      "initialization_adjustments": [],
+      "runtime_domain_errors": [],
+      "nonlinear_retries": 35,
+      "remaining_warnings": [
+        "Warning: Some equations could not be differentiated for following variables having attribute stateSelect=StateSelect.prefer. They will be treated as if they had stateSelect=StateSelect.default",
+        "Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts."
+      ],
+      "success": true,
+      "initialization_success": true,
+      "finite": true,
+      "reached_stop": true,
+      "rows": 508,
+      "final_time": 86400.0,
+      "conservation": {
+        "pass": true,
+        "maximum": {
+          "mass_drift_kg": 1.2386493608573801e-08,
+          "libr_drift_kg": 3.693488616107743e-05,
+          "energy_residual_W": 8.074435155769333e-07,
+          "flash_libr_residual_kg_s": 4.332797141903821e-15
+        },
+        "limits": {
+          "mass_drift_kg": 1e-05,
+          "libr_drift_kg": 0.0001,
+          "energy_residual_W": 0.1,
+          "flash_libr_residual_kg_s": 1e-08
+        },
+        "extra_solution_heat": [],
+        "scope": "Working-fluid inventory, energy equations including listed external solution heat exchangers, and forward-flow flashing-valve LiBr balance at saved output times; not experimental validation."
+      },
+      "result": "build\\initialization\\4.0.0\\heatport\\model_res.csv",
+      "pass": true,
+      "artifact_sha256": {
+        "log": "7b57991b3f7d479e587e76e9133cceadffc8cb0a7c0508a0e879f4cfb7fb17db",
+        "result": "b358b75d7615ff1cc8e9c4bb6cca1979eee51fb0acbfcb6befeae2d6ea2fb0d6"
+      }
+    },
+    {
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 65.25,
+      "log": "build\\initialization\\4.0.0\\heatport_nocp\\omc.log",
+      "model": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_heatport_nocp",
+      "modelica": "4.0.0",
+      "translation_errors": [],
+      "initialization_adjustments": [],
+      "runtime_domain_errors": [],
+      "nonlinear_retries": 0,
+      "remaining_warnings": [
+        "Warning: Some equations could not be differentiated for following variables having attribute stateSelect=StateSelect.prefer. They will be treated as if they had stateSelect=StateSelect.default",
+        "Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts."
+      ],
+      "success": true,
+      "initialization_success": true,
+      "finite": true,
+      "reached_stop": true,
+      "rows": 508,
+      "final_time": 86400.0,
+      "conservation": {
+        "pass": true,
+        "maximum": {
+          "mass_drift_kg": 8.154430020113068e-08,
+          "libr_drift_kg": 7.401419203745263e-06,
+          "energy_residual_W": 1.3285083759473348e-06,
+          "flash_libr_residual_kg_s": 4.512720492427791e-15
+        },
+        "limits": {
+          "mass_drift_kg": 1e-05,
+          "libr_drift_kg": 0.0001,
+          "energy_residual_W": 0.1,
+          "flash_libr_residual_kg_s": 1e-08
+        },
+        "extra_solution_heat": [],
+        "scope": "Working-fluid inventory, energy equations including listed external solution heat exchangers, and forward-flow flashing-valve LiBr balance at saved output times; not experimental validation."
+      },
+      "result": "build\\initialization\\4.0.0\\heatport_nocp\\model_res.csv",
+      "pass": true,
+      "artifact_sha256": {
+        "log": "5f688773f49c84a429959d0b74ecfc3c728c3f2d35bd02d4d32e4852f537842c",
+        "result": "c1c779421cc46477736d79804bd0a326a0aeadb1254c3d726c1246d1f56949c6"
+      }
+    },
+    {
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 36.77,
+      "log": "build\\initialization\\4.0.0\\heatport_extended\\omc.log",
+      "model": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_heatport_extended",
+      "modelica": "4.0.0",
+      "translation_errors": [],
+      "initialization_adjustments": [],
+      "runtime_domain_errors": [],
+      "nonlinear_retries": 0,
+      "remaining_warnings": [
+        "Warning: Some equations could not be differentiated for following variables having attribute stateSelect=StateSelect.prefer. They will be treated as if they had stateSelect=StateSelect.default",
+        "Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts."
+      ],
+      "success": true,
+      "initialization_success": true,
+      "finite": true,
+      "reached_stop": true,
+      "rows": 508,
+      "final_time": 86400.0,
+      "conservation": {
+        "pass": true,
+        "maximum": {
+          "mass_drift_kg": 4.510688995651435e-07,
+          "libr_drift_kg": 1.5027274507417587e-05,
+          "energy_residual_W": 2.698863681871444e-06,
+          "flash_libr_residual_kg_s": 4.65827463408397e-15
+        },
+        "limits": {
+          "mass_drift_kg": 1e-05,
+          "libr_drift_kg": 0.0001,
+          "energy_residual_W": 0.1,
+          "flash_libr_residual_kg_s": 1e-08
+        },
+        "extra_solution_heat": [
+          "ahp.hex_abs.Q2_flow",
+          "ahp.hex_gen.Q2_flow"
+        ],
+        "scope": "Working-fluid inventory, energy equations including listed external solution heat exchangers, and forward-flow flashing-valve LiBr balance at saved output times; not experimental validation."
+      },
+      "result": "build\\initialization\\4.0.0\\heatport_extended\\model_res.csv",
+      "pass": true,
+      "artifact_sha256": {
+        "log": "fc289071b9d0aa94cf01dcb66b6cd81e1904f44669b600325258384dbfaf8560",
+        "result": "2426e6b9241cfa2e17a83d22c34acbbac8be755ffc63d1d25148c0076a2a17c2"
+      }
+    },
+    {
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 83.7,
+      "log": "build\\initialization\\4.1.0\\heatport\\omc.log",
+      "model": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_heatport",
+      "modelica": "4.1.0",
+      "translation_errors": [],
+      "initialization_adjustments": [],
+      "runtime_domain_errors": [],
+      "nonlinear_retries": 3,
+      "remaining_warnings": [
+        "Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts.",
+        "Warning: Some equations could not be differentiated for following variables having attribute stateSelect=StateSelect.prefer. They will be treated as if they had stateSelect=StateSelect.default",
+        "Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts."
+      ],
+      "success": true,
+      "initialization_success": true,
+      "finite": true,
+      "reached_stop": true,
+      "rows": 508,
+      "final_time": 86400.0,
+      "conservation": {
+        "pass": true,
+        "maximum": {
+          "mass_drift_kg": 1.1306383385090157e-08,
+          "libr_drift_kg": 3.7065601453889485e-05,
+          "energy_residual_W": 1.6155915488202943e-06,
+          "flash_libr_residual_kg_s": 4.261998740040518e-15
+        },
+        "limits": {
+          "mass_drift_kg": 1e-05,
+          "libr_drift_kg": 0.0001,
+          "energy_residual_W": 0.1,
+          "flash_libr_residual_kg_s": 1e-08
+        },
+        "extra_solution_heat": [],
+        "scope": "Working-fluid inventory, energy equations including listed external solution heat exchangers, and forward-flow flashing-valve LiBr balance at saved output times; not experimental validation."
+      },
+      "result": "build\\initialization\\4.1.0\\heatport\\model_res.csv",
+      "pass": true,
+      "artifact_sha256": {
+        "log": "075110386bcb9a48a8bfdc05d4d09afc51cce16f7559c236f38a60a86bfe7d3b",
+        "result": "8b5d0f0c559cf98c0f3d91bc5e251d895ae275af4998e38e0d6d98aa2d55dec1"
+      }
+    },
+    {
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 97.02,
+      "log": "build\\initialization\\4.1.0\\heatport_nocp\\omc.log",
+      "model": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_heatport_nocp",
+      "modelica": "4.1.0",
+      "translation_errors": [],
+      "initialization_adjustments": [],
+      "runtime_domain_errors": [],
+      "nonlinear_retries": 0,
+      "remaining_warnings": [
+        "Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts.",
+        "Warning: Some equations could not be differentiated for following variables having attribute stateSelect=StateSelect.prefer. They will be treated as if they had stateSelect=StateSelect.default",
+        "Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts."
+      ],
+      "success": true,
+      "initialization_success": true,
+      "finite": true,
+      "reached_stop": true,
+      "rows": 508,
+      "final_time": 86400.0,
+      "conservation": {
+        "pass": true,
+        "maximum": {
+          "mass_drift_kg": 1.010897108244535e-07,
+          "libr_drift_kg": 7.408169530265241e-06,
+          "energy_residual_W": 1.4546275748095194e-06,
+          "flash_libr_residual_kg_s": 4.57674263071306e-15
+        },
+        "limits": {
+          "mass_drift_kg": 1e-05,
+          "libr_drift_kg": 0.0001,
+          "energy_residual_W": 0.1,
+          "flash_libr_residual_kg_s": 1e-08
+        },
+        "extra_solution_heat": [],
+        "scope": "Working-fluid inventory, energy equations including listed external solution heat exchangers, and forward-flow flashing-valve LiBr balance at saved output times; not experimental validation."
+      },
+      "result": "build\\initialization\\4.1.0\\heatport_nocp\\model_res.csv",
+      "pass": true,
+      "artifact_sha256": {
+        "log": "93bc1a069191a1f2b5ace1a3e62d10cd9bf15b70e7d2a8ea25debecfe461293c",
+        "result": "257f18517fc1c172ec46ac9ea26d3febd5c054f8f66f768c02bbca8260df02c1"
+      }
+    },
+    {
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 59.78,
+      "log": "build\\initialization\\4.1.0\\heatport_extended\\omc.log",
+      "model": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_heatport_extended",
+      "modelica": "4.1.0",
+      "translation_errors": [],
+      "initialization_adjustments": [],
+      "runtime_domain_errors": [],
+      "nonlinear_retries": 0,
+      "remaining_warnings": [
+        "Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts.",
+        "Warning: Some equations could not be differentiated for following variables having attribute stateSelect=StateSelect.prefer. They will be treated as if they had stateSelect=StateSelect.default",
+        "Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts."
+      ],
+      "success": true,
+      "initialization_success": true,
+      "finite": true,
+      "reached_stop": true,
+      "rows": 508,
+      "final_time": 86400.0,
+      "conservation": {
+        "pass": true,
+        "maximum": {
+          "mass_drift_kg": 3.690532253131096e-07,
+          "libr_drift_kg": 1.5049131192768073e-05,
+          "energy_residual_W": 5.321329808793962e-06,
+          "flash_libr_residual_kg_s": 5.048370575744254e-15
+        },
+        "limits": {
+          "mass_drift_kg": 1e-05,
+          "libr_drift_kg": 0.0001,
+          "energy_residual_W": 0.1,
+          "flash_libr_residual_kg_s": 1e-08
+        },
+        "extra_solution_heat": [
+          "ahp.hex_abs.Q2_flow",
+          "ahp.hex_gen.Q2_flow"
+        ],
+        "scope": "Working-fluid inventory, energy equations including listed external solution heat exchangers, and forward-flow flashing-valve LiBr balance at saved output times; not experimental validation."
+      },
+      "result": "build\\initialization\\4.1.0\\heatport_extended\\model_res.csv",
+      "pass": true,
+      "artifact_sha256": {
+        "log": "8dc2f4293390ec581c5c7a620ac8b8e55f97e26c3926401a667aa3da2ce64ace",
+        "result": "c932d3847080fdefdb5949d37658031df8118ce194916de9df9a0541abf01714"
+      }
+    }
+  ],
+  "retry_completed_utc": "2026-09-23T13:47:13.248356+00:00",
+  "retry_audit": {
+    "reason": "Compiler out of memory during concurrent validation. Retried alone, with unchanged model source and test runner.",
+    "initial_log": "reports/retries/heatport_extended_4_0_0_memory.log",
+    "initial_log_sha256": "53bcfdc9d26a1b7bd245de77d9137e525aabc105c91cc4eaa24859656f84d169"
+  }
+}

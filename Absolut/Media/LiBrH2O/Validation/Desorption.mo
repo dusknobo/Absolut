@@ -100,5 +100,6 @@ equation
 <h4>References:</h4>
 <p>[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</p>
 </html>"),
-    __Dymola_Commands(file="Resources/Media/Validation/Desorption.mos" "Plot"));
+    __Dymola_Commands(file="modelica://Absolut/Resources/Media/Validation/Desorption.mos" "Plot"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end Desorption;

@@ -15,6 +15,7 @@ extends Modelica.Icons.Example;
   replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
      __Dymola_choicesAllMatching=true);
   Absolut.FluidBased.Static.SingleEffect_UAfixed.CondenserStatic_wHT_UAfix con(
+    useHomotopy=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_l,
     redeclare package Medium_ext = Medium_ext,
@@ -24,6 +25,7 @@ extends Modelica.Icons.Example;
     T_16(start=328.15),
     UA=1200) annotation (Placement(transformation(extent={{-60,38},{-80,58}})));
   Absolut.FluidBased.Static.SingleEffect_UAfixed.EvaporatorStatic_wHT_UAfix eva(
+    useHomotopy=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_l,
     redeclare package Medium_ext = Medium_ext,
@@ -53,6 +55,9 @@ extends Modelica.Icons.Example;
   Modelica.Blocks.Sources.RealExpression MassFlowRate(y=0.05)
     annotation (Placement(transformation(extent={{-40,-32},{-20,-12}})));
   Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs(
+    useClosedLoopMassBalance=true,
+    useClosedLoopSaltBalance=true,
+    useHomotopy=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_sol,
     redeclare package Medium_ext = Medium_ext,
@@ -150,6 +155,7 @@ extends Modelica.Icons.Example;
         gen.p)/4184)
     annotation (Placement(transformation(extent={{-324,-66},{-284,-46}})));
   Absolut.FluidBased.Static.SingleEffect_UAfixed.GeneratorStatic_wHT_UAfix gen(
+    useHomotopy=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_sol,
     redeclare package Medium_ext = Medium_l,
@@ -242,5 +248,6 @@ equation
       StopTime=61,
       Interval=0.1,
       Tolerance=1e-07),
-      __Dymola_Commands(file="Resources\Static\AHE\Examples\AHE temperatures.mos" "Show AHE temperatures"));
+      __Dymola_Commands(file="modelica://Absolut/Resources/Static/AHE/Examples/AHE temperatures.mos" "Show AHE temperatures"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end AHX_all_parallel;

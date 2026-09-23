@@ -40,3 +40,7 @@ status
 stop
 success
 *.
+
+# Reproducible OpenModelica test outputs and Python caches
+/build/
+__pycache__/

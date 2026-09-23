@@ -24,5 +24,6 @@ model CoolingCOP_SingleEffectAHP
 <h4>References:</h4>
 <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
 </html>"),
-    __Dymola_Commands(file="Resources/Basic/COP vs T.mos" "Plot COP vs T"));
+    __Dymola_Commands(file="modelica://Absolut/Resources/Basic/COP vs T.mos" "Plot COP vs T"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end CoolingCOP_SingleEffectAHP;

@@ -1,0 +1,34 @@
+{
+  "timestamp_utc": "2026-09-23T13:40:42.439688+00:00",
+  "compiler": "OpenModelica v1.27.0-dev-390-g7f4d387df9 (64-bit)",
+  "source_sha256": "abb1525064244fc19fade165e465d4558bea960f72aaffd9a9cffb4f33e437a1",
+  "test_source_sha256": "b5578174d777c7df8c536c348d9f3f598cf6632f518797a497dfb6577ffe80b7",
+  "results": [
+    {
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 14.95,
+      "log": "build\\closed_loop_guards\\MassMismatch\\omc.log",
+      "case": "MassMismatch",
+      "status": "pass",
+      "expected_assertion": "Closed-circuit mass balance is not satisfied",
+      "built": true,
+      "log_sha256": "7550ba02d7ab586a831bc51764431cf7994bb1c3993bf62f5b412e35277a4caa"
+    },
+    {
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 11.06,
+      "log": "build\\closed_loop_guards\\SaltMismatch\\omc.log",
+      "case": "SaltMismatch",
+      "status": "pass",
+      "expected_assertion": "Closed-circuit LiBr balance is not satisfied",
+      "built": true,
+      "log_sha256": "91e94b55507c9a820a006825a9dcafb933c73fc73b61a4958acaf695d439a20e"
+    }
+  ],
+  "summary": {
+    "pass": 2,
+    "fail": 0
+  }
+}

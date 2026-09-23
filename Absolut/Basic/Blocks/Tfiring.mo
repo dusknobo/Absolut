@@ -15,7 +15,7 @@ model Tfiring "Minimum firing temperature"
           extent={{-100,60},{-60,100}}), iconTransformation(extent={{-100,60},{-60,
             100}})));
 equation
-  Th = Absolut.Basic.Functions.Tfiring_TeTcdT(Te, Th, dT);
+  Th = Absolut.Basic.Functions.Tfiring_TeTcdT(Te, Tc, dT);
 
   annotation (Icon(graphics={Rectangle(
           extent={{-100,-100},{100,100}},

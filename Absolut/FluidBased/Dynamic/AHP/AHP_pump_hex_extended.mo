@@ -11,9 +11,9 @@ model AHP_pump_hex_extended
   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
     annotation (__Dymola_choicesAllMatching=true);
-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
+  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
      __Dymola_choicesAllMatching=true);
-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
+  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
      __Dymola_choicesAllMatching=true);
   replaceable package MediumOil = Medium_ext constrainedby
     Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
@@ -195,6 +195,8 @@ model AHP_pump_hex_extended
     "mass flow rate of solution pump"
     annotation (Placement(transformation(extent={{280,-50},{240,-10}})));
   Modelica.Fluid.Pipes.DynamicPipe pipe_con(
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     allowFlowReversal=allowFlowReversal,
     redeclare package Medium = Medium_ext,
     length=0.2,
@@ -211,6 +213,8 @@ model AHP_pump_hex_extended
         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
     annotation (Placement(transformation(extent={{-188,200},{-208,220}})));
   Modelica.Fluid.Pipes.DynamicPipe pipe_gen(
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     allowFlowReversal=true,
     use_HeatTransfer=true,
     redeclare package Medium = MediumOil,
@@ -236,6 +240,8 @@ model AHP_pump_hex_extended
     T_start(displayUnit="degC") = pipemass_gen_T_start)
     annotation (Placement(transformation(extent={{114,220},{94,200}})));
   Modelica.Fluid.Pipes.DynamicPipe pipe_abs(
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     allowFlowReversal=allowFlowReversal,
     redeclare package Medium = Medium_ext,
     length=0.2,
@@ -252,6 +258,8 @@ model AHP_pump_hex_extended
         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
     annotation (Placement(transformation(extent={{188,-174},{168,-194}})));
   Modelica.Fluid.Pipes.DynamicPipe pipe_eva(
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     allowFlowReversal=allowFlowReversal,
     use_HeatTransfer=true,
     redeclare package Medium = MediumOil,

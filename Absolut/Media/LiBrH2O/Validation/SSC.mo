@@ -106,5 +106,6 @@ equation
 <p><br><b>References:</b></p>
 <p>[1] LiBrSSC (aquous lithium bromide) Property Routines. <a href=\"https://fchart.com/ees/libr_help/ssclibr.pdf\">https://fchart.com/ees/libr_help/ssclibr.pdf</a></p>
 </html>"),
-    __Dymola_Commands(file="Resources/Media/Validation/SSC_plot.mos" "Plot"));
+    __Dymola_Commands(file="modelica://Absolut/Resources/Media/Validation/SSC_plot.mos" "Plot"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end SSC;

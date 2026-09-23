@@ -174,6 +174,8 @@ extends Modelica.Icons.Example;
   Modelica.Blocks.Sources.RealExpression X_LiBr_gen_low(y=0.61663)
     annotation (Placement(transformation(extent={{160,0},{120,20}})));
   Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs(
+    useClosedLoopMassBalance=true,
+    useClosedLoopSaltBalance=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_sol,
     redeclare package Medium_ext = Medium_ext,
@@ -358,8 +360,9 @@ equation
 <p><br><b>References:</b></p>
 <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
 </html>"),
-    __Dymola_Commands(file="Resources\Static\DoubleEffect\Validation\AHP_de_Table74.mos"
+    __Dymola_Commands(file="modelica://Absolut/Resources/Static/DoubleEffect/Validation/AHP_de_Table74.mos"
         "Plot",
-        file="Resources\Static\DoubleEffect\Validation\AHP_pf_de_UAfix.mos"
+        file="modelica://Absolut/Resources/Static/DoubleEffect/Validation/AHP_pf_de_UAfix.mos"
         "Simulate and plot"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end AHP_pf_de_UAfix;

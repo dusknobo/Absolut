@@ -60,4 +60,5 @@ equation
 <p><br><b>References:</b></p>
 <p>[1] Y. Kaita (2001) Thermodynamic properties of lithium bromide-water solutions at high temperaures, International Journal of Refrigeration 24, 374-390.</p>
 </html>"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end Enthalpy;

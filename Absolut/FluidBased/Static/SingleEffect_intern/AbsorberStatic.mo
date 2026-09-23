@@ -70,7 +70,29 @@ model AbsorberStatic
         rotation=90,
         origin={80,-80})));
 
+  parameter Boolean useClosedLoopMassBalance=false
+    "Only for a closed steady circuit: mass balance is implied by other components";
+  parameter Boolean useClosedLoopSaltBalance=false
+    "Only for a closed solution circuit: salt balance is implied by other components";
+  Modelica.Units.SI.MassFlowRate massResidual = port_l_a.m_flow + port_l_b.m_flow + port_v.m_flow + port_v_a.m_flow;
+  Modelica.Units.SI.MassFlowRate saltResidual = port_l_a.m_flow*(1 - actualStream(port_l_a.Xi_outflow[1]))
+    + port_l_b.m_flow*(1 - actualStream(port_l_b.Xi_outflow[1]));
+
 equation
+
+  // Whole-vessel conservation, including the final liquid outlet.
+  if useClosedLoopMassBalance then
+    assert(noEvent(abs(massResidual) <= 1e-8),
+      "Closed-circuit mass balance is not satisfied; check the circuit or use local conservation");
+  else
+    massResidual = 0;
+  end if;
+  if useClosedLoopSaltBalance then
+    assert(noEvent(abs(saltResidual) <= 1e-8),
+      "Closed-circuit LiBr balance is not satisfied; check the circuit or use local conservation");
+  else
+    saltResidual = 0;
+  end if;
   // Mass balance
   connect(X_LiBr,X_LiBr_in);
   X_H2O = 1 - X_LiBr;
@@ -137,5 +159,6 @@ Delta_s = port_v.m_flow*s_out_v +  port_l_b.m_flow*s_out_l + port_l_a.m_flow*s_i
           textString="abs")}),                                   Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     Documentation(info="<html>
+<p>Local total-mass and LiBr balances are enabled by default. For a closed steady circuit only, useClosedLoopMassBalance and useClosedLoopSaltBalance may replace redundant equations by assertions with an absolute tolerance of 1e-8 kg/s. All other components and connections must enforce the corresponding balances, and the circuit must supply independent pressure/composition references. These options are not valid for an open component test with unconstrained outlet flow or composition.</p>
 </html>", revisions=""));
 end AbsorberStatic;

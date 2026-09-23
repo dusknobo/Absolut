@@ -78,6 +78,8 @@ extends Modelica.Icons.Example;
     annotation (Placement(transformation(extent={{-18,60},{22,80}})));
 
   Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs1(
+    useClosedLoopMassBalance=true,
+    useClosedLoopSaltBalance=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_sol,
     redeclare package Medium_ext = Medium_ext,
@@ -134,6 +136,8 @@ extends Modelica.Icons.Example;
     port_l_b(m_flow(start=-0.0458))) annotation (Placement(transformation(extent={{82,82},{102,102}})));
 
   Absolut.FluidBased.Static.Resorption.AbsorberStatic_wHT_UAfix_Resorption_ext abs2(
+    useClosedLoopMassBalance=false,
+    useClosedLoopSaltBalance=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_sol,
     redeclare package Medium_ext = Medium_ext,
@@ -299,6 +303,7 @@ equation
 <p><br><br><b>References:</b></p>
 <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
 </html>"),
-    __Dymola_Commands(file="Resources\Static\Resorption\Validation\Table8.6.mos"
+    __Dymola_Commands(file="modelica://Absolut/Resources/Static/Resorption/Validation/Table8.6.mos"
         "Plot"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end Resorption;

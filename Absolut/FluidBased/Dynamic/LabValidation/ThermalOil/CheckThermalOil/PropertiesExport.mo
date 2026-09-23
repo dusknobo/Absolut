@@ -24,11 +24,13 @@ equation
   k = Medium.thermalConductivity(state);
   mu = Medium.dynamicViscosity(state);
   mu_calc = kinematicmu * rho;
-  kinematicmu = Medium.kinematicViscosity(T);
+  kinematicmu = mu/rho;
   rho = Medium.density(state);
 
-  kinematicmu20 = Medium.kinematicViscosity(293.15);
-  kinematicmu100 = Medium.kinematicViscosity(373.15);
+  kinematicmu20 = Medium.dynamicViscosity(Medium.setState_pTX(100000,293.15)) /
+    Medium.density(Medium.setState_pTX(100000,293.15));
+  kinematicmu100 = Medium.dynamicViscosity(Medium.setState_pTX(100000,373.15)) /
+    Medium.density(Medium.setState_pTX(100000,373.15));
 
   Beta0 = Medium.isobaricExpansionCoefficient(Medium.setState_pTX(100000,273.15));
   Beta100 = Medium.isobaricExpansionCoefficient(Medium.setState_pTX(100000,100 + 273.15));
@@ -41,4 +43,5 @@ equation
       Interval=1,
       Tolerance=1e-06,
       __Dymola_Algorithm="Dassl"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end PropertiesExport;

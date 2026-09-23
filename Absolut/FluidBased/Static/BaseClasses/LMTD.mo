@@ -11,8 +11,13 @@ partial model LMTD "Mean temperature difference"
 
 equation
 
-  dTzero = if dT1*dT1 < dT2*dT2 - tol or dT1*dT1 - tol > dT2*dT2 then false else true;
-  dT_log = if dT1 > 0 and dT2 > 0 and not dTzero then ((dT1) - (dT2))/log((dT1)/(dT2)) else (dT1+dT2)/2;
+  dTzero = noEvent(abs(dT1*dT1 - dT2*dT2) <= tol);
+  // Evaluate the domain guard immediately, including during event iteration.
+  // The nonnegative zero-terminal limit is zero; negative differences retain
+  // the historical arithmetic fallback outside the positive LMTD domain.
+  dT_log = if noEvent(dT1 > 0 and dT2 > 0) then
+    Absolut.FluidBased.Static.BaseClasses.logMeanPositive(dT1, dT2)
+    elseif noEvent(dT1 >= 0 and dT2 >= 0) then 0 else (dT1+dT2)/2;
   dT_used = dT_log;
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(

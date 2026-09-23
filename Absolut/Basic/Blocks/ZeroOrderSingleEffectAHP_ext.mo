@@ -29,7 +29,7 @@ model ZeroOrderSingleEffectAHP_ext
 
   Modelica.Units.SI.Temperature Tei(start = Tei_start), Tci(start = Tci_start),Thi(start = Thi_start) "Internal temperatures";
 
-  Modelica.Units.SI.HeatFlowRate Qc(max=0) "Overall heat flow rate at condenser and absorber";
+  Modelica.Units.SI.HeatFlowRate Qc(min=0) "Overall heat rejected at condenser and absorber (positive magnitude)";
   Modelica.Units.SI.HeatFlowRate Qe(min=0) "Heat flow rate at evaporator";
   Modelica.Units.SI.HeatFlowRate Qh(min=0) "Heat flow rate at generator";
 

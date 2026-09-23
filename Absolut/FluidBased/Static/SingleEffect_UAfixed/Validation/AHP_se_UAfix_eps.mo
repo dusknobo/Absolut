@@ -87,6 +87,8 @@ parameter Boolean allowFlowReversal=false
   Modelica.Blocks.Sources.RealExpression MassFlowRate(y=0.05)
     annotation (Placement(visible = true, transformation(                  extent = {{-40, -30}, {-20, -10}}, rotation = 0)));
   SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs(
+    useClosedLoopMassBalance=true,
+    useClosedLoopSaltBalance=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_sol,
     redeclare package Medium_ext = Medium_ext,
@@ -242,8 +244,8 @@ equation
       Interval=1,
       Tolerance=1e-07,
       __Dymola_Algorithm="Rkfix4"),
-    __Dymola_Commands(file="Resources\Static\SingleEffect_intern\Validation\AHP_se_eps_Table61_plot.mos" "Plot Table 6.1", file=
-          "Resources\Static\SingleEffect_UAfixed\Validation\AHP_se_Table63.mos" "Plot Table 6.3"),
+    __Dymola_Commands(file="modelica://Absolut/Resources/Static/SingleEffect_intern/Validation/AHP_se_eps_Table61_plot.mos" "Plot Table 6.1", file=
+          "modelica://Absolut/Resources/Static/SingleEffect_UAfixed/Validation/AHP_se_Table63.mos" "Plot Table 6.3"),
     Documentation(info="<html>
 <p>Model of a single effect absorption heat pump with external fluids.</p>
 <p>Heat exchanger UA values in W/K are fixed. </p>
@@ -257,4 +259,5 @@ equation
 <p><br><br><b>References:</b></p>
 <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
 </html>"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end AHP_se_UAfix_eps;

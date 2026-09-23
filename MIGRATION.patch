@@ -1,0 +1,2473 @@
+--- original/Absolut/Basic/Blocks/Tfiring.mo
++++ Absolut/Basic/Blocks/Tfiring.mo
+@@ -15,7 +15,7 @@
+           extent={{-100,60},{-60,100}}), iconTransformation(extent={{-100,60},{-60,
+             100}})));
+ equation
+-  Th = Absolut.Basic.Functions.Tfiring_TeTcdT(Te, Th, dT);
++  Th = Absolut.Basic.Functions.Tfiring_TeTcdT(Te, Tc, dT);
+ 
+   annotation (Icon(graphics={Rectangle(
+           extent={{-100,-100},{100,100}},
+--- original/Absolut/Basic/Blocks/ZeroOrderSingleEffectAHP_ext.mo
++++ Absolut/Basic/Blocks/ZeroOrderSingleEffectAHP_ext.mo
+@@ -29,7 +29,7 @@
+ 
+   Modelica.Units.SI.Temperature Tei(start = Tei_start), Tci(start = Tci_start),Thi(start = Thi_start) "Internal temperatures";
+ 
+-  Modelica.Units.SI.HeatFlowRate Qc(max=0) "Overall heat flow rate at condenser and absorber";
++  Modelica.Units.SI.HeatFlowRate Qc(min=0) "Overall heat rejected at condenser and absorber (positive magnitude)";
+   Modelica.Units.SI.HeatFlowRate Qe(min=0) "Heat flow rate at evaporator";
+   Modelica.Units.SI.HeatFlowRate Qh(min=0) "Heat flow rate at generator";
+ 
+--- original/Absolut/Basic/Examples/CoolingCOP.mo
++++ Absolut/Basic/Examples/CoolingCOP.mo
+@@ -72,5 +72,6 @@
+ <p>[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</p>
+ </html>"),
+     __Dymola_Commands(
+-      file="Resources/Basic/COP.mos" "Plot COP", file="Resources/Basic/COPandTemperatures.mos" "Plot COP and Temperatures"));
++      file="modelica://Absolut/Resources/Basic/COP.mos" "Plot COP", file="modelica://Absolut/Resources/Basic/COPandTemperatures.mos" "Plot COP and Temperatures"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end CoolingCOP;
+--- original/Absolut/Basic/Examples/CoolingCOP_SingleEffectAHP.mo
++++ Absolut/Basic/Examples/CoolingCOP_SingleEffectAHP.mo
+@@ -24,5 +24,6 @@
+ <h4>References:</h4>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Basic/COP vs T.mos" "Plot COP vs T"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Basic/COP vs T.mos" "Plot COP vs T"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end CoolingCOP_SingleEffectAHP;
+--- original/Absolut/Basic/Examples/DDT10_AHP.mo
++++ Absolut/Basic/Examples/DDT10_AHP.mo
+@@ -27,5 +27,6 @@
+     Documentation(info="<html>
+ <p>Example calculate the temperature at the generator, given the temperatures at the condenser, absorber and evaporator, assuming a characteristic temperature difference DDT = 10 K.</p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Basic/DDT.mos" "Plot results"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Basic/DDT.mos" "Plot results"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end DDT10_AHP;
+--- original/Absolut/Basic/Examples/DDT10_AHT.mo
++++ Absolut/Basic/Examples/DDT10_AHT.mo
+@@ -28,5 +28,6 @@
+     Documentation(info="<html>
+ <p>Example calculate the temperature at the evaporator and generator, given the temperatures at the condenser and absorber, assuming a characteristic temperature difference DDT = 10 K.</p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Basic/DDT.mos" "Plot results"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Basic/DDT.mos" "Plot results"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end DDT10_AHT;
+--- original/Absolut/Basic/Examples/HeatingCOP_SingleEffectAHP.mo
++++ Absolut/Basic/Examples/HeatingCOP_SingleEffectAHP.mo
+@@ -24,5 +24,6 @@
+ <h4>References:</h4>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Basic/COPh vs T.mos" "Plot COPh vs T"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Basic/COPh vs T.mos" "Plot COPh vs T"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end HeatingCOP_SingleEffectAHP;
+--- original/Absolut/Basic/Examples/MinimumHeatInputTemperature.mo
++++ Absolut/Basic/Examples/MinimumHeatInputTemperature.mo
+@@ -34,5 +34,6 @@
+ <p><br><b>References:</b></p>
+ <p>[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Basic/MinimumTemperature.mos" "MinimumTemperature"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Basic/MinimumTemperature.mos" "MinimumTemperature"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end MinimumHeatInputTemperature;
+--- original/Absolut/FluidBased/Dynamic/AHP/AHP.mo
++++ Absolut/FluidBased/Dynamic/AHP/AHP.mo
+@@ -6,9 +6,9 @@
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (__Dymola_choicesAllMatching=true);
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+   Components.EvaporatorDyn_heatport eva(
+@@ -147,6 +147,8 @@
+     "mass flow rate of solution pump"
+     annotation (Placement(transformation(extent={{280,-50},{240,-10}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_con(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -172,6 +174,8 @@
+     T_start(displayUnit="degC") = pipemass_con_T_start)
+     annotation (Placement(transformation(extent={{-172,220},{-192,200}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_gen(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -197,6 +201,8 @@
+     T_start(displayUnit="degC") = pipemass_gen_T_start)
+     annotation (Placement(transformation(extent={{114,220},{94,200}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_abs(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -222,6 +228,8 @@
+     T_start(displayUnit="degC") = pipemass_abs_T_start)
+     annotation (Placement(transformation(extent={{186,-194},{166,-174}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_eva(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+--- original/Absolut/FluidBased/Dynamic/AHP/AHP_hex_extended.mo
++++ Absolut/FluidBased/Dynamic/AHP/AHP_hex_extended.mo
+@@ -6,9 +6,9 @@
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (__Dymola_choicesAllMatching=true);
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+   Components.EvaporatorDyn_heatport eva(
+@@ -166,6 +166,8 @@
+     "mass flow rate of solution pump"
+     annotation (Placement(transformation(extent={{280,-50},{240,-10}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_con(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -191,6 +193,8 @@
+     T_start(displayUnit="degC") = pipemass_con_T_start)
+     annotation (Placement(transformation(extent={{-172,220},{-192,200}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_gen(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -216,6 +220,8 @@
+     T_start(displayUnit="degC") = pipemass_gen_T_start)
+     annotation (Placement(transformation(extent={{114,220},{94,200}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_abs(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -241,6 +247,8 @@
+     T_start(displayUnit="degC") = pipemass_abs_T_start)
+     annotation (Placement(transformation(extent={{186,-194},{166,-174}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_eva(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+--- original/Absolut/FluidBased/Dynamic/AHP/AHP_internal_hex.mo
++++ Absolut/FluidBased/Dynamic/AHP/AHP_internal_hex.mo
+@@ -6,9 +6,9 @@
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (__Dymola_choicesAllMatching=true);
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+   Modelica.Blocks.Interfaces.RealInput flashingWater_opening
+--- original/Absolut/FluidBased/Dynamic/AHP/AHP_nocp.mo
++++ Absolut/FluidBased/Dynamic/AHP/AHP_nocp.mo
+@@ -6,9 +6,9 @@
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (__Dymola_choicesAllMatching=true);
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+   Components.EvaporatorDyn_heatport eva(
+@@ -122,6 +122,8 @@
+     "mass flow rate of solution pump"
+     annotation (Placement(transformation(extent={{280,-50},{240,-10}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_con(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -147,6 +149,8 @@
+     T_start(displayUnit="degC") = pipemass_con_T_start)
+     annotation (Placement(transformation(extent={{-170,220},{-190,200}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_gen(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -172,6 +176,8 @@
+     T_start(displayUnit="degC") = pipemass_gen_T_start)
+     annotation (Placement(transformation(extent={{114,220},{94,200}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_abs(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -197,6 +203,8 @@
+     T_start(displayUnit="degC") = pipemass_abs_T_start)
+     annotation (Placement(transformation(extent={{186,-194},{166,-174}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_eva(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+--- original/Absolut/FluidBased/Dynamic/AHP/AHP_pump.mo
++++ Absolut/FluidBased/Dynamic/AHP/AHP_pump.mo
+@@ -2,6 +2,8 @@
+ model AHP_pump
+ 
+   parameter Integer nEle = 4 "discretization of pipe";
++  parameter Boolean allowFlowReversal=false
++    "Allow flow reversal in the external-fluid pipes";
+ 
+   parameter Real n = 1
+                       "
+@@ -10,9 +12,9 @@
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (__Dymola_choicesAllMatching=true);
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+   Components.EvaporatorDyn_heatport eva(
+@@ -190,6 +192,8 @@
+     "mass flow rate of solution pump"
+     annotation (Placement(transformation(extent={{280,-50},{240,-10}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_con(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=false,
+     redeclare package Medium = Medium_ext,
+     length=0.2,
+@@ -206,6 +210,8 @@
+         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
+     annotation (Placement(transformation(extent={{-178,232},{-198,252}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_gen(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -231,6 +237,8 @@
+     T_start(displayUnit="degC") = pipemass_gen_T_start)
+     annotation (Placement(transformation(extent={{114,220},{94,200}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_abs(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     redeclare package Medium = Medium_ext,
+     length=0.2,
+@@ -247,6 +255,8 @@
+         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
+     annotation (Placement(transformation(extent={{186,-174},{166,-194}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_eva(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -508,13 +518,13 @@
+         origin={88,44})));
+   Modelica.Blocks.Sources.Constant const(k=1)
+     annotation (Placement(transformation(extent={{158,12},{138,32}})));
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_con=0.03047 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_gen=0.03047 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_eva=0.28 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_abs=0.172 "Start value for mass flow rate";
+   Modelica.Blocks.Sources.RealExpression UAeva(y=max(0.1, ((port_eva_a.m_flow/
+         m_eva)^0.8))*eva_UA/nEle)
+--- original/Absolut/FluidBased/Dynamic/AHP/AHP_pump_hex_extended.mo
++++ Absolut/FluidBased/Dynamic/AHP/AHP_pump_hex_extended.mo
+@@ -11,10 +11,13 @@
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (__Dymola_choicesAllMatching=true);
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
++  replaceable package MediumOil = Medium_ext constrainedby
++    Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
++
+ 
+   Components.EvaporatorDyn_heatport eva(
+     redeclare package Medium_v = Medium_v,
+@@ -68,8 +71,6 @@
+     dp1_nominal=0,
+     dp2_nominal=0,
+     configuration=Buildings.Fluid.Types.HeatExchangerConfiguration.CounterFlow,
+-    T_a1_nominal=320.95,
+-    T_a2_nominal=347.55,
+     UA_fix=simpleHX_UA)                      annotation (Placement(
+         transformation(
+         extent={{-10,-10},{10,10}},
+@@ -194,6 +195,8 @@
+     "mass flow rate of solution pump"
+     annotation (Placement(transformation(extent={{280,-50},{240,-10}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_con(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     redeclare package Medium = Medium_ext,
+     length=0.2,
+@@ -210,6 +213,8 @@
+         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
+     annotation (Placement(transformation(extent={{-188,200},{-208,220}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_gen(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=true,
+     use_HeatTransfer=true,
+     redeclare package Medium = MediumOil,
+@@ -235,6 +240,8 @@
+     T_start(displayUnit="degC") = pipemass_gen_T_start)
+     annotation (Placement(transformation(extent={{114,220},{94,200}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_abs(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     redeclare package Medium = Medium_ext,
+     length=0.2,
+@@ -251,6 +258,8 @@
+         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
+     annotation (Placement(transformation(extent={{188,-174},{168,-194}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_eva(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=allowFlowReversal,
+     use_HeatTransfer=true,
+     redeclare package Medium = MediumOil,
+@@ -548,13 +557,13 @@
+         origin={88,44})));
+   Modelica.Blocks.Sources.Constant const(k=1)
+     annotation (Placement(transformation(extent={{158,12},{138,32}})));
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_con=0.03047 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_gen=0.03047 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_eva=0.28 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_abs=0.172 "Start value for mass flow rate";
+   Modelica.Blocks.Sources.RealExpression UAeva(y=(max(0.1, (port_eva_a.m_flow/
+         m_eva))^n_eva)*eva_UA/nEle)
+@@ -606,8 +615,6 @@
+     annotation (Placement(transformation(extent={{308,154},{288,174}})));
+   parameter Boolean allowFlowReversal=false
+     "= true to allow flow reversal, false restricts to design direction (port_a -> port_b)";
+-  replaceable package MediumOil =
+-    Modelica.Media.Water.WaterIF97_R1ph;
+   parameter Modelica.Units.SI.ThermalConductance UA_fix_gen( displayUnit="W/K")
+      = gen_UA "Fixed UA value generator secondary hex" annotation(Dialog(group="Generator"));
+   parameter Modelica.Units.SI.ThermalConductance UA_fix_abs( displayUnit="W/K")
+--- original/Absolut/FluidBased/Dynamic/AHP/AHP_pump_hex_extended_compressorHighP.mo
++++ Absolut/FluidBased/Dynamic/AHP/AHP_pump_hex_extended_compressorHighP.mo
+@@ -10,9 +10,9 @@
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (__Dymola_choicesAllMatching=true);
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+   Components.EvaporatorDyn_heatport eva(
+@@ -188,6 +188,8 @@
+     "mass flow rate of solution pump"
+     annotation (Placement(transformation(extent={{280,-50},{240,-10}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_con(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=false,
+     redeclare package Medium = Medium_ext,
+     length=0.2,
+@@ -205,6 +207,8 @@
+         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
+     annotation (Placement(transformation(extent={{-178,232},{-198,252}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_gen(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=false,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -230,6 +234,8 @@
+     T_start(displayUnit="degC") = pipemass_gen_T_start)
+     annotation (Placement(transformation(extent={{114,220},{94,200}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_abs(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=false,
+     redeclare package Medium = Medium_ext,
+     length=0.2,
+@@ -247,6 +253,8 @@
+         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
+     annotation (Placement(transformation(extent={{186,-174},{166,-194}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_eva(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=false,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -536,13 +544,13 @@
+         origin={88,44})));
+   Modelica.Blocks.Sources.Constant const(k=1)
+     annotation (Placement(transformation(extent={{158,12},{138,32}})));
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_con=0.03047 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_gen=0.03047 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_eva=0.28 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_abs=0.172 "Start value for mass flow rate";
+   Modelica.Blocks.Routing.Replicator replicatoreva(nout=nEle)
+     annotation (Placement(transformation(extent={{-140,-160},{-160,-140}})));
+--- original/Absolut/FluidBased/Dynamic/AHP/AHP_pump_hex_extended_compressorLowP.mo
++++ Absolut/FluidBased/Dynamic/AHP/AHP_pump_hex_extended_compressorLowP.mo
+@@ -10,9 +10,9 @@
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (__Dymola_choicesAllMatching=true);
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+   Components.EvaporatorDyn_heatport eva(
+@@ -188,6 +188,8 @@
+     "mass flow rate of solution pump"
+     annotation (Placement(transformation(extent={{280,-50},{240,-10}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_con(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=false,
+     redeclare package Medium = Medium_ext,
+     length=0.2,
+@@ -205,6 +207,8 @@
+         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
+     annotation (Placement(transformation(extent={{-178,232},{-198,252}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_gen(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=false,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -230,6 +234,8 @@
+     T_start(displayUnit="degC") = pipemass_gen_T_start)
+     annotation (Placement(transformation(extent={{114,220},{94,200}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_abs(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=false,
+     redeclare package Medium = Medium_ext,
+     length=0.2,
+@@ -247,6 +253,8 @@
+         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
+     annotation (Placement(transformation(extent={{186,-174},{166,-194}})));
+   Modelica.Fluid.Pipes.DynamicPipe pipe_eva(
++    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
++    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     allowFlowReversal=false,
+     use_HeatTransfer=true,
+     redeclare package Medium = Medium_ext,
+@@ -534,13 +542,13 @@
+         origin={88,44})));
+   Modelica.Blocks.Sources.Constant const(k=1)
+     annotation (Placement(transformation(extent={{158,12},{138,32}})));
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_con=0.03047 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_gen=0.03047 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_eva=0.28 "Start value for mass flow rate";
+-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
++  parameter Modelica.Units.SI.MassFlowRate
+     m_flow_start_pipe_abs=0.172 "Start value for mass flow rate";
+   Modelica.Blocks.Routing.Replicator replicatoreva(nout=nEle)
+     annotation (Placement(transformation(extent={{-140,-160},{-160,-140}})));
+--- original/Absolut/FluidBased/Dynamic/Components/AbsorberDyn_heatport.mo
++++ Absolut/FluidBased/Dynamic/Components/AbsorberDyn_heatport.mo
+@@ -5,9 +5,9 @@
+     replaceable package Medium_l = Absolut.Media.LiBrH2O;
+ 
+  parameter Boolean use_vaporization = false  "Add vaporization eq. (dh * der(m_v)) to correct energy balance equation and improve consistency." annotation(Dialog(tab="Advanced"));
+- parameter Boolean m_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean m_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
+  parameter Boolean mXLiBr_state = false "use LiBr mass as a state" annotation(Dialog(tab="Advanced"));
+- parameter Boolean U_state = false "use U as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean U_state = true "use U as a state" annotation(Dialog(tab="Advanced"));
+  parameter Boolean p_state = false "use p as a state" annotation(Dialog(tab="Advanced"));
+ 
+  // Start values...
+--- original/Absolut/FluidBased/Dynamic/Components/AbsorberDyn_internalHEX.mo
++++ Absolut/FluidBased/Dynamic/Components/AbsorberDyn_internalHEX.mo
+@@ -7,9 +7,9 @@
+     annotation (__Dymola_choicesAllMatching=true);
+ 
+  parameter Boolean use_vaporization = false  "Add vaporization eq. (dh * der(m_v)) to correct energy balance equation and improve consistency." annotation(Dialog(tab="Advanced"));
+- parameter Boolean m_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean m_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
+  parameter Boolean mXLiBr_state = false "use LiBr mass as a state" annotation(Dialog(tab="Advanced"));
+- parameter Boolean U_state = false "use U as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean U_state = true "use U as a state" annotation(Dialog(tab="Advanced"));
+  parameter Boolean p_state = false "use p as a state" annotation(Dialog(tab="Advanced"));
+ 
+  // Start values...
+--- original/Absolut/FluidBased/Dynamic/Components/CondenserDyn_heatport.mo
++++ Absolut/FluidBased/Dynamic/Components/CondenserDyn_heatport.mo
+@@ -1,11 +1,11 @@
+ within Absolut.FluidBased.Dynamic.Components;
+ model CondenserDyn_heatport "Condenser with heat Transfer"
+ 
+-    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph;
+-    replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph;
++    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT;
++    replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT;
+ 
+- parameter Boolean m_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+- parameter Boolean U_state = false "use U as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean m_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean U_state = true "use U as a state" annotation(Dialog(tab="Advanced"));
+  parameter Boolean p_state = false "use p as a state" annotation(Dialog(tab="Advanced"));
+ 
+  // Start  values...
+@@ -27,7 +27,7 @@
+ 
+     // Main variables
+ 
+-  Modelica.Units.SI.AbsolutePressure p(stateSelect = if p_state then StateSelect.always else StateSelect.prefer,  start=p_start)
++  Modelica.Units.SI.AbsolutePressure p(stateSelect = if p_state then StateSelect.always else StateSelect.default,  start=p_start)
+     "Liquid-vapor equilibrium pressure in the vessel";
+   Modelica.Units.SI.Temperature T(start=T_start)
+     "Liquid-vapor equilibrium temperature in the vessel";
+@@ -71,12 +71,10 @@
+   Medium_l.BaseProperties medium_l(
+     p(start=p_start),
+     T(start=T_start),
+-    Xi(start=X_l_start[1:Medium_l.nXi], each stateSelect = StateSelect.prefer),
++    Xi(start=X_l_start[1:Medium_l.nXi], each stateSelect = StateSelect.default),
+     h(start=Medium_l.specificEnthalpy(Medium_l.setState_pTX(p_start, T_start, X_l_start))))
+     "Liquid medium";
+ 
+-// , stateSelect = StateSelect.prefer
+-// , stateSelect = StateSelect.prefer
+ 
+    // Initialization
+   parameter Modelica.Units.SI.MassFraction X_v_start[Medium_v.nX] = Medium_v.X_default
+--- original/Absolut/FluidBased/Dynamic/Components/CondenserDyn_internalHEX.mo
++++ Absolut/FluidBased/Dynamic/Components/CondenserDyn_internalHEX.mo
+@@ -1,13 +1,13 @@
+ within Absolut.FluidBased.Dynamic.Components;
+ model CondenserDyn_internalHEX "Condenser with heat Transfer"
+ 
+-    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph;
+-    replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph;
++    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT;
++    replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT;
+     replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (__Dymola_choicesAllMatching=true);
+ 
+- parameter Boolean m_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+- parameter Boolean U_state = false "use U as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean m_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean U_state = true "use U as a state" annotation(Dialog(tab="Advanced"));
+  parameter Boolean p_state = false "use p as a state" annotation(Dialog(tab="Advanced"));
+ 
+  // Start  values...
+@@ -29,7 +29,7 @@
+ 
+     // Main variables
+ 
+-  Modelica.Units.SI.AbsolutePressure p(stateSelect = if p_state then StateSelect.always else StateSelect.prefer,  start=p_start)
++  Modelica.Units.SI.AbsolutePressure p(stateSelect = if p_state then StateSelect.always else StateSelect.default,  start=p_start)
+     "Liquid-vapor equilibrium pressure in the vessel";
+   Modelica.Units.SI.Temperature T(start=T_start)
+     "Liquid-vapor equilibrium temperature in the vessel";
+--- original/Absolut/FluidBased/Dynamic/Components/EvaporatorDyn_heatport.mo
++++ Absolut/FluidBased/Dynamic/Components/EvaporatorDyn_heatport.mo
+@@ -4,8 +4,8 @@
+     replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT;
+     replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT;
+ 
+- parameter Boolean m_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+- parameter Boolean U_state = false "use U as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean m_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean U_state = true "use U as a state" annotation(Dialog(tab="Advanced"));
+  parameter Boolean p_state = false "use p as a state" annotation(Dialog(tab="Advanced"));
+ 
+  // Start values...
+@@ -27,7 +27,7 @@
+ 
+     // Main variables
+ 
+-  Modelica.Units.SI.AbsolutePressure p(stateSelect = if p_state then StateSelect.always else StateSelect.prefer,  start = p_start)
++  Modelica.Units.SI.AbsolutePressure p(stateSelect = if p_state then StateSelect.always else StateSelect.default,  start = p_start)
+     "Liquid-vapor equilibrium pressure in the vessel";
+   Modelica.Units.SI.Temperature T( start = T_start)
+     "Liquid-vapor equilibrium temperature in the vessel";
+--- original/Absolut/FluidBased/Dynamic/Components/EvaporatorDyn_internalHEX.mo
++++ Absolut/FluidBased/Dynamic/Components/EvaporatorDyn_internalHEX.mo
+@@ -1,12 +1,12 @@
+ within Absolut.FluidBased.Dynamic.Components;
+ model EvaporatorDyn_internalHEX "Evaporator with heat Transfer"
+ 
+-    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph;
+-    replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph;
++    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT;
++    replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT;
+         replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph annotation (__Dymola_choicesAllMatching=true);
+ 
+- parameter Boolean m_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+- parameter Boolean U_state = false "use U as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean m_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
++ parameter Boolean U_state = true "use U as a state" annotation(Dialog(tab="Advanced"));
+  parameter Boolean p_state = false "use p as a state" annotation(Dialog(tab="Advanced"));
+ 
+  // Start values...
+@@ -28,7 +28,7 @@
+ 
+     // Main variables
+ 
+-  Modelica.Units.SI.AbsolutePressure p(stateSelect = if p_state then StateSelect.always else StateSelect.prefer,  start = p_start)
++  Modelica.Units.SI.AbsolutePressure p(stateSelect = if p_state then StateSelect.always else StateSelect.default,  start = p_start)
+     "Liquid-vapor equilibrium pressure in the vessel";
+   Modelica.Units.SI.Temperature T(start = T_start)
+     "Liquid-vapor equilibrium temperature in the vessel";
+--- original/Absolut/FluidBased/Dynamic/Components/GeneratorDyn_heatport.mo
++++ Absolut/FluidBased/Dynamic/Components/GeneratorDyn_heatport.mo
+@@ -1,13 +1,13 @@
+ within Absolut.FluidBased.Dynamic.Components;
+ model GeneratorDyn_heatport "Generator with heat Transfer"
+ 
+-    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph;
++    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT;
+     replaceable package Medium_l = Absolut.Media.LiBrH2O;
+ 
+ parameter Boolean use_vaporization = false "Add vaporization eq. (dh * der(m_v)) to correct energy balance equation and improve consistency." annotation(Dialog(tab="Advanced"));
+-parameter Boolean m_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
++parameter Boolean m_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
+ parameter Boolean mXLiBr_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+-parameter Boolean U_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
++parameter Boolean U_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
+ parameter Boolean p_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+ parameter Boolean T_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+ parameter Boolean XLiBr_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+--- original/Absolut/FluidBased/Dynamic/Components/GeneratorDyn_internalHEX.mo
++++ Absolut/FluidBased/Dynamic/Components/GeneratorDyn_internalHEX.mo
+@@ -1,15 +1,15 @@
+ within Absolut.FluidBased.Dynamic.Components;
+ model GeneratorDyn_internalHEX "Generator with heat Transfer"
+ 
+-    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph;
++    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT;
+     replaceable package Medium_l = Absolut.Media.LiBrH2O;
+     replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (__Dymola_choicesAllMatching=true);
+ 
+ parameter Boolean use_vaporization = false "Add vaporization eq. (dh * der(m_v)) to correct energy balance equation and improve consistency." annotation(Dialog(tab="Advanced"));
+-parameter Boolean m_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
++parameter Boolean m_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
+ parameter Boolean mXLiBr_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+-parameter Boolean U_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
++parameter Boolean U_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
+ parameter Boolean p_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
+  // Start values...
+   parameter Modelica.Units.SI.AbsolutePressure p_start= Medium_l.saturationPressure_TX(T_start,X_LiBr_start)
+--- original/Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_heatport.mo
++++ Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_heatport.mo
+@@ -2,11 +2,12 @@
+ model AHPse_Dyn_heatport
+   "Absorption heat pump model with external HEX (use of heat port)."
+ extends Modelica.Icons.Example;
++  inner Modelica.Fluid.System system "System defaults made explicit for OpenModelica";
+ 
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+ parameter Boolean allowFlowReversal=true
+@@ -89,6 +90,22 @@
+         origin={-78,-50})));
+ 
+   AHP.AHP ahp(
++    // Specify the inventory and wall initial values instead of relying on
++    // the compiler to add fixed starts to an incomplete initialization system.
++    abs(m(fixed=true), U(fixed=true), vap(start=0, fixed=true), Wv(start=0, fixed=true)),
++    gen(m(fixed=true), U(fixed=true), vap(start=0, fixed=true), Wv(start=0, fixed=true)),
++    con(m(fixed=true), U(fixed=true)),
++    eva(m(fixed=true), U(fixed=true)),
++    heatCapacitor_abs(each T(fixed=true)),
++    heatCapacitor_gen(each T(fixed=true)),
++    heatCapacitor_con(each T(fixed=true)),
++    heatCapacitor_eva(each T(fixed=true)),
++    pipe_abs(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    pipe_gen(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    pipe_con(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    pipe_eva(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    redeclare package Medium_l = Medium_l,
++    redeclare package Medium_v = Medium_v,
+     flashing_w_m_flow_nominal=0.005,
+     flashing_w_dp_nominal(displayUnit="Pa") = 7400 - 700,
+     flashing_LiBr_m_flow_nominal=0.07,
+@@ -108,7 +125,7 @@
+     abs_p_start(displayUnit="Pa") = 676,
+     abs_X_LiBr_start=0.5648,
+     simpleHX_UA=3105/22.96)
+-    annotation (Placement(transformation(extent={{-26,4},{30,46}})));
++    annotation (Placement(transformation(extent={{-28,4},{28,46}})));
+   Modelica.Blocks.Sources.RealExpression control_level(y=ahp.gen.level)
+     annotation (Placement(transformation(extent={{186,-10},{166,10}})));
+   Buildings.Controls.Continuous.LimPID conPID(
+@@ -139,47 +156,56 @@
+   Modelica.Fluid.Sensors.Temperature temperature_abs_out(redeclare package
+       Medium = Medium_ext)
+     annotation (Placement(transformation(extent={{-2,-34},{18,-14}})));
++initial equation
++  // With av_vb pipes, the last pressure is already fixed by each sink.
++  // Preserve steady pressure initialization at the remaining volume nodes.
++  for i in 1:ahp.nEle - 1 loop
++    der(ahp.pipe_abs.mediums[i].p) = 0;
++    der(ahp.pipe_gen.mediums[i].p) = 0;
++    der(ahp.pipe_con.mediums[i].p) = 0;
++    der(ahp.pipe_eva.mediums[i].p) = 0;
++  end for;
+ equation
+ 
+-  connect(ahp.m_flow_sol, MassFlowRate.y) annotation (Line(points={{30,21},{60,21},
+-          {60,-12},{65,-12}},     color={0,0,127}));
++  connect(ahp.m_flow_sol, MassFlowRate.y) annotation (Line(points={{28,21},{60,21},{60,-12},{65,-12}},
++                                  color={0,0,127}));
+   connect(source_con.ports[1], ahp.port_con_a)
+-    annotation (Line(points={{-140,110},{-14,110},{-14,52},{-11,52},{-11,45}},
++    annotation (Line(points={{-140,110},{-14,110},{-14,52},{-13,52},{-13,45}},
+                                                          color={0,127,255}));
+-  connect(ahp.port_con_b, sink_con.ports[1]) annotation (Line(points={{-19,45},{
+-          -18,45},{-18,60},{-96,60}},  color={0,127,255}));
+-  connect(source_eva.ports[1], ahp.port_eva_a) annotation (Line(points={{-68,-50},
+-          {-12,-50},{-12,5},{-13,5}},      color={0,127,255}));
+-  connect(sink_eva.ports[1], ahp.port_eva_b) annotation (Line(points={{-60,-10},
+-          {-20,-10},{-20,5},{-21,5}}, color={0,127,255}));
++  connect(ahp.port_con_b, sink_con.ports[1]) annotation (Line(points={{-21,45},{-18,45},{-18,60},{-96,60}},
++                                       color={0,127,255}));
++  connect(source_eva.ports[1], ahp.port_eva_a) annotation (Line(points={{-68,-50},{-12,-50},{-12,5},{-15,5}},
++                                           color={0,127,255}));
++  connect(sink_eva.ports[1], ahp.port_eva_b) annotation (Line(points={{-60,-10},{-20,-10},{-20,5},{-23,5}},
++                                      color={0,127,255}));
+   connect(source_abs.ports[1], ahp.port_abs_a)
+-    annotation (Line(points={{76,-40},{27,-40},{27,5}}, color={0,127,255}));
+-  connect(ahp.port_abs_b, sink_abs.ports[1]) annotation (Line(points={{15,5},{18,
+-          5},{18,-80},{74,-80}},    color={0,127,255}));
++    annotation (Line(points={{76,-40},{25,-40},{25,5}}, color={0,127,255}));
++  connect(ahp.port_abs_b, sink_abs.ports[1]) annotation (Line(points={{13,5},{18,5},{18,-80},{74,-80}},
++                                    color={0,127,255}));
+   connect(ahp.port_gen_a, source_gen.ports[1])
+-    annotation (Line(points={{20.8,45},{20.8,70},{66,70}}, color={0,127,255}));
++    annotation (Line(points={{18.8,45},{18.8,70},{66,70}}, color={0,127,255}));
+   connect(ahp.port_gen_b, sink_gen.ports[1])
+-    annotation (Line(points={{9,45},{9,104},{58,104}},   color={0,127,255}));
++    annotation (Line(points={{7,45},{7,104},{58,104}},   color={0,127,255}));
+   connect(conPID.u_m, control_level.y)
+     annotation (Line(points={{134,14},{134,0},{165,0}}, color={0,0,127}));
+   connect(conPID.u_s, level_setpoint.y)
+     annotation (Line(points={{146,26},{177,26}}, color={0,0,127}));
+   connect(ahp.flashingLiBr_opening, conPID.y)
+-    annotation (Line(points={{30,29},{123,29},{123,26}}, color={0,0,127}));
++    annotation (Line(points={{28,29},{123,29},{123,26}}, color={0,0,127}));
+   connect(conPID_w.u_m, control_level_con.y)
+     annotation (Line(points={{-110,14},{-110,0},{-139,0}}, color={0,0,127}));
+   connect(conPID_w.u_s, level_setpoint_con.y)
+     annotation (Line(points={{-122,26},{-155,26}}, color={0,0,127}));
+   connect(conPID_w.y, ahp.flashingWater_opening)
+-    annotation (Line(points={{-99,26},{-25.8,26}}, color={0,0,127}));
+-  connect(temperature_eva_out.port, ahp.port_eva_b) annotation (Line(points={{-98,-20},
+-          {-98,-26},{-20,-26},{-20,5},{-21,5}},          color={0,127,255}));
+-  connect(temperature_con_out.port, ahp.port_con_b) annotation (Line(points={{-58,70},
+-          {-58,60},{-19,60},{-19,45}},         color={0,127,255}));
+-  connect(temperature_gen_out.port, ahp.port_gen_b) annotation (Line(points={{2,114},
+-          {2,52},{9,52},{9,45}},        color={0,127,255}));
+-  connect(temperature_abs_out.port, ahp.port_abs_b) annotation (Line(points={{8,-34},
+-          {8,-40},{24,-40},{24,-2},{20,-2},{20,0},{15,0},{15,5}},      color={0,
++    annotation (Line(points={{-99,26},{-27.8,26}}, color={0,0,127}));
++  connect(temperature_eva_out.port, ahp.port_eva_b) annotation (Line(points={{-98,-20},{-98,-26},{-20,-26},{-20,5},{-23,5}},
++                                                         color={0,127,255}));
++  connect(temperature_con_out.port, ahp.port_con_b) annotation (Line(points={{-58,70},{-58,60},{-21,60},{-21,45}},
++                                               color={0,127,255}));
++  connect(temperature_gen_out.port, ahp.port_gen_b) annotation (Line(points={{2,114},{2,52},{7,52},{7,45}},
++                                        color={0,127,255}));
++  connect(temperature_abs_out.port, ahp.port_abs_b) annotation (Line(points={{8,-34},{8,-40},{24,-40},{24,-2},{20,-2},{20,0},{13,0},{13,5}},
++                                                                       color={0,
+           127,255}));
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-180,
+             -120},{200,140}})),                                  Diagram(
+@@ -203,6 +229,7 @@
+ <p><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
++    __Dymola_Commands(file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
+         "AHP_se_dynamic_Table63"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHPse_Dyn_heatport;
+--- original/Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_heatport_extended.mo
++++ Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_heatport_extended.mo
+@@ -2,14 +2,15 @@
+ model AHPse_Dyn_heatport_extended
+   "Absorption heat pump model with external HEX (use of heat port)."
+ extends Modelica.Icons.Example;
++  inner Modelica.Fluid.System system "System defaults made explicit for OpenModelica";
+ 
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+-parameter Boolean allowFlowReversal=true
++parameter Boolean allowFlowReversal=false
+     "= false to simplify equations, assuming, but not enforcing, no flow reversal for medium 1";
+     parameter Integer nEle = 10
+     "discretization of pipe";
+@@ -35,7 +36,8 @@
+         extent={{-10,-10},{10,10}},
+         rotation=180,
+         origin={76,70})));
+-  replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
++  // Use one IF97 state representation in sources, sensors and internal pipes.
++  replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1pT
+     annotation (__Dymola_choicesAllMatching=true);
+   Modelica.Fluid.Sources.FixedBoundary sink_con(
+     redeclare package Medium = Medium_ext,
+@@ -88,6 +90,23 @@
+         origin={-78,-50})));
+ 
+   AHP.AHP_hex_extended ahp(
++    // Specify the independent inventory, diagnostic integral and wall starts.
++    abs(m(fixed=true), U(fixed=true), vap(start=0, fixed=true), Wv(start=0, fixed=true)),
++    gen(m(fixed=true), U(fixed=true), vap(start=0, fixed=true), Wv(start=0, fixed=true)),
++    con(m(fixed=true), U(fixed=true)),
++    eva(m(fixed=true), U(fixed=true)),
++    heatCapacitor_abs(each T(fixed=true)),
++    heatCapacitor_gen(each T(fixed=true)),
++    heatCapacitor_con(each T(fixed=true)),
++    heatCapacitor_eva(each T(fixed=true)),
++    pipe_abs(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    pipe_gen(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    pipe_con(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    pipe_eva(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    redeclare package Medium_ext = Medium_ext,
++    allowFlowReversal=allowFlowReversal,
++    redeclare package Medium_l = Medium_l,
++    redeclare package Medium_v = Medium_v,
+     flashing_w_m_flow_nominal=0.005,
+     flashing_w_dp_nominal(displayUnit="Pa") = 7400 - 700,
+     flashing_LiBr_m_flow_nominal=0.07,
+@@ -142,6 +161,14 @@
+   Modelica.Fluid.Sensors.Temperature temperature_eva_out(redeclare package
+       Medium = Medium_ext)
+     annotation (Placement(transformation(extent={{-110,-24},{-90,-4}})));
++initial equation
++  // The last pressure is already fixed by each sink; initialize the others.
++  for i in 1:ahp.nEle - 1 loop
++    der(ahp.pipe_abs.mediums[i].p) = 0;
++    der(ahp.pipe_gen.mediums[i].p) = 0;
++    der(ahp.pipe_con.mediums[i].p) = 0;
++    der(ahp.pipe_eva.mediums[i].p) = 0;
++  end for;
+ equation
+ 
+   connect(ahp.m_flow_sol, MassFlowRate.y) annotation (Line(points={{34,19},{60,
+@@ -204,6 +231,7 @@
+ <p><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
++    __Dymola_Commands(file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
+         "AHP_se_dynamic_Table63"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHPse_Dyn_heatport_extended;
+--- original/Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_heatport_nocp.mo
++++ Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_heatport_nocp.mo
+@@ -2,14 +2,15 @@
+ model AHPse_Dyn_heatport_nocp
+   "Absorption heat pump model with external HEX (use of heat port)."
+ extends Modelica.Icons.Example;
++  inner Modelica.Fluid.System system "System defaults made explicit for OpenModelica";
+ 
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+-parameter Boolean allowFlowReversal=true
++parameter Boolean allowFlowReversal=false
+     "= false to simplify equations, assuming, but not enforcing, no flow reversal for medium 1";
+     parameter Integer nEle = 10
+     "discretization of pipe";
+@@ -34,7 +35,8 @@
+         extent={{-10,-10},{10,10}},
+         rotation=180,
+         origin={50,70})));
+-  replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
++  // Use one IF97 state representation in sources, sensors and internal pipes.
++  replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1pT
+     annotation (__Dymola_choicesAllMatching=true);
+   Modelica.Fluid.Sources.FixedBoundary sink_con(
+     redeclare package Medium = Medium_ext,
+@@ -87,6 +89,19 @@
+         origin={-70,-50})));
+ 
+   AHP.AHP_nocp ahp(
++    // Fix only the independent inventory and diagnostic integral starts.
++    abs(m(fixed=true), U(fixed=true), vap(start=0, fixed=true), Wv(start=0, fixed=true)),
++    gen(m(fixed=true), U(fixed=true), vap(start=0, fixed=true), Wv(start=0, fixed=true)),
++    con(m(fixed=true), U(fixed=true)),
++    eva(m(fixed=true), U(fixed=true)),
++    pipe_abs(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    pipe_gen(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    pipe_con(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    pipe_eva(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
++    redeclare package Medium_ext = Medium_ext,
++    allowFlowReversal=allowFlowReversal,
++    redeclare package Medium_l = Medium_l,
++    redeclare package Medium_v = Medium_v,
+     flashing_w_m_flow_nominal=0.005,
+     flashing_w_dp_nominal(displayUnit="Pa") = 7400 - 700,
+     flashing_LiBr_m_flow_nominal=0.07,
+@@ -141,6 +156,14 @@
+   Modelica.Fluid.Sensors.Temperature temperature_gen_out(redeclare package
+       Medium = Medium_ext)
+     annotation (Placement(transformation(extent={{12,78},{32,98}})));
++initial equation
++  // The last pressure is already fixed by each sink; initialize the others.
++  for i in 1:ahp.nEle - 1 loop
++    der(ahp.pipe_abs.mediums[i].p) = 0;
++    der(ahp.pipe_gen.mediums[i].p) = 0;
++    der(ahp.pipe_con.mediums[i].p) = 0;
++    der(ahp.pipe_eva.mediums[i].p) = 0;
++  end for;
+ equation
+ 
+   connect(ahp.m_flow_sol, MassFlowRate.y) annotation (Line(points={{30,25},{40,
+@@ -203,6 +226,7 @@
+ <p><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
++    __Dymola_Commands(file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
+         "AHP_se_dynamic_Table63"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHPse_Dyn_heatport_nocp;
+--- original/Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_internalHEX.mo
++++ Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_internalHEX.mo
+@@ -2,11 +2,12 @@
+ model AHPse_Dyn_internalHEX
+   "Absorption heat pump model with internal HEX"
+ extends Modelica.Icons.Example;
++  inner Modelica.Fluid.System system "System defaults made explicit for OpenModelica";
+ 
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
+      __Dymola_choicesAllMatching=true);
+ 
+ parameter Boolean allowFlowReversal=true
+@@ -108,12 +109,13 @@
+     gen_p_start(displayUnit="Pa") = 7406,
+     abs_UA=(1800),
+     abs_p_start(displayUnit="Pa") = 676,
+-    abs_X_LiBr_start=0.5648,
++    abs_X_LiBr_start = 0.5648,
++    abs(X_LiBr(fixed = true)),
+     simpleHX_UA=3105/22.96,
+     redeclare
+       Absolut.FluidBased.Static.Components.HEX.PlateHeatExchangerEffectivenessNTU
+       hex(
+-      Q_flow_nominal=3105,
++      Q_flow_nominal=-3105,
+       T_a1_nominal=305.87,
+       T_a2_nominal=362.51) "Hex with variable UA")
+     annotation (Placement(transformation(extent={{-24,4},{32,46}})));
+@@ -213,6 +215,7 @@
+ <p><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
++    __Dymola_Commands(file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
+         "AHP_se_dynamic_Table63"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHPse_Dyn_internalHEX;
+--- original/Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_pump_extended.mo
++++ Absolut/FluidBased/Dynamic/Components/Validation/AHPse_Dyn_pump_extended.mo
+@@ -2,12 +2,14 @@
+ model AHPse_Dyn_pump_extended
+   "Single stage absorption heat pump model (Fixed UA values at main heat exchangers. Solution heat echanger using effectivenes)"
+ extends Modelica.Icons.Example;
++  inner Modelica.Fluid.System system "System defaults made explicit for OpenModelica";
+ 
+   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
+      __Dymola_choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
+-     __Dymola_choicesAllMatching=true);
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (  __Dymola_choicesAllMatching=true);
++  replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
++    annotation (__Dymola_choicesAllMatching=true);
+ 
+ parameter Boolean allowFlowReversal=true
+     "= false to simplify equations, assuming, but not enforcing, no flow reversal for medium 1";
+@@ -35,8 +37,7 @@
+         extent={{-10,-10},{10,10}},
+         rotation=180,
+         origin={76,70})));
+-  replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+-    annotation (__Dymola_choicesAllMatching=true);
++
+   Modelica.Fluid.Sources.FixedBoundary sink_con(
+     redeclare package Medium = Medium_ext,
+     p(displayUnit="bar") = 100000,
+@@ -97,21 +98,22 @@
+     pipemass_con_T_start=298.15,
+     pipemass_abs_T_start=298.15,
+     pipemass_gen_T_start=373.15,
+-    eva_UA=(2250),
++    eva_UA=2250,
+     m_eva=0.4,
+     eva_p_start(displayUnit="Pa") = 676,
+-    con_UA=(1200),
++    con_UA=1200,
+     m_con=0.28,
+     con_p_start(displayUnit="Pa") = 7406,
+-    gen_UA=(1000),
++    gen_UA=1000,
+     m_gen=1,
+     gen_X_LiBr_start=0.62,
+     gen_p_start(displayUnit="Pa") = 7406,
+-    abs_UA=(1800),
++    abs_UA=1800,
+     m_abs=0.28,
+     abs_p_start(displayUnit="Pa") = 676,
+     abs_X_LiBr_start=0.5648,
+-    simpleHX_UA=3105/22.96)
++    abs(X_LiBr(fixed=true)),
++      simpleHX_UA=3105/22.96, redeclare package Medium_l = Medium_l, redeclare package Medium_v = Medium_v)
+     annotation (Placement(transformation(extent={{-22,2},{34,44}})));
+   Modelica.Blocks.Sources.RealExpression control_level(y=ahp.gen.level)
+     annotation (Placement(transformation(extent={{186,-10},{166,10}})));
+@@ -207,6 +209,7 @@
+ <p><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
++    __Dymola_Commands(file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
+         "AHP_se_dynamic_Table63"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHPse_Dyn_pump_extended;
+--- original/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo
++++ Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo
+@@ -0,0 +1,166 @@
++within Absolut.FluidBased.Dynamic.Components.Validation;
++model EvaporatorsSeries_heatport
++  "Two dynamic evaporators in refrigerant-vapor series, with inventory checks"
++  extends Modelica.Icons.Example;
++
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT;
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT;
++  inner Modelica.Fluid.System system(allowFlowReversal=false);
++
++  parameter Boolean useHeatStep=true "Apply heat steps at 300 s and 600 s";
++  parameter Boolean useFeedStep=false "Halve the first-stage liquid feed at 600 s";
++  parameter Modelica.Units.SI.HeatFlowRate Q1_nominal=1000;
++  parameter Modelica.Units.SI.HeatFlowRate Q2_nominal=800;
++  parameter Modelica.Units.SI.MassFlowRate m_feed_nominal=0.0004;
++  parameter Modelica.Units.SI.Temperature T_feed=280.15;
++  parameter Modelica.Units.SI.AbsolutePressure p_sink=1200;
++
++  Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport eva1(
++    redeclare package Medium_l=Medium_l,
++    redeclare package Medium_v=Medium_v,
++    p_start=1400, UA=1000, m(fixed=true), U(fixed=true))
++    annotation(Placement(transformation(extent={{-72,-20},{-32,20}})));
++  Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport eva2(
++    redeclare package Medium_l=Medium_l,
++    redeclare package Medium_v=Medium_v,
++    p_start=1300, UA=1000, m(fixed=true), U(fixed=true))
++    annotation(Placement(transformation(extent={{28,-20},{68,20}})));
++  Modelica.Fluid.Sources.MassFlowSource_T liquidFeed(
++    redeclare package Medium=Medium_l, nPorts=1,
++    use_m_flow_in=true, T=T_feed)
++    annotation(Placement(transformation(extent={{-126,-68},{-106,-48}})));
++  Modelica.Fluid.Valves.ValveLinear seriesResistance(
++    redeclare package Medium=Medium_v, allowFlowReversal=false,
++    dp_nominal=100, m_flow_nominal=0.0004)
++    "Adiabatic pressure drop between the two vapor spaces"
++    annotation(Placement(transformation(extent={{-20,28},{0,48}})));
++  Modelica.Fluid.Valves.ValveLinear outletResistance(
++    redeclare package Medium=Medium_v, allowFlowReversal=false,
++    dp_nominal=100, m_flow_nominal=0.0008)
++    annotation(Placement(transformation(extent={{80,-10},{100,10}})));
++  Modelica.Fluid.Sources.FixedBoundary vaporSink(
++    redeclare package Medium=Medium_v, nPorts=1,
++    p=p_sink, use_T=true, T=Medium_l.saturationTemperature(p_sink))
++    annotation(Placement(transformation(extent={{130,-10},{110,10}})));
++  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heat1
++    annotation(Placement(transformation(extent={{-82,-88},{-62,-68}})));
++  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heat2
++    annotation(Placement(transformation(extent={{18,-88},{38,-68}})));
++
++  Modelica.Units.SI.MassFlowRate m_feed=eva1.port_l_a.m_flow;
++  Modelica.Units.SI.MassFlowRate m_series=-eva1.port_v.m_flow
++    "Positive from evaporator 1 to evaporator 2";
++  Modelica.Units.SI.MassFlowRate m_out=-eva2.port_v.m_flow;
++  Modelica.Units.SI.PressureDifference dp_series=eva1.p-eva2.p;
++  Modelica.Units.SI.HeatFlowRate Q_total=eva1.Qb_flow+eva2.Qb_flow;
++  Real liquidFraction1=eva1.V_l/eva1.V;
++  Real liquidFraction2=eva2.V_l/eva2.V;
++
++  parameter Modelica.Units.SI.Mass initialMass1(fixed=false);
++  parameter Modelica.Units.SI.Mass initialMass2(fixed=false);
++  parameter Modelica.Units.SI.InternalEnergy initialEnergy1(fixed=false);
++  parameter Modelica.Units.SI.InternalEnergy initialEnergy2(fixed=false);
++  Modelica.Units.SI.Mass integratedMass1(start=0, fixed=true);
++  Modelica.Units.SI.Mass integratedMass2(start=0, fixed=true);
++  Modelica.Units.SI.Mass integratedMassTotal(start=0, fixed=true);
++  Modelica.Units.SI.Energy integratedEnergy1(start=0, fixed=true);
++  Modelica.Units.SI.Energy integratedEnergy2(start=0, fixed=true);
++  Modelica.Units.SI.Energy integratedEnergyTotal(start=0, fixed=true);
++
++  Modelica.Units.SI.Mass massChange1=eva1.m-initialMass1;
++  Modelica.Units.SI.Mass massChange2=eva2.m-initialMass2;
++  Modelica.Units.SI.Mass r_mass1=massChange1-integratedMass1;
++  Modelica.Units.SI.Mass r_mass2=massChange2-integratedMass2;
++  Modelica.Units.SI.Mass r_massTotal=massChange1+massChange2-integratedMassTotal;
++  Modelica.Units.SI.Energy r_energy1=eva1.U-initialEnergy1-integratedEnergy1;
++  Modelica.Units.SI.Energy r_energy2=eva2.U-initialEnergy2-integratedEnergy2;
++  Modelica.Units.SI.Energy r_energyTotal=
++    eva1.U+eva2.U-initialEnergy1-initialEnergy2-integratedEnergyTotal;
++  Modelica.Units.SI.MassFlowRate r_seriesMass=
++    eva1.port_v.m_flow+eva2.port_v_a.m_flow;
++  Modelica.Units.SI.Power r_seriesEnergy=
++    eva1.port_v.m_flow*actualStream(eva1.port_v.h_outflow)
++    +eva2.port_v_a.m_flow*actualStream(eva2.port_v_a.h_outflow);
++
++initial equation
++  initialMass1=eva1.m;
++  initialMass2=eva2.m;
++  initialEnergy1=eva1.U;
++  initialEnergy2=eva2.U;
++
++equation
++  liquidFeed.m_flow_in=m_feed_nominal*(if useFeedStep and time>=600 then 0.5 else 1);
++  heat1.Q_flow=Q1_nominal+(if useHeatStep and time>=300 then 400 else 0);
++  heat2.Q_flow=Q2_nominal+(if useHeatStep and time>=600 then 300 else 0);
++  seriesResistance.opening=1;
++  outletResistance.opening=1;
++
++  connect(liquidFeed.ports[1], eva1.port_l_a)
++    annotation(Line(points={{-106,-58},{-70,-58},{-70,-18}},color={0,127,255}));
++  connect(eva1.port_v, seriesResistance.port_a)
++    annotation(Line(points={{-33.6,0},{-26,0},{-26,38},{-20,38}},color={0,127,255}));
++  connect(seriesResistance.port_b, eva2.port_v_a)
++    annotation(Line(points={{0,38},{48,38},{48,19.6}},color={0,127,255}));
++  connect(eva2.port_v, outletResistance.port_a)
++    annotation(Line(points={{66.4,0},{80,0}},color={0,127,255}));
++  connect(outletResistance.port_b, vaporSink.ports[1])
++    annotation(Line(points={{100,0},{110,0}},color={0,127,255}));
++  connect(heat1.port, eva1.heatPort)
++    annotation(Line(points={{-62,-78},{-52,-78},{-52,0}},color={191,0,0}));
++  connect(heat2.port, eva2.heatPort)
++    annotation(Line(points={{38,-78},{48,-78},{48,0}},color={191,0,0}));
++
++  // Unconnected eva1.port_v_a and eva2.port_l_a have zero mass flow.
++  // Stage 2 evaporates its initial liquid inventory; it has no liquid makeup.
++  // Integrate measured boundary fluxes independently of the vessel balances.
++  der(integratedMass1)=eva1.port_l_a.m_flow+eva1.port_v_a.m_flow+eva1.port_v.m_flow;
++  der(integratedMass2)=eva2.port_l_a.m_flow+eva2.port_v_a.m_flow+eva2.port_v.m_flow;
++  der(integratedMassTotal)=m_feed-m_out;
++  der(integratedEnergy1)=
++    eva1.port_l_a.m_flow*actualStream(eva1.port_l_a.h_outflow)
++    +eva1.port_v_a.m_flow*actualStream(eva1.port_v_a.h_outflow)
++    +eva1.port_v.m_flow*actualStream(eva1.port_v.h_outflow)-heat1.port.Q_flow;
++  der(integratedEnergy2)=
++    eva2.port_l_a.m_flow*actualStream(eva2.port_l_a.h_outflow)
++    +eva2.port_v_a.m_flow*actualStream(eva2.port_v_a.h_outflow)
++    +eva2.port_v.m_flow*actualStream(eva2.port_v.h_outflow)-heat2.port.Q_flow;
++  der(integratedEnergyTotal)=
++    eva1.port_l_a.m_flow*actualStream(eva1.port_l_a.h_outflow)
++    +eva2.port_v.m_flow*actualStream(eva2.port_v.h_outflow)
++    -heat1.port.Q_flow-heat2.port.Q_flow;
++
++  assert(noEvent(liquidFraction1>0 and liquidFraction1<1),
++    "Evaporator 1 liquid inventory left the two-phase vessel range");
++  assert(noEvent(liquidFraction2>0 and liquidFraction2<1),
++    "Evaporator 2 liquid inventory left the two-phase vessel range");
++
++  annotation(
++    experiment(StartTime=0, StopTime=1200, Interval=1, Tolerance=1e-8),
++    __OpenModelica_commandLineOptions="--preOptModules-=evalFunc -d=initialization",
++    Diagram(coordinateSystem(extent={{-140,-110},{140,90}}),graphics={
++      Text(extent={{-130,82},{130,58}},textString="Refrigerant series: evaporator 1 -> evaporator 2",textColor={28,108,200}),
++      Text(extent={{-76,-24},{-30,-40}},textString="Evaporator 1"),
++      Text(extent={{24,-24},{72,-40}},textString="Evaporator 2"),
++      Text(extent={{-122,-92},{118,-106}},textString="Stage 2 uses its initial liquid inventory; 1200 s test")}),
++    Documentation(info="<html>
++<p>Two <code>EvaporatorDyn_heatport</code> components in refrigerant-vapor series.
++Liquid enters stage 1 only. Its vapor outlet passes through an adiabatic linear
++pressure-drop element into the vapor inlet of stage 2. The second vapor outlet
++discharges through another resistance to a 1200 Pa boundary.</p>
++<p>The steam connectors use WaterIF97_R2pT and the liquid connector uses
++WaterIF97_R1pT. This is a series connection of vapor spaces, not a generic
++two-phase flow-through evaporator. Stage 2 has no liquid makeup and evaporates
++its initial liquid inventory. The experiment is limited to 1200 s, with liquid
++volume checks; it is not an indefinitely sustained steady operating point.</p>
++<p>Heat sources impose 1000 W and 800 W. By default they step to 1400 W at
++300 s and 1100 W at 600 s. An optional feed test halves the liquid inlet flow
++from 0.0004 kg/s at 600 s. The UA parameters do not determine prescribed heat
++inputs in this heatport fixture.</p>
++<p>Residuals compare vessel inventory changes with independent integrals of
++connector mass and enthalpy fluxes and heat-source power, for each stage and
++the complete series. Connection mass and energy residuals are also exposed.
++No additional balance law is imposed on either evaporator.</p>
++<p>Plot eva1.T, eva2.T, eva1.p, eva2.p, m_series, m_out, eva1.level,
++eva2.level, eva1.Qb_flow, eva2.Qb_flow, and the r_* residuals.</p>
++</html>"));
++end EvaporatorsSeries_heatport;
+--- original/Absolut/FluidBased/Dynamic/Components/Validation/package.order
++++ Absolut/FluidBased/Dynamic/Components/Validation/package.order
+@@ -3,3 +3,4 @@
+ AHPse_Dyn_heatport
+ AHPse_Dyn_heatport_extended
+ AHPse_Dyn_pump_extended
++EvaporatorsSeries_heatport
+--- original/Absolut/FluidBased/Dynamic/LabValidation/Data/sBSc_1m_Cfg0_20220804.mo
++++ Absolut/FluidBased/Dynamic/LabValidation/Data/sBSc_1m_Cfg0_20220804.mo
+@@ -2,6 +2,9 @@
+ model sBSc_1m_Cfg0_20220804
+ 
+ // file: sBSc_1m_Cfg0_20220804_T59_corrected_fromstart.txt
++parameter String dataFile=""
++  "Path to the experimental table (not distributed with Absolut v1.0.0)"
++  annotation(Dialog(loadSelector(filter="Text files (*.txt)", caption="Select experimental data")));
+ 
+ Modelica.Units.SI.MassFlowRate m_dot1 = Vd_HT_clamp85 * Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.density(           Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.setState_pTX(           200000,
+         T_HT_RL_pt84));
+@@ -420,7 +423,7 @@
+   Modelica.Blocks.Sources.CombiTimeTable datareader(
+     tableOnFile=true,
+     tableName="data",
+-    fileName="... File cannot yet be shared. Details are under discussion",
++    fileName=dataFile,
+     columns=2:160)
+     annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
+ 
+@@ -435,4 +438,5 @@
+       Interval=60,
+       Tolerance=1e-06,
+       __Dymola_Algorithm="Dassl"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end sBSc_1m_Cfg0_20220804;
+--- original/Absolut/FluidBased/Dynamic/LabValidation/Test_AHX_wcp_extended_wheatloss_pump_controlled.mo
++++ Absolut/FluidBased/Dynamic/LabValidation/Test_AHX_wcp_extended_wheatloss_pump_controlled.mo
+@@ -77,7 +77,7 @@
+         Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.density(
+         Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.setState_pTX(
+         200000, T83.y)))
+-    annotation (Placement(transformation(origin = {-8, 4}, extent = {{252, 28}, {232, 48}})));
++    annotation (Placement(transformation(extent={{252,28},{232,48}})));
+   Modelica.Blocks.Sources.RealExpression Dichte_primT84(y=
+         Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.density(
+         Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.setState_pTX(
+@@ -192,9 +192,9 @@
+       choicesAllMatching=true);
+   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+     annotation (choicesAllMatching=true);
+-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph
++  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT
+     annotation (choicesAllMatching=true);
+-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph
++  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT
+     annotation (choicesAllMatching=true);
+ 
+   Buildings.Fluid.Sensors.TemperatureTwoPort senTem_gen_out(
+@@ -441,4 +441,5 @@
+       Tolerance=1e-05,
+       __Dymola_Algorithm="Dassl"),
+     __Dymola_Commands(file="Test_command_log.mos" "Test_command_log"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end Test_AHX_wcp_extended_wheatloss_pump_controlled;
+--- original/Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/CheckThermalOil/Pr.mo
++++ Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/CheckThermalOil/Pr.mo
+@@ -46,8 +46,7 @@
+   Re_oil = rho_oil * v_oil * A / eta_oil;
+ 
+   nu_w = eta_w/rho_w;
+-  nu_oil =
+-    Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.kinematicViscosity(T);
++  nu_oil = eta_oil/rho_oil;
+ 
+   eta_w = Modelica.Media.Water.WaterIF97_pT.dynamicViscosity(state_w);
+   eta_oil =
+@@ -75,4 +74,5 @@
+       __Dymola_NumberOfIntervals=100,
+       Tolerance=1e-06,
+       __Dymola_Algorithm="Dassl"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end Pr;
+--- original/Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/CheckThermalOil/PropertiesExport.mo
++++ Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/CheckThermalOil/PropertiesExport.mo
+@@ -24,11 +24,13 @@
+   k = Medium.thermalConductivity(state);
+   mu = Medium.dynamicViscosity(state);
+   mu_calc = kinematicmu * rho;
+-  kinematicmu = Medium.kinematicViscosity(T);
++  kinematicmu = mu/rho;
+   rho = Medium.density(state);
+ 
+-  kinematicmu20 = Medium.kinematicViscosity(293.15);
+-  kinematicmu100 = Medium.kinematicViscosity(373.15);
++  kinematicmu20 = Medium.dynamicViscosity(Medium.setState_pTX(100000,293.15)) /
++    Medium.density(Medium.setState_pTX(100000,293.15));
++  kinematicmu100 = Medium.dynamicViscosity(Medium.setState_pTX(100000,373.15)) /
++    Medium.density(Medium.setState_pTX(100000,373.15));
+ 
+   Beta0 = Medium.isobaricExpansionCoefficient(Medium.setState_pTX(100000,273.15));
+   Beta100 = Medium.isobaricExpansionCoefficient(Medium.setState_pTX(100000,100 + 273.15));
+@@ -41,4 +43,5 @@
+       Interval=1,
+       Tolerance=1e-06,
+       __Dymola_Algorithm="Dassl"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end PropertiesExport;
+--- original/Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/CheckThermalOil/setStates.mo
++++ Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/CheckThermalOil/setStates.mo
+@@ -23,4 +23,5 @@
+       StopTime=380,
+       Interval=1,
+       __Dymola_Algorithm="Dassl"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end setStates;
+--- original/Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/package.mo
++++ Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/package.mo
+@@ -399,12 +399,10 @@
+     assert(false, "Pressure can not be computed from temperature and density for an incompressible fluid!");
+   end setState_dTX;
+ 
+-  redeclare function extends setState_phX
+-    "Return the thermodynamic state as function of pressure p, specific enthalpy h and composition X or Xi"
++  redeclare function extends setState_phX "Return the thermodynamic state as function of pressure p, specific enthalpy h and composition X or Xi"
+   protected
+   parameter Real a = 0.00334662;
+   parameter Real b = 0.63494688;
+-  
+   algorithm
+     if ((b - a*ThermalOil.reference_T)^2 + 4*a*(b*ThermalOil.reference_T + h))
+          <= 0 then
+--- original/Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/package.order
++++ Absolut/FluidBased/Dynamic/LabValidation/ThermalOil/package.order
+@@ -5,6 +5,7 @@
+ density
+ dynamicViscosity
+ specificEnthalpy
++enthalpyOfLiquid
+ specificInternalEnergy
+ specificEntropy
+ specificGibbsEnergy
+@@ -16,6 +17,8 @@
+ density_derT_p
+ density_derX
+ specificHeatCapacityCp
++specificHeatCapacityCp_ext
++der_specificHeatCapacityCp_ext
+ specificHeatCapacityCv
+ thermalConductivity
+ pressure
+@@ -25,9 +28,6 @@
+ setState_phX
+ setState_pTX
+ setState_psX
+-enthalpyOfLiquid
+-specificHeatCapacityCp_ext
+-der_specificHeatCapacityCp_ext
+ CheckThermalOil
+ cv_const
+ a_const
+--- original/Absolut/FluidBased/Static/AHE/Examples/AHE_abs_con_serie.mo
++++ Absolut/FluidBased/Static/AHE/Examples/AHE_abs_con_serie.mo
+@@ -49,6 +49,8 @@
+   Modelica.Blocks.Sources.RealExpression MassFlowRate(y=0.05)
+     annotation (Placement(transformation(extent={{-40,-30},{-20,-10}})));
+   Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs(
++    useClosedLoopMassBalance=true,
++    useClosedLoopSaltBalance=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     redeclare package Medium_ext = Medium_ext,
+@@ -218,5 +220,6 @@
+       StopTime=61,
+       Interval=0.1,
+       Tolerance=1e-07),
+-    __Dymola_Commands(file="Resources\Static\AHE\Examples\AHE temperatures.mos" "Show AHE temperatures"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Static/AHE/Examples/AHE temperatures.mos" "Show AHE temperatures"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHE_abs_con_serie;
+--- original/Absolut/FluidBased/Static/AHE/Examples/AHX_all_parallel.mo
++++ Absolut/FluidBased/Static/AHE/Examples/AHX_all_parallel.mo
+@@ -15,6 +15,7 @@
+   replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
+      __Dymola_choicesAllMatching=true);
+   Absolut.FluidBased.Static.SingleEffect_UAfixed.CondenserStatic_wHT_UAfix con(
++    useHomotopy=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_l,
+     redeclare package Medium_ext = Medium_ext,
+@@ -24,6 +25,7 @@
+     T_16(start=328.15),
+     UA=1200) annotation (Placement(transformation(extent={{-60,38},{-80,58}})));
+   Absolut.FluidBased.Static.SingleEffect_UAfixed.EvaporatorStatic_wHT_UAfix eva(
++    useHomotopy=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_l,
+     redeclare package Medium_ext = Medium_ext,
+@@ -53,6 +55,9 @@
+   Modelica.Blocks.Sources.RealExpression MassFlowRate(y=0.05)
+     annotation (Placement(transformation(extent={{-40,-32},{-20,-12}})));
+   Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs(
++    useClosedLoopMassBalance=true,
++    useClosedLoopSaltBalance=true,
++    useHomotopy=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     redeclare package Medium_ext = Medium_ext,
+@@ -150,6 +155,7 @@
+         gen.p)/4184)
+     annotation (Placement(transformation(extent={{-324,-66},{-284,-46}})));
+   Absolut.FluidBased.Static.SingleEffect_UAfixed.GeneratorStatic_wHT_UAfix gen(
++    useHomotopy=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     redeclare package Medium_ext = Medium_l,
+@@ -242,5 +248,6 @@
+       StopTime=61,
+       Interval=0.1,
+       Tolerance=1e-07),
+-      __Dymola_Commands(file="Resources\Static\AHE\Examples\AHE temperatures.mos" "Show AHE temperatures"));
++      __Dymola_Commands(file="modelica://Absolut/Resources/Static/AHE/Examples/AHE temperatures.mos" "Show AHE temperatures"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHX_all_parallel;
+--- original/Absolut/FluidBased/Static/BaseClasses/ChenMTD.mo
++++ Absolut/FluidBased/Static/BaseClasses/ChenMTD.mo
+@@ -1,14 +1,16 @@
+ within Absolut.FluidBased.Static.BaseClasses;
+ partial model ChenMTD "Mean temperature difference"
+ 
+-  Modelica.Units.SI.TemperatureDifference dT1(start=2) "Temperature differences 1 for HX";
+-  Modelica.Units.SI.TemperatureDifference dT2(start=1) "Temperature differences 2 for HX";
+-  Modelica.Units.SI.TemperatureDifference dT_Chen "Chen approximation of LMTD";
+-  Modelica.Units.SI.TemperatureDifference dT_used "Used mean temperature difference";
++  Modelica.Units.SI.TemperatureDifference dT1(start=2, nominal = 5) "Temperature differences 1 for HX";
++  Modelica.Units.SI.TemperatureDifference dT2(start=1, nominal = 5) "Temperature differences 2 for HX";
++  Modelica.Units.SI.TemperatureDifference dT_Chen(nominal = 5) "Chen approximation of LMTD";
++  Modelica.Units.SI.TemperatureDifference dT_used(nominal = 5) "Used mean temperature difference";
++  parameter Modelica.Units.SI.TemperatureDifference dT_min = 1e-6 "Minimal temperature difference";
++
+ 
+ equation
+ 
+-  dT_Chen = if dT1 >= 0 and dT2 >= 0 then ((1/2)*dT1^0.3275 + (1/2)*dT2^0.3275)^(1/0.3275) else Modelica.Constants.eps;
++  dT_Chen = if dT1 >= 0 and dT2 >= 0 then ((1/2)*dT1^0.3275 + (1/2)*dT2^0.3275)^(1/0.3275) else dT_min;
+   dT_used = dT_Chen;
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+--- original/Absolut/FluidBased/Static/BaseClasses/LMTD.mo
++++ Absolut/FluidBased/Static/BaseClasses/LMTD.mo
+@@ -1,18 +1,23 @@
+ within Absolut.FluidBased.Static.BaseClasses;
+ partial model LMTD "Mean temperature difference"
+ 
+-  Modelica.Units.SI.TemperatureDifference dT1(start=2) "Temperature differences 1 for HX";
+-  Modelica.Units.SI.TemperatureDifference dT2(start=1) "Temperature differences 2 for HX";
+-  Modelica.Units.SI.TemperatureDifference dT_used "Used mean temperature difference";
+-  Modelica.Units.SI.TemperatureDifference dT_log "Logarithmic mean temperature difference (LMTD)";
++  Modelica.Units.SI.TemperatureDifference dT1(start=2, nominal = 5) "Temperature differences 1 for HX";
++  Modelica.Units.SI.TemperatureDifference dT2(start=1, nominal = 5) "Temperature differences 2 for HX";
++  Modelica.Units.SI.TemperatureDifference dT_used(nominal = 5) "Used mean temperature difference";
++  Modelica.Units.SI.TemperatureDifference dT_log(nominal = 5) "Logarithmic mean temperature difference (LMTD)";
+   Boolean dTzero;
+   parameter Real tol = 0.1 "Tolerance for dT1=dT2";
+ 
+ 
+ equation
+ 
+-  dTzero = if dT1*dT1 < dT2*dT2 - tol or dT1*dT1 - tol > dT2*dT2 then false else true;
+-  dT_log = if dT1 > 0 and dT2 > 0 and not dTzero then ((dT1) - (dT2))/log((dT1)/(dT2)) else (dT1+dT2)/2;
++  dTzero = noEvent(abs(dT1*dT1 - dT2*dT2) <= tol);
++  // Evaluate the domain guard immediately, including during event iteration.
++  // The nonnegative zero-terminal limit is zero; negative differences retain
++  // the historical arithmetic fallback outside the positive LMTD domain.
++  dT_log = if noEvent(dT1 > 0 and dT2 > 0) then
++    Absolut.FluidBased.Static.BaseClasses.logMeanPositive(dT1, dT2)
++    elseif noEvent(dT1 >= 0 and dT2 >= 0) then 0 else (dT1+dT2)/2;
+   dT_used = dT_log;
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+--- original/Absolut/FluidBased/Static/BaseClasses/logMeanPositive.mo
++++ Absolut/FluidBased/Static/BaseClasses/logMeanPositive.mo
+@@ -0,0 +1,19 @@
++within Absolut.FluidBased.Static.BaseClasses;
++function logMeanPositive "Stable logarithmic mean of two positive temperature differences"
++  input Modelica.Units.SI.TemperatureDifference a;
++  input Modelica.Units.SI.TemperatureDifference b;
++  output Modelica.Units.SI.TemperatureDifference mean;
++protected
++  Real z;
++algorithm
++  assert(a > 0 and b > 0, "logMeanPositive requires positive arguments");
++  z := (a-b)/(a+b);
++  if abs(z) < 1e-4 then
++    // z/atanh(z) = 1-z^2/3-4*z^4/45+O(z^6).
++    // This includes the exact limit mean=a when a=b, without 0/0.
++    mean := (a+b)/2*(1-z*z/3-4*z^4/45);
++  else
++    mean := (a-b)/log(a/b);
++  end if;
++  annotation(Inline=true, smoothOrder=2);
++end logMeanPositive;
+--- original/Absolut/FluidBased/Static/BaseClasses/MTD.mo
++++ Absolut/FluidBased/Static/BaseClasses/MTD.mo
+@@ -1,30 +1,41 @@
+ within Absolut.FluidBased.Static.BaseClasses;
+ partial model MTD "Mean temperature difference"
+ 
+-  Modelica.Units.SI.TemperatureDifference dT1(start=2) "Temperature differences 1 for HX";
+-  Modelica.Units.SI.TemperatureDifference dT2(start=1) "Temperature differences 2 for HX";
+-  Modelica.Units.SI.TemperatureDifference dT_Chen "Chen approximation of LMTD";
+-  Modelica.Units.SI.TemperatureDifference dT_used "Used mean temperature difference";
++  Modelica.Units.SI.TemperatureDifference dT1(start=2, nominal=5) "Temperature differences 1 for HX";
++  Modelica.Units.SI.TemperatureDifference dT2(start=1, nominal=5) "Temperature differences 2 for HX";
++  Modelica.Units.SI.TemperatureDifference dT_Chen(nominal=5) "Chen approximation of LMTD";
++  Modelica.Units.SI.TemperatureDifference dT_used(nominal=5) "Used mean temperature difference";
+ 
+-  Modelica.Units.SI.TemperatureDifference dT_log "Logarithmic mean temperature difference (LMTD)";
++  Modelica.Units.SI.TemperatureDifference dT_log(nominal=5) "Logarithmic mean temperature difference (LMTD)";
+   Boolean dTzero;
+ 
+   parameter Boolean usedT_log = true "true to primarly use LMTD instead of Chen approximation";
+-  parameter Real tol = 0.1 "Tolerance for dT1=dT2 on LMTD calculation";
++  parameter Real tol = 0.1 "Tolerance for the near-equality diagnostic dTzero";
++  parameter Modelica.Units.SI.TemperatureDifference dT_min=1e-6
++    "Fallback for crossed temperature differences; zero/equal positive limits remain analytic";
+   parameter Boolean useNoEvent = true "true to use NoEvent operator";
++  parameter Boolean useHomotopy = false
++    "Use arithmetic mean during homotopy initialization"
++    annotation(Evaluate=true);
+ 
+ equation
+ 
+   if useNoEvent then
+-  dTzero = if not usedT_log then true elseif  dT1*dT1 < dT2*dT2 - tol or dT1*dT1 - tol > dT2*dT2 then false else true;
+-  dT_log = if not usedT_log then 0 elseif dT1 > 0 and dT2 > 0 and not dTzero then ((dT1) - (dT2))/log(dT1/dT2) else dT_Chen;
+-  dT_Chen = if dT1 >= 0 and dT2 >= 0 then ((1/2)*dT1^0.3275 + (1/2)*dT2^0.3275)^(1/0.3275) else Modelica.Constants.eps;
+-  dT_used = if usedT_log then dT_log else dT_Chen;
++  dTzero = noEvent(if not usedT_log then true elseif dT1*dT1 < dT2*dT2 - tol or dT1*dT1 - tol > dT2*dT2 then false else true);
++  dT_log = if not usedT_log then 0 elseif noEvent(dT1 > 0 and dT2 > 0) then logMeanPositive(dT1,dT2) else dT_Chen;
++  dT_Chen = noEvent(if dT1 >= 0 and dT2 >= 0 then ((1/2)*max(0,dT1)^0.3275 + (1/2)*max(0,dT2)^0.3275)^(1/0.3275) else dT_min);
++  // The arithmetic mean helps initialization; the actual heat-transfer law is
++  // restored when the homotopy parameter reaches one.
++  dT_used = if useHomotopy then
++    homotopy(actual=if usedT_log then dT_log else dT_Chen, simplified=(dT1+dT2)/2)
++    else if usedT_log then dT_log else dT_Chen;
+   else
+   dTzero = false;
+-  dT_log = if not usedT_log then 0 elseif noEvent(dT1 > 0) and noEvent(dT2 > 0) then ((dT1) - (dT2))/log(dT1/dT2) else dT_Chen;
+-  dT_Chen = if noEvent(dT1 >= 0) and noEvent(dT2 >= 0) then ((1/2)*dT1^0.3275 + (1/2)*dT2^0.3275)^(1/0.3275) else Modelica.Constants.eps;
+-  dT_used = if usedT_log then dT_log else dT_Chen;
++  dT_log = if not usedT_log then 0 elseif noEvent(dT1 > 0 and dT2 > 0) then logMeanPositive(dT1,dT2) else dT_Chen;
++  dT_Chen = if noEvent(dT1 >= 0) and noEvent(dT2 >= 0) then ((1/2)*max(0,dT1)^0.3275 + (1/2)*max(0,dT2)^0.3275)^(1/0.3275) else dT_min;
++  dT_used = if useHomotopy then
++    homotopy(actual=if usedT_log then dT_log else dT_Chen, simplified=(dT1+dT2)/2)
++    else if usedT_log then dT_log else dT_Chen;
+   end if;
+ 
+ 
+--- original/Absolut/FluidBased/Static/BaseClasses/package.order
++++ Absolut/FluidBased/Static/BaseClasses/package.order
+@@ -2,3 +2,4 @@
+ ChenMTD
+ MTD
+ Test
++logMeanPositive
+--- original/Absolut/FluidBased/Static/BaseClasses/Test/ChenMTD.mo
++++ Absolut/FluidBased/Static/BaseClasses/Test/ChenMTD.mo
+@@ -21,4 +21,5 @@
+       Interval=0.001,
+       Tolerance=1e-05,
+       __Dymola_Algorithm="Dassl"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end ChenMTD;
+--- original/Absolut/FluidBased/Static/BaseClasses/Test/LMTD.mo
++++ Absolut/FluidBased/Static/BaseClasses/Test/LMTD.mo
+@@ -21,4 +21,5 @@
+       Interval=0.001,
+       Tolerance=1e-05,
+       __Dymola_Algorithm="Dassl"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end LMTD;
+--- original/Absolut/FluidBased/Static/BaseClasses/Test/MTD.mo
++++ Absolut/FluidBased/Static/BaseClasses/Test/MTD.mo
+@@ -21,4 +21,5 @@
+       Interval=0.001,
+       Tolerance=1e-05,
+       __Dymola_Algorithm="Dassl"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end MTD;
+--- original/Absolut/FluidBased/Static/Components/Compressor.mo
++++ Absolut/FluidBased/Static/Components/Compressor.mo
+@@ -36,7 +36,9 @@
+ equation
+ port_v_a.m_flow + port_v_b.m_flow = 0;
+ 
+-Tsuc = Medium_v.saturationTemperature(port_v_a.p);
++Tsuc = Medium_v.temperature(Medium_v.setState_phX(port_v_a.p, h1, {1}));
++assert(Pr_set >= 1, "Compressor pressure ratio must be at least one");
++assert(eff_is > 0 and eff_is <= 1, "Compressor isentropic efficiency must be in (0, 1]");
+ 
+ port_v_a.h_outflow = Medium_v.specificEnthalpy(Medium_v.setState_pTX(
+     port_v_a.p,
+@@ -54,19 +56,20 @@
+     {1}));
+ 
+ h1 = inStream(port_v_a.h_outflow);
+-h2s = Medium_v.specificEnthalpy(Medium_v.setState_psX(
++h2s = if Pr_set == 1 then h1 else Medium_v.specificEnthalpy(Medium_v.setState_psX(
+     port_v_b.p,
+     s2s,
+     {1}));
+ 
+-W_spec = (1/M)*Tsuc*R*(gamma/(gamma-1))*(Pr^((gamma-1)/(gamma))-1);
+-W = 1000*W_spec*port_v_a.m_flow;
++// One adiabatic energy balance for both reported power and outlet enthalpy.
++W_spec = (port_v_b.h_outflow - h1)/1000;
++W = port_v_a.m_flow*(port_v_b.h_outflow - h1);
+ 
+ Pr = Pr_set;
+ 
+-eff_is = (h2s - inStream(port_v_a.h_outflow))/(port_v_b.h_outflow - inStream(port_v_a.h_outflow));
++port_v_b.h_outflow = h1 + (h2s - h1)/eff_is;
+ 
+-T2s = Medium_v.temperature(Medium_v.setState_psX(
++T2s = if Pr_set == 1 then Tsuc else Medium_v.temperature(Medium_v.setState_psX(
+     port_v_b.p,
+     s2s,
+     {1}));
+@@ -83,6 +86,6 @@
+           fillPattern=FillPattern.Solid)}),                      Diagram(
+         coordinateSystem(preserveAspectRatio=false)),
+     Documentation(info="<html>
+-<p>Under construction</p>
++<p>Forward-flow adiabatic compressor. Outlet enthalpy follows the isentropic efficiency and reported power equals the enthalpy-flow rise. At unit pressure ratio, enthalpy and power changes are exactly zero.</p>
+ </html>"));
+ end Compressor;
+--- original/Absolut/FluidBased/Static/Components/FlashingLiBr.mo
++++ Absolut/FluidBased/Static/Components/FlashingLiBr.mo
+@@ -43,10 +43,10 @@
+   Modelica.Units.SI.MassFraction X_LiBr_in(start=X_LiBr_start);
+   Modelica.Units.SI.MassFraction X_LiBr_out_intern(start=X_LiBr_start);
+ 
+-  Modelica.Units.SI.Temperature T_out_intern_auxiliar;
++  Modelica.Units.SI.Temperature T_out_intern_auxiliar(start=T_out_start);
+ 
+ // Internal
+-  Modelica.Blocks.Interfaces.RealOutput T_out(unit="K", start=T_out_start)
++  Modelica.Blocks.Interfaces.RealOutput T_out(unit="K", start=T_out_start, nominal = 300)
+     annotation (Placement(transformation(extent={{80,-20},{100,0}})));
+   Modelica.Blocks.Interfaces.RealOutput opening_out
+     annotation (Placement(transformation(extent={{80,-50},{100,-30}})));
+@@ -69,6 +69,8 @@
+ 
+   Modelica.Units.SI.SpecificEnthalpy h_out_v;
+   Real Q_intern(min=0,max=1, start=Q_intern_start);
++  Real Q_raw(start=Q_intern_start)
++    "Unclipped vapor fraction for detecting the transition to subcooled liquid";
+ 
+ 
+   //Entropy
+@@ -109,15 +111,19 @@
+ //T_out_intern = Medium_l.temperature_Xp(1 - X_LiBr_out_intern, port_l_b.p);
+ Modelica.Media.Water.WaterIF97_ph.specificGibbsEnergy(Modelica.Media.Water.WaterIF97_ph.setState_pTX(p=port_l_b.p, T=T_out_intern, X={1})) = Medium_l.chemicalPotential_w_TXp(T_out_intern,1-X_LiBr_out_intern,port_l_b.p);
+ 
+-Q_intern = max(0,min(1,(X_LiBr_out_intern - X_LiBr_in)/X_LiBr_out_intern));
++Q_raw = (X_LiBr_out_intern - X_LiBr_in)/X_LiBr_out_intern;
++Q_intern = max(0,min(1,Q_raw));
+ 
+-// Medium_l.temperature_hXp(h_out,1-X_LiBr_out,port_l_b.p)
+-h_out = Medium_l.specificEnthalpy_SSC_TXp(T_out_intern_auxiliar,1-X_LiBr_out,port_l_b.p);
++// Diagnostic temperature: use the physical inverse branch (273.5 to 600 K).
++// An implicit inversion lets compiler-generated iteration variables start at 0 K.
++T_out_intern_auxiliar = Medium_l.temperature_hXp(h_out,1-X_LiBr_out,port_l_b.p);
+ 
+ //port_v_b.m_flow = Buildings.Utilities.Math.Functions.regStep(Q_intern,-Q*port_a.m_flow,0, 0.00001);
+ port_v_b.m_flow = -Q*port_a.m_flow;
+ 
+-if Q_intern <= 0 then
++// The event indicator must cross zero. A clipped quality can stay at zero
++// without updating the active branch in a solver with event hysteresis.
++if Q_raw <= 0 then
+       Q = 0;
+       X_LiBr_out = X_LiBr_in;
+       h_out = Medium_l.specificEnthalpy_SSC_TXp(T_out,1-X_LiBr_out,port_l_b.p);
+--- original/Absolut/FluidBased/Static/Components/FlashingWater.mo
++++ Absolut/FluidBased/Static/Components/FlashingWater.mo
+@@ -39,7 +39,7 @@
+ 
+ // Internal
+   parameter Modelica.Units.SI.Temperature T_out_start=273.15 + 50;
+-  Modelica.Blocks.Interfaces.RealOutput T_out(unit="K", start= T_out_start)
++  Modelica.Blocks.Interfaces.RealOutput T_out(unit="K", start= T_out_start, nominal = 300)
+     annotation (Placement(transformation(extent={{80,-20},{100,0}})));
+   Modelica.Blocks.Interfaces.RealOutput opening_out
+     annotation (Placement(transformation(extent={{80,-50},{100,-30}})));
+--- original/Absolut/FluidBased/Static/Components/Pump.mo
++++ Absolut/FluidBased/Static/Components/Pump.mo
+@@ -53,16 +53,12 @@
+   port_l_a.m_flow + port_l_b.m_flow = 0;
+   port_l_a.m_flow = m_dot_internal.y;
+ 
+-  //T_out = Medium_l.temperature_hXp(port_l_b.h_outflow,inStream(port_l_a.Xi_outflow)*{1},port_l_b.p);
+-  0 = inStream(port_l_b.h_outflow) - Absolut.Media.LiBrH2O.specificEnthalpy_SSC_TXp(T=T_out, X_H2O=inStream(port_l_a.Xi_outflow)*{1}, p=port_l_b.p);
+-
+-  //T = Medium_l.temperature_hXp(inStream(port_l_a.h_outflow),inStream(port_l_a.Xi_outflow)*{1},port_l_a.p);
+-  0 = inStream(port_l_a.h_outflow) - Absolut.Media.LiBrH2O.specificEnthalpy_SSC_TXp(T=T, X_H2O=inStream(port_l_a.Xi_outflow)*{1}, p=port_l_a.p);
+-
+-
+-  //0 = inStream(port_l_b.h_outflow) - Absolut.Media.LiBrH2O.specificEnthalpy_SSC_TXp(T=T_out, X_H2O=inStream(port_l_a.Xi_outflow)*{1}, p=port_l_b.p);
+-  //0 = inStream(port_l_a.h_outflow) - Absolut.Media.LiBrH2O.specificEnthalpy_SSC_TXp(T=T, X_H2O=inStream(port_l_a.Xi_outflow)*{1}, p=port_l_a.p);
+-
++  // Bounded LiBr inverse avoids nonphysical roots of the enthalpy polynomial.
++  T = Medium_l.temperature_hXp(inStream(port_l_a.h_outflow),
++    inStream(port_l_a.Xi_outflow)*{1}, port_l_a.p);
++  // Forward outlet temperature belongs to this port's outgoing stream.
++  T_out = Medium_l.temperature_hXp(port_l_b.h_outflow,
++    port_l_b.Xi_outflow*{1}, port_l_b.p);
+ 
+   v_low_p = 1/rho_low;
+   rho_low = Medium_l.density(Medium_l.setState_pTX(port_l_a.p,T,inStream(port_l_a.Xi_outflow)));
+--- original/Absolut/FluidBased/Static/Components/Validation/FlashingLiBr.mo
++++ Absolut/FluidBased/Static/Components/Validation/FlashingLiBr.mo
+@@ -93,6 +93,7 @@
+       StopTime=420,
+       Tolerance=1e-05,
+       __Dymola_Algorithm="Dassl"),
+-    __Dymola_Commands(file="Resources\Static\Components\Validation\FlashingLiBr.mos"
++    __Dymola_Commands(file="modelica://Absolut/Resources/Static/Components/Validation/FlashingLiBr.mos"
+         "Simulate and plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end FlashingLiBr;
+--- original/Absolut/FluidBased/Static/Components/Validation/FlashingWater.mo
++++ Absolut/FluidBased/Static/Components/Validation/FlashingWater.mo
+@@ -90,6 +90,7 @@
+       Interval=1,
+       Tolerance=1e-06,
+       __Dymola_Algorithm="Dassl"),
+-    __Dymola_Commands(file="Resources\Static\Components\Validation\FlashingWater.mos"
++    __Dymola_Commands(file="modelica://Absolut/Resources/Static/Components/Validation/FlashingWater.mos"
+         "Simulate and plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end FlashingWater;
+--- original/Absolut/FluidBased/Static/Components/Validation/PumpLiBr.mo
++++ Absolut/FluidBased/Static/Components/Validation/PumpLiBr.mo
+@@ -50,5 +50,6 @@
+ <p><br><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources\Static\Components\Validation\PumpLiBr.mos" "Plot"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Static/Components/Validation/PumpLiBr.mos" "Plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end PumpLiBr;
+--- original/Absolut/FluidBased/Static/DoubleEffect/Validation/AHP_pf_de_UAfix.mo
++++ Absolut/FluidBased/Static/DoubleEffect/Validation/AHP_pf_de_UAfix.mo
+@@ -174,6 +174,8 @@
+   Modelica.Blocks.Sources.RealExpression X_LiBr_gen_low(y=0.61663)
+     annotation (Placement(transformation(extent={{160,0},{120,20}})));
+   Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs(
++    useClosedLoopMassBalance=true,
++    useClosedLoopSaltBalance=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     redeclare package Medium_ext = Medium_ext,
+@@ -358,8 +360,9 @@
+ <p><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources\Static\DoubleEffect\Validation\AHP_de_Table74.mos"
++    __Dymola_Commands(file="modelica://Absolut/Resources/Static/DoubleEffect/Validation/AHP_de_Table74.mos"
+         "Plot",
+-        file="Resources\Static\DoubleEffect\Validation\AHP_pf_de_UAfix.mos"
++        file="modelica://Absolut/Resources/Static/DoubleEffect/Validation/AHP_pf_de_UAfix.mos"
+         "Simulate and plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHP_pf_de_UAfix;
+--- original/Absolut/FluidBased/Static/DoubleEffect/Validation/AHP_sf_de_UAfix.mo
++++ Absolut/FluidBased/Static/DoubleEffect/Validation/AHP_sf_de_UAfix.mo
+@@ -171,6 +171,8 @@
+   Modelica.Blocks.Sources.RealExpression X_LiBr_gen_low(y=0.62276)
+     annotation (Placement(transformation(extent={{144,-18},{104,2}})));
+   Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs(
++    useClosedLoopMassBalance=true,
++    useClosedLoopSaltBalance=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     redeclare package Medium_ext = Medium_ext,
+@@ -357,8 +359,9 @@
+ <p><br><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-__Dymola_Commands(file="Resources\Static\DoubleEffect\Validation\AHP_de_Table74.mos"
++__Dymola_Commands(file="modelica://Absolut/Resources/Static/DoubleEffect/Validation/AHP_de_Table74.mos"
+         "Plot",
+-        file="Resources\Static\DoubleEffect\Validation\AHP_sf_de_UAfix.mos"
++        file="modelica://Absolut/Resources/Static/DoubleEffect/Validation/AHP_sf_de_UAfix.mos"
+         "Simulate and plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHP_sf_de_UAfix;
+--- original/Absolut/FluidBased/Static/Resorption/AbsorberStatic_wHT_UAfix_Resorption_ext.mo
++++ Absolut/FluidBased/Static/Resorption/AbsorberStatic_wHT_UAfix_Resorption_ext.mo
+@@ -77,7 +77,29 @@
+   Modelica.Units.SI.SpecificEnthalpy h19;
+   Modelica.Units.SI.SpecificEnthalpy h_l_a;
+ 
++  parameter Boolean useClosedLoopMassBalance=false
++    "Only for a closed steady circuit: mass balance is implied by other components";
++  parameter Boolean useClosedLoopSaltBalance=false
++    "Only for a closed solution circuit: salt balance is implied by other components";
++  Modelica.Units.SI.MassFlowRate massResidual = port_l_a.m_flow + port_l_b.m_flow + port_v.m_flow;
++  Modelica.Units.SI.MassFlowRate saltResidual = port_l_a.m_flow*(1 - actualStream(port_l_a.Xi_outflow[1]))
++    + port_l_b.m_flow*(1 - actualStream(port_l_b.Xi_outflow[1]));
++
+ equation
++
++  // Whole-vessel conservation, including the final liquid outlet.
++  if useClosedLoopMassBalance then
++    assert(noEvent(abs(massResidual) <= 1e-8),
++      "Closed-circuit mass balance is not satisfied; check the circuit or use local conservation");
++  else
++    massResidual = 0;
++  end if;
++  if useClosedLoopSaltBalance then
++    assert(noEvent(abs(saltResidual) <= 1e-8),
++      "Closed-circuit LiBr balance is not satisfied; check the circuit or use local conservation");
++  else
++    saltResidual = 0;
++  end if;
+   // Adiabatic sections
+   m20 = m19 + port_l_a.m_flow;
+   m20*X_LiBr20 = port_l_a.m_flow*(1 - inStream(port_l_a.Xi_outflow)*{1});
+@@ -85,7 +107,7 @@
+   h_l_a = inStream(port_l_a.h_outflow);
+   X_LiBr_l_a = 1 - inStream(port_l_a.Xi_outflow)*{1};
+ 
+-  port_l_b.m_flow + port_l_a.m_flow + port_v.m_flow = 0;
++
+ 
+   // h19 and h20 are suppose to be known?
+  // "As the outlet state is assumed saturated, the pressure (which is assumed to be known) and the mass fraction
+@@ -172,6 +194,7 @@
+           textString="abs")}),                                   Diagram(
+         coordinateSystem(preserveAspectRatio=false)),
+     Documentation(info="<html>
++<p>Local total-mass and LiBr balances are enabled by default. For a closed steady circuit only, useClosedLoopMassBalance and useClosedLoopSaltBalance may replace redundant equations by assertions with an absolute tolerance of 1e-8 kg/s. All other components and connections must enforce the corresponding balances, and the circuit must supply independent pressure/composition references. These options are not valid for an open component test with unconstrained outlet flow or composition.</p>
+ <p>Model of a simple <b>evaporator (or condenser)</b> with two states where water is the evaporating or condensing medium. The model assumes two-phase equilibrium inside the component, i.e. the vapor (liquid) that exits the evaporator (condenser) is at saturated state. The flow properties are computed from the upstream quantities, pressures are equal in all nodes. Heat transfer through a thermal port is possible, it equals zero if the port remains unconnected. Ideal heat transfer is assumed per default; the thermal port temperature is equal to the medium temperature.</p>
+ </html>", revisions=""));
+ end AbsorberStatic_wHT_UAfix_Resorption_ext;
+--- original/Absolut/FluidBased/Static/Resorption/Validation/Resorption.mo
++++ Absolut/FluidBased/Static/Resorption/Validation/Resorption.mo
+@@ -78,6 +78,8 @@
+     annotation (Placement(transformation(extent={{-18,60},{22,80}})));
+ 
+   Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs1(
++    useClosedLoopMassBalance=true,
++    useClosedLoopSaltBalance=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     redeclare package Medium_ext = Medium_ext,
+@@ -134,6 +136,8 @@
+     port_l_b(m_flow(start=-0.0458))) annotation (Placement(transformation(extent={{82,82},{102,102}})));
+ 
+   Absolut.FluidBased.Static.Resorption.AbsorberStatic_wHT_UAfix_Resorption_ext abs2(
++    useClosedLoopMassBalance=false,
++    useClosedLoopSaltBalance=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     redeclare package Medium_ext = Medium_ext,
+@@ -299,6 +303,7 @@
+ <p><br><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources\Static\Resorption\Validation\Table8.6.mos"
++    __Dymola_Commands(file="modelica://Absolut/Resources/Static/Resorption/Validation/Table8.6.mos"
+         "Plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end Resorption;
+--- original/Absolut/FluidBased/Static/SingleEffect_intern/AbsorberStatic.mo
++++ Absolut/FluidBased/Static/SingleEffect_intern/AbsorberStatic.mo
+@@ -70,7 +70,29 @@
+         rotation=90,
+         origin={80,-80})));
+ 
++  parameter Boolean useClosedLoopMassBalance=false
++    "Only for a closed steady circuit: mass balance is implied by other components";
++  parameter Boolean useClosedLoopSaltBalance=false
++    "Only for a closed solution circuit: salt balance is implied by other components";
++  Modelica.Units.SI.MassFlowRate massResidual = port_l_a.m_flow + port_l_b.m_flow + port_v.m_flow + port_v_a.m_flow;
++  Modelica.Units.SI.MassFlowRate saltResidual = port_l_a.m_flow*(1 - actualStream(port_l_a.Xi_outflow[1]))
++    + port_l_b.m_flow*(1 - actualStream(port_l_b.Xi_outflow[1]));
++
+ equation
++
++  // Whole-vessel conservation, including the final liquid outlet.
++  if useClosedLoopMassBalance then
++    assert(noEvent(abs(massResidual) <= 1e-8),
++      "Closed-circuit mass balance is not satisfied; check the circuit or use local conservation");
++  else
++    massResidual = 0;
++  end if;
++  if useClosedLoopSaltBalance then
++    assert(noEvent(abs(saltResidual) <= 1e-8),
++      "Closed-circuit LiBr balance is not satisfied; check the circuit or use local conservation");
++  else
++    saltResidual = 0;
++  end if;
+   // Mass balance
+   connect(X_LiBr,X_LiBr_in);
+   X_H2O = 1 - X_LiBr;
+@@ -137,5 +159,6 @@
+           textString="abs")}),                                   Diagram(
+         coordinateSystem(preserveAspectRatio=false)),
+     Documentation(info="<html>
++<p>Local total-mass and LiBr balances are enabled by default. For a closed steady circuit only, useClosedLoopMassBalance and useClosedLoopSaltBalance may replace redundant equations by assertions with an absolute tolerance of 1e-8 kg/s. All other components and connections must enforce the corresponding balances, and the circuit must supply independent pressure/composition references. These options are not valid for an open component test with unconstrained outlet flow or composition.</p>
+ </html>", revisions=""));
+ end AbsorberStatic;
+--- original/Absolut/FluidBased/Static/SingleEffect_intern/Validation/AHP_se_eps.mo
++++ Absolut/FluidBased/Static/SingleEffect_intern/Validation/AHP_se_eps.mo
+@@ -71,6 +71,8 @@
+   Modelica.Blocks.Sources.RealExpression MassFlowRate(y=0.05)
+     annotation (Placement(transformation(extent={{-40,-30},{-20,-10}})));
+   SingleEffect_intern.AbsorberStatic abs(
++    useClosedLoopMassBalance=true,
++    useClosedLoopSaltBalance=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     p_start(displayUnit="Pa") = 676,
+@@ -155,6 +157,7 @@
+       StopTime=31536000,
+       Interval=900,
+       __Dymola_Algorithm="Dassl"),
+-    __Dymola_Commands(file="Resources\Static\SingleEffect_intern\Validation\AHP_se_eps_Table61_plot.mos" "Plot",
+-    file="Resources\Static\SingleEffect_intern\Validation\AHP_se_eps.mos" "Simulate and plot"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Static/SingleEffect_intern/Validation/AHP_se_eps_Table61_plot.mos" "Plot",
++    file="modelica://Absolut/Resources/Static/SingleEffect_intern/Validation/AHP_se_eps.mos" "Simulate and plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHP_se_eps;
+--- original/Absolut/FluidBased/Static/SingleEffect_intern/Validation/AHP_se_eps_p_XLiBr.mo
++++ Absolut/FluidBased/Static/SingleEffect_intern/Validation/AHP_se_eps_p_XLiBr.mo
+@@ -72,6 +72,8 @@
+   Modelica.Blocks.Sources.Constant       MassFlowRate(k=0.05)
+     annotation (Placement(transformation(extent={{-32,16},{-12,36}})));
+   SingleEffect_intern.AbsorberStatic abs(
++    useClosedLoopMassBalance=true,
++    useClosedLoopSaltBalance=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     p_start(displayUnit="Pa") = p_abs.k,
+@@ -162,6 +164,7 @@
+       Interval=60,
+       Tolerance=1e-08,
+       __Dymola_Algorithm="Dassl"),
+-    __Dymola_Commands(file="Resources\Static\SingleEffect_intern\Validation\AHP_se_eps_Table61_plot.mos" "Plot",
+-    file="Resources\Static\SingleEffect_intern\Validation\AHP_se_eps_p_XLiBr.mos" "Simulate and plot"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Static/SingleEffect_intern/Validation/AHP_se_eps_Table61_plot.mos" "Plot",
++    file="modelica://Absolut/Resources/Static/SingleEffect_intern/Validation/AHP_se_eps_p_XLiBr.mos" "Simulate and plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHP_se_eps_p_XLiBr;
+--- original/Absolut/FluidBased/Static/SingleEffect_UAfixed/AbsorberStatic_wHT_UAfix.mo
++++ Absolut/FluidBased/Static/SingleEffect_UAfixed/AbsorberStatic_wHT_UAfix.mo
+@@ -100,7 +100,29 @@
+         extent={{-20,-20},{20,20}},
+         rotation=90,
+         origin={100,-80})));
++  parameter Boolean useClosedLoopMassBalance=false
++    "Only for a closed steady circuit: mass balance is implied by other components";
++  parameter Boolean useClosedLoopSaltBalance=false
++    "Only for a closed solution circuit: salt balance is implied by other components";
++  Modelica.Units.SI.MassFlowRate massResidual = port_l_a.m_flow + port_l_b.m_flow + port_v.m_flow + port_v_a.m_flow;
++  Modelica.Units.SI.MassFlowRate saltResidual = port_l_a.m_flow*(1 - actualStream(port_l_a.Xi_outflow[1]))
++    + port_l_b.m_flow*(1 - actualStream(port_l_b.Xi_outflow[1]));
++
+ equation
++
++  // Whole-vessel conservation, including the final liquid outlet.
++  if useClosedLoopMassBalance then
++    assert(noEvent(abs(massResidual) <= 1e-8),
++      "Closed-circuit mass balance is not satisfied; check the circuit or use local conservation");
++  else
++    massResidual = 0;
++  end if;
++  if useClosedLoopSaltBalance then
++    assert(noEvent(abs(saltResidual) <= 1e-8),
++      "Closed-circuit LiBr balance is not satisfied; check the circuit or use local conservation");
++  else
++    saltResidual = 0;
++  end if;
+   connect(p, p_in);
+   connect(X_LiBr, X_LiBr_in);
+ 
+@@ -190,6 +212,7 @@
+           textString="abs")}),                                   Diagram(
+         coordinateSystem(preserveAspectRatio=false)),
+     Documentation(info="<html>
++<p>Local total-mass and LiBr balances are enabled by default. For a closed steady circuit only, useClosedLoopMassBalance and useClosedLoopSaltBalance may replace redundant equations by assertions with an absolute tolerance of 1e-8 kg/s. All other components and connections must enforce the corresponding balances, and the circuit must supply independent pressure/composition references. These options are not valid for an open component test with unconstrained outlet flow or composition.</p>
+ <p>Model of a simple <b>evaporator (or condenser)</b> with two states where water is the evaporating or condensing medium. The model assumes two-phase equilibrium inside the component, i.e. the vapor (liquid) that exits the evaporator (condenser) is at saturated state. The flow properties are computed from the upstream quantities, pressures are equal in all nodes. Heat transfer through a thermal port is possible, it equals zero if the port remains unconnected. Ideal heat transfer is assumed per default; the thermal port temperature is equal to the medium temperature.</p>
+ </html>", revisions=""));
+ end AbsorberStatic_wHT_UAfix;
+--- original/Absolut/FluidBased/Static/SingleEffect_UAfixed/Examples/AHP_wHT_UAfix_ConAbsSerie.mo
++++ Absolut/FluidBased/Static/SingleEffect_UAfixed/Examples/AHP_wHT_UAfix_ConAbsSerie.mo
+@@ -48,6 +48,8 @@
+   Modelica.Blocks.Sources.RealExpression MassFlowRate(y=0.05)
+     annotation (Placement(transformation(extent={{-40,-30},{-20,-10}})));
+   AbsorberStatic_wHT_UAfix abs(
++    useClosedLoopMassBalance=true,
++    useClosedLoopSaltBalance=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     redeclare package Medium_ext = Medium_l,
+@@ -186,4 +188,5 @@
+       StopTime=61,
+       Interval=0.1,
+       Tolerance=1e-07));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHP_wHT_UAfix_ConAbsSerie;
+--- original/Absolut/FluidBased/Static/SingleEffect_UAfixed/Validation/AHP_se_UAfix_eps.mo
++++ Absolut/FluidBased/Static/SingleEffect_UAfixed/Validation/AHP_se_UAfix_eps.mo
+@@ -87,6 +87,8 @@
+   Modelica.Blocks.Sources.RealExpression MassFlowRate(y=0.05)
+     annotation (Placement(visible = true, transformation(                  extent = {{-40, -30}, {-20, -10}}, rotation = 0)));
+   SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs(
++    useClosedLoopMassBalance=true,
++    useClosedLoopSaltBalance=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     redeclare package Medium_ext = Medium_ext,
+@@ -242,8 +244,8 @@
+       Interval=1,
+       Tolerance=1e-07,
+       __Dymola_Algorithm="Rkfix4"),
+-    __Dymola_Commands(file="Resources\Static\SingleEffect_intern\Validation\AHP_se_eps_Table61_plot.mos" "Plot Table 6.1", file=
+-          "Resources\Static\SingleEffect_UAfixed\Validation\AHP_se_Table63.mos" "Plot Table 6.3"),
++    __Dymola_Commands(file="modelica://Absolut/Resources/Static/SingleEffect_intern/Validation/AHP_se_eps_Table61_plot.mos" "Plot Table 6.1", file=
++          "modelica://Absolut/Resources/Static/SingleEffect_UAfixed/Validation/AHP_se_Table63.mos" "Plot Table 6.3"),
+     Documentation(info="<html>
+ <p>Model of a single effect absorption heat pump with external fluids.</p>
+ <p>Heat exchanger UA values in W/K are fixed. </p>
+@@ -257,4 +259,5 @@
+ <p><br><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHP_se_UAfix_eps;
+--- original/Absolut/FluidBased/Static/TypeII/AbsorberStatic_wHT_UAfix_TypeII.mo
++++ Absolut/FluidBased/Static/TypeII/AbsorberStatic_wHT_UAfix_TypeII.mo
+@@ -70,6 +70,11 @@
+   Modelica.Units.SI.MassFlowRate m2=port_v.m_flow;
+ 
+ equation
++
++  // Whole-vessel conservation, including the final liquid outlet.
++  0 = port_l_a.m_flow + port_l_b.m_flow + port_v.m_flow;
++  0 = port_l_a.m_flow*(1 - actualStream(port_l_a.Xi_outflow[1]))
++    + port_l_b.m_flow*(1 - actualStream(port_l_b.Xi_outflow[1]));
+   // Mass balance
+   X_H2O = 1 - X_LiBr;
+ 
+--- original/Absolut/FluidBased/Static/TypeII/AbsorberStatic_wHT_UAfix_TypeII_ext.mo
++++ Absolut/FluidBased/Static/TypeII/AbsorberStatic_wHT_UAfix_TypeII_ext.mo
+@@ -76,7 +76,29 @@
+   Modelica.Units.SI.SpecificEnthalpy h19;
+   Modelica.Units.SI.SpecificEnthalpy h_l_a;
+ 
++  parameter Boolean useClosedLoopMassBalance=false
++    "Only for a closed steady circuit: mass balance is implied by other components";
++  parameter Boolean useClosedLoopSaltBalance=false
++    "Only for a closed solution circuit: salt balance is implied by other components";
++  Modelica.Units.SI.MassFlowRate massResidual = port_l_a.m_flow + port_l_b.m_flow + port_v.m_flow;
++  Modelica.Units.SI.MassFlowRate saltResidual = port_l_a.m_flow*(1 - actualStream(port_l_a.Xi_outflow[1]))
++    + port_l_b.m_flow*(1 - actualStream(port_l_b.Xi_outflow[1]));
++
+ equation
++
++  // Whole-vessel conservation, including the final liquid outlet.
++  if useClosedLoopMassBalance then
++    assert(noEvent(abs(massResidual) <= 1e-8),
++      "Closed-circuit mass balance is not satisfied; check the circuit or use local conservation");
++  else
++    massResidual = 0;
++  end if;
++  if useClosedLoopSaltBalance then
++    assert(noEvent(abs(saltResidual) <= 1e-8),
++      "Closed-circuit LiBr balance is not satisfied; check the circuit or use local conservation");
++  else
++    saltResidual = 0;
++  end if;
+   // Adiabatic sections
+   m20 = m19 + port_l_a.m_flow;
+   m20*X_LiBr20 = port_l_a.m_flow*(1 - inStream(port_l_a.Xi_outflow)*{1});
+@@ -172,6 +194,7 @@
+           textString="abs")}),                                   Diagram(
+         coordinateSystem(preserveAspectRatio=false)),
+     Documentation(info="<html>
++<p>Local total-mass and LiBr balances are enabled by default. For a closed steady circuit only, useClosedLoopMassBalance and useClosedLoopSaltBalance may replace redundant equations by assertions with an absolute tolerance of 1e-8 kg/s. All other components and connections must enforce the corresponding balances, and the circuit must supply independent pressure/composition references. These options are not valid for an open component test with unconstrained outlet flow or composition.</p>
+ <p>Model of a simple <b>evaporator (or condenser)</b> with two states where water is the evaporating or condensing medium. The model assumes two-phase equilibrium inside the component, i.e. the vapor (liquid) that exits the evaporator (condenser) is at saturated state. The flow properties are computed from the upstream quantities, pressures are equal in all nodes. Heat transfer through a thermal port is possible, it equals zero if the port remains unconnected. Ideal heat transfer is assumed per default; the thermal port temperature is equal to the medium temperature.</p>
+ </html>", revisions=""));
+ end AbsorberStatic_wHT_UAfix_TypeII_ext;
+--- original/Absolut/FluidBased/Static/TypeII/Validation/AHPTypeII_UAfix_HXeps.mo
++++ Absolut/FluidBased/Static/TypeII/Validation/AHPTypeII_UAfix_HXeps.mo
+@@ -34,6 +34,8 @@
+   Modelica.Blocks.Sources.RealExpression m_s(y=1)
+     annotation (Placement(transformation(extent={{160,-10},{140,10}})));
+   TypeII.AbsorberStatic_wHT_UAfix_TypeII_ext abs(
++    useClosedLoopMassBalance=true,
++    useClosedLoopSaltBalance=true,
+     redeclare package Medium_v = Medium_v,
+     redeclare package Medium_l = Medium_sol,
+     redeclare package Medium_ext = Medium_ext,
+@@ -234,5 +236,6 @@
+ <p><br><br><b>References:</b></p>
+ <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
+ </html>"),
+-    __Dymola_Commands(file="Resources\Static\TypeII\Validation\Table6.6.mos" "Plot"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Static/TypeII/Validation/Table6.6.mos" "Plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end AHPTypeII_UAfix_HXeps;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/ChemicalPotential/ChemicalPotential_w.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/ChemicalPotential/ChemicalPotential_w.mo
+@@ -53,4 +53,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end ChemicalPotential_w;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/der_derT_Gibbs.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/der_derT_Gibbs.mo
+@@ -63,4 +63,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end der_derT_Gibbs;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/der_Gibbs.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/der_Gibbs.mo
+@@ -62,4 +62,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end der_Gibbs;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derp_derT_Gibbs.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derp_derT_Gibbs.mo
+@@ -52,4 +52,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end derp_derT_Gibbs;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derp_Gibbs.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derp_Gibbs.mo
+@@ -52,4 +52,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end derp_Gibbs;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derT_derT_Gibbs.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derT_derT_Gibbs.mo
+@@ -52,4 +52,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end derT_derT_Gibbs;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derT_Gibbs.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derT_Gibbs.mo
+@@ -52,4 +52,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end derT_Gibbs;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derX_Gibbs.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/derX_Gibbs.mo
+@@ -66,4 +66,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end derX_Gibbs;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/GibbsSmoothOrder.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/Gibbs/GibbsSmoothOrder.mo
+@@ -44,4 +44,5 @@
+       Evaluate=false,
+       OutputCPUtime=true,
+       OutputFlatModelica=true));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end GibbsSmoothOrder;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/der_HeatCapacity.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/der_HeatCapacity.mo
+@@ -59,4 +59,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end der_HeatCapacity;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/derp_HeatCapacity.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/derp_HeatCapacity.mo
+@@ -51,4 +51,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end derp_HeatCapacity;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/derT_HeatCapacity.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/derT_HeatCapacity.mo
+@@ -50,4 +50,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end derT_HeatCapacity;
+--- original/Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/derX_HeatCapacity.mo
++++ Absolut/Media/LiBrH2O/CheckDerivatives/HeatCapacity/derX_HeatCapacity.mo
+@@ -50,4 +50,5 @@
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+         coordinateSystem(preserveAspectRatio=false)));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end derX_HeatCapacity;
+--- original/Absolut/Media/LiBrH2O/package.mo
++++ Absolut/Media/LiBrH2O/package.mo
+@@ -160,7 +160,7 @@
+     "specificGibbsEnergy w.r.t. thermodynamic state | use setState_phX function for input"
+   algorithm
+     g := specificGibbsEnergy_TXp( state.T, state.X[1], state.p);
+-    annotation(Inline=true,smoothOrder = 10, derivative=Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_der);
++    annotation(Inline=true,smoothOrder = 10);
+   end specificGibbsEnergy;
+ 
+   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(coordinateSystem(preserveAspectRatio=false)),
+--- original/Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derp_der.mo
++++ Absolut/Media/LiBrH2O/specificGibbsEnergy_TXp_derp_der.mo
+@@ -32,5 +32,5 @@
+ algorithm
+   der_gderp:= specificGibbsEnergy_TXp_derp_derX(T,X_H2O,p)*(der_X_LiBr*100) +
+    specificGibbsEnergy_TXp_derp_derT(T,X_H2O,p)*der_T + 0;
+-  annotation(smoothOrder = 10, derivative = Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derp_der_der);
++  annotation(smoothOrder = 10, derivative(order=2) = Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_derp_der_der);
+ end specificGibbsEnergy_TXp_derp_der;
+--- original/Absolut/Media/LiBrH2O/Validation/CondensationEvaporation.mo
++++ Absolut/Media/LiBrH2O/Validation/CondensationEvaporation.mo
+@@ -65,4 +65,5 @@
+ <p><b><span style=\"font-family: MS Shell Dlg 2;\">References:</span></b></p>
+ <p><span style=\"font-family: MS Shell Dlg 2;\">[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</span></p>
+ </html>"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end CondensationEvaporation;
+--- original/Absolut/Media/LiBrH2O/Validation/cp.mo
++++ Absolut/Media/LiBrH2O/Validation/cp.mo
+@@ -169,11 +169,12 @@
+       Interval=1,
+       Tolerance=1e-07,
+       __Dymola_Algorithm="Dassl"),__Dymola_Commands(file="modelica://Absolut/Resources/Media/Validation/cp/cp.mos"
+-        "Simulate and export cp values for validation purposes", file="Resources/Media/Validation/cp/cp_plot.mos" "Plot"),
++        "Simulate and export cp values for validation purposes", file="modelica://Absolut/Resources/Media/Validation/cp/cp_plot.mos" "Plot"),
+     Documentation(info="<html>
+ <p>This model is used to calculate the specific heat capacity for different mass fractions of LiBr at equilibrium for different temperatures. </p>
+ <p>The points calculated correspond (to be compared with) to the ones published by Yuan Z. and Herold K.E. in [1], see Table 1. </p>
+ <p><br><b>References:</b></p>
+ <p>[1] Z. Yuan &amp; K.E. Herold (2005) Specific Heat Measurements on Aqueous Lithium Bromide, HVAC&amp;R Research, 11:3, 361-375. </p>
+ </html>"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end cp;
+--- original/Absolut/Media/LiBrH2O/Validation/Density.mo
++++ Absolut/Media/LiBrH2O/Validation/Density.mo
+@@ -47,4 +47,5 @@
+ <p><br><b>References:</b></p>
+ <p>[1] S.V. Stankus (2007) The Density of Aqueous Solutions of Lithium Bromide at High Temperatures and Concentrations. Vol. 45, No. 3. DOI: 10.1134/S0018151X07030212</p>
+ </html>"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end Density;
+--- original/Absolut/Media/LiBrH2O/Validation/Desorption.mo
++++ Absolut/Media/LiBrH2O/Validation/Desorption.mo
+@@ -100,5 +100,6 @@
+ <h4>References:</h4>
+ <p>[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Media/Validation/Desorption.mos" "Plot"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Media/Validation/Desorption.mos" "Plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end Desorption;
+--- original/Absolut/Media/LiBrH2O/Validation/Enthalpy.mo
++++ Absolut/Media/LiBrH2O/Validation/Enthalpy.mo
+@@ -60,4 +60,5 @@
+ <p><br><b>References:</b></p>
+ <p>[1] Y. Kaita (2001) Thermodynamic properties of lithium bromide-water solutions at high temperaures, International Journal of Refrigeration 24, 374-390.</p>
+ </html>"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end Enthalpy;
+--- original/Absolut/Media/LiBrH2O/Validation/MixingOfFluids.mo
++++ Absolut/Media/LiBrH2O/Validation/MixingOfFluids.mo
+@@ -68,5 +68,6 @@
+ <p><br><b>References:</b></p>
+ <p>[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Media/Validation/MixingOfFluids.mos" "Plot"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Media/Validation/MixingOfFluids.mos" "Plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end MixingOfFluids;
+--- original/Absolut/Media/LiBrH2O/Validation/Pumping.mo
++++ Absolut/Media/LiBrH2O/Validation/Pumping.mo
+@@ -56,4 +56,5 @@
+ <p><br><b>References:</b></p>
+ <p>[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</p>
+ </html>"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end Pumping;
+--- original/Absolut/Media/LiBrH2O/Validation/SSC.mo
++++ Absolut/Media/LiBrH2O/Validation/SSC.mo
+@@ -106,5 +106,6 @@
+ <p><br><b>References:</b></p>
+ <p>[1] LiBrSSC (aquous lithium bromide) Property Routines. <a href=\"https://fchart.com/ees/libr_help/ssclibr.pdf\">https://fchart.com/ees/libr_help/ssclibr.pdf</a></p>
+ </html>"),
+-    __Dymola_Commands(file="Resources/Media/Validation/SSC_plot.mos" "Plot"));
++    __Dymola_Commands(file="modelica://Absolut/Resources/Media/Validation/SSC_plot.mos" "Plot"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end SSC;
+--- original/Absolut/Media/LiBrH2O/Validation/ThorttlingLiBr.mo
++++ Absolut/Media/LiBrH2O/Validation/ThorttlingLiBr.mo
+@@ -99,4 +99,5 @@
+ <p><b><span style=\"font-family: MS Shell Dlg 2;\">References:</span></b></p>
+ <p><span style=\"font-family: MS Shell Dlg 2;\">[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</span></p>
+ </html>"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end ThorttlingLiBr;
+--- original/Absolut/Media/LiBrH2O/Validation/ThorttlingWater.mo
++++ Absolut/Media/LiBrH2O/Validation/ThorttlingWater.mo
+@@ -71,4 +71,5 @@
+ <p><b><span style=\"font-family: MS Shell Dlg 2;\">References:</span></b></p>
+ <p><span style=\"font-family: MS Shell Dlg 2;\">[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</span></p>
+ </html>"));
++  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
+ end ThorttlingWater;
+--- original/Absolut/Media/LiBrH2O/X_Tp.mo
++++ Absolut/Media/LiBrH2O/X_Tp.mo
+@@ -1,8 +1,8 @@
+ within Absolut.Media.LiBrH2O;
+ function X_Tp "Mass fraction as function of temperature and pressure"
+-  input MassFraction T "LiBr mass fraction in the solution";
++  input Temperature T "Temperature of the solution";
+   input Modelica.Units.SI.Pressure p "Saturated pressure of the solution";
+-  output Temperature X_H2O "Temperature of the LiBr solution";
++  output MassFraction X_H2O "Water mass fraction in the solution";
+ 
+ algorithm
+ 
+--- original/Absolut/package.mo
++++ Absolut/package.mo
+@@ -4,9 +4,12 @@
+     Modelica(version="4.0.0"),
+     ModelicaServices(version="4.0.0"),
+       Buildings(version="12.0.0")),
+-  version="1",
+-  conversion(from(version="", script=
+-          "modelica://Absolut/Resources/ConvertFromAbsolut_.mos"),
+-      noneFromVersion="1",
+-      noneFromVersion="2"));
++  version="1.0.0+openmodelica.1",
++  conversion(noneFromVersion={"1","1.0.0"}),
++  Documentation(info="<html>
++<p>OpenModelica migration of Absolut v1.0.0. Requires Modelica 4.0.0 and Buildings 12.0.0.</p>
++<p>Dynamic vessels use mass and internal energy as states, with pT water media for the refrigerant.</p>
++<p>See the accompanying README_zh.md and reports for loading instructions and simulation coverage.
++Laboratory validation requires the original experimental data file, supplied through dataFile.</p>
++</html>"));
+ end Absolut;

@@ -93,6 +93,7 @@ equation
       StopTime=420,
       Tolerance=1e-05,
       __Dymola_Algorithm="Dassl"),
-    __Dymola_Commands(file="Resources\Static\Components\Validation\FlashingLiBr.mos"
+    __Dymola_Commands(file="modelica://Absolut/Resources/Static/Components/Validation/FlashingLiBr.mos"
         "Simulate and plot"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end FlashingLiBr;

@@ -34,6 +34,8 @@ extends Modelica.Icons.Example;
   Modelica.Blocks.Sources.RealExpression m_s(y=1)
     annotation (Placement(transformation(extent={{160,-10},{140,10}})));
   TypeII.AbsorberStatic_wHT_UAfix_TypeII_ext abs(
+    useClosedLoopMassBalance=true,
+    useClosedLoopSaltBalance=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_sol,
     redeclare package Medium_ext = Medium_ext,
@@ -234,5 +236,6 @@ equation
 <p><br><br><b>References:</b></p>
 <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
 </html>"),
-    __Dymola_Commands(file="Resources\Static\TypeII\Validation\Table6.6.mos" "Plot"));
+    __Dymola_Commands(file="modelica://Absolut/Resources/Static/TypeII/Validation/Table6.6.mos" "Plot"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end AHPTypeII_UAfix_HXeps;

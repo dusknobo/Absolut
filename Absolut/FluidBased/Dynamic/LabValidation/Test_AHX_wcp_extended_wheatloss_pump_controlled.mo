@@ -192,9 +192,9 @@ model Test_AHX_wcp_extended_wheatloss_pump_controlled
       choicesAllMatching=true);
   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
     annotation (choicesAllMatching=true);
-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph
+  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT
     annotation (choicesAllMatching=true);
-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph
+  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT
     annotation (choicesAllMatching=true);
 
   Buildings.Fluid.Sensors.TemperatureTwoPort senTem_gen_out(
@@ -441,4 +441,5 @@ equation
       Tolerance=1e-05,
       __Dymola_Algorithm="Dassl"),
     __Dymola_Commands(file="Test_command_log.mos" "Test_command_log"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end Test_AHX_wcp_extended_wheatloss_pump_controlled;

@@ -1,0 +1,81 @@
+"OpenModelica v1.27.0-dev-390-g7f4d387df9 (64-bit)"
+
+
+
+
+""
+
+""
+true
+MSL_VERSION=4.0.0
+
+"Check of ComponentTests.EvaporatorsSeriesNominal completed successfully.
+Class ComponentTests.EvaporatorsSeriesNominal has 242 equation(s) and 242 variable(s).
+121 of these are trivial equation(s)."
+""
+record SimulationResult
+    resultFile = "E:/OMmodel/OpenModelica/build/publish_github/staging/build/components/EvaporatorsSeriesNominal/model_res.csv",
+    simulationOptions = "startTime = 0.0, stopTime = 1200.0, numberOfIntervals = 500, tolerance = 1e-8, method = 'dassl', fileNamePrefix = 'model', options = '', outputFormat = 'csv', variableFilter = '.*', cflags = '', simflags = '-w -lv=LOG_STATS'",
+    messages = "LOG_ASSERT        | warning | [C:/Users/hz/AppData/Roaming/.openmodelica/libraries/Modelica 4.0.0+maint.om/Fluid/Sources.mo:13:3-20:44:writable]
+|                 | |       | The following assertion has been violated at time 0.000000
+|                 | |       | ((vaporSink.d >= 0.0 and vaporSink.d <= 1e5)) --> \"Variable violating min/max constraint: 0.0 <= vaporSink.d <= 1e5, has value: -0.100166\"
+LOG_SUCCESS       | info    | The initialization finished successfully without homotopy method.
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:63:3-63:62:writable]
+|                 | |       | The following assertion has been violated at time 2.400000
+|                 | |       | ((integratedMass1 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= integratedMass1, has value: -1.77838e-06\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:64:3-64:62:writable]
+|                 | |       | The following assertion has been violated at time 2.400000
+|                 | |       | ((integratedMass2 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= integratedMass2, has value: -0.000954693\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:65:3-65:66:writable]
+|                 | |       | The following assertion has been violated at time 2.400000
+|                 | |       | ((integratedMassTotal >= 0.0)) --> \"Variable violating min constraint: 0.0 <= integratedMassTotal, has value: -0.000956472\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:70:3-70:57:writable]
+|                 | |       | The following assertion has been violated at time 2.400000
+|                 | |       | ((massChange1 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= massChange1, has value: -1.77838e-06\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:71:3-71:57:writable]
+|                 | |       | The following assertion has been violated at time 2.400000
+|                 | |       | ((massChange2 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= massChange2, has value: -0.000954693\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:72:3-72:61:writable]
+|                 | |       | The following assertion has been violated at time 7.200000
+|                 | |       | ((r_mass1 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= r_mass1, has value: -5.25553e-15\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:74:3-74:81:writable]
+|                 | |       | The following assertion has been violated at time 12.000000
+|                 | |       | ((r_massTotal >= 0.0)) --> \"Variable violating min constraint: 0.0 <= r_massTotal, has value: -8.48887e-15\"
+LOG_ASSERT        | info    | [E:/OMmodel/OpenModelica/build/publish_github/staging/Absolut/FluidBased/Dynamic/Components/Validation/EvaporatorsSeries_heatport.mo:73:3-73:61:writable]
+|                 | |       | The following assertion has been violated at time 55.200000
+|                 | |       | ((r_mass2 >= 0.0)) --> \"Variable violating min constraint: 0.0 <= r_mass2, has value: -1.75554e-15\"
+LOG_STATS         | info    | ### STATISTICS ###
+|                 | |       | | timer
+|                 | |       | | |    0.0078716s          reading init.xml
+|                 | |       | | |    0.0008618s          reading info.xml
+|                 | |       | | |    0.0008661s [  0.6%] pre-initialization
+|                 | |       | | |    0.0004819s [  0.3%] initialization
+|                 | |       | | |    0.0001135s [  0.1%] steps
+|                 | |       | | |    0.0027581s [  1.9%] solver (excl. callbacks)
+|                 | |       | | |    0.0567127s [ 38.4%] creating output-file
+|                 | |       | | |    0.0003234s [  0.2%] event-handling
+|                 | |       | | |    0.0024425s [  1.7%] overhead
+|                 | |       | | |    0.0838082s [ 56.8%] simulation
+|                 | |       | | |     0.147506s [100.0%] total
+|                 | |       | | events
+|                 | |       | | |     1 state events
+|                 | |       | | |     0 time events
+|                 | |       | | solver: dassl
+|                 | |       | | |   316 steps taken
+|                 | |       | | |   383 calls of functionODE
+|                 | |       | | |    58 evaluations of jacobian
+|                 | |       | | |     7 error test failures
+|                 | |       | | |     0 convergence test failures
+|                 | |       | | | 0.0092357s time of jacobian evaluation
+LOG_SUCCESS       | info    | The simulation finished successfully.
+",
+    timeFrontend = 0.399638,
+    timeBackend = 0.1017165,
+    timeSimCode = 0.0297974,
+    timeTemplates = 0.0494796,
+    timeCompile = 4.1582836,
+    timeSimulation = 0.3009958,
+    timeTotal = 5.0402453
+end SimulationResult;
+"Warning: The model contains alias variables with redundant start and/or conflicting nominal values. It is recommended to resolve the conflicts, because otherwise the system could be hard to solve. To print the conflicting alias sets and the chosen candidates please use -d=aliasConflicts.
+"

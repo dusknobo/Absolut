@@ -2,6 +2,7 @@ within Absolut.FluidBased.Dynamic.Components.Validation;
 model AHPse_Dyn_heatport_extended
   "Absorption heat pump model with external HEX (use of heat port)."
 extends Modelica.Icons.Example;
+  inner Modelica.Fluid.System system "System defaults made explicit for OpenModelica";
 
   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
   replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
@@ -9,7 +10,7 @@ extends Modelica.Icons.Example;
   replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
      __Dymola_choicesAllMatching=true);
 
-parameter Boolean allowFlowReversal=true
+parameter Boolean allowFlowReversal=false
     "= false to simplify equations, assuming, but not enforcing, no flow reversal for medium 1";
     parameter Integer nEle = 10
     "discretization of pipe";
@@ -35,7 +36,8 @@ parameter Boolean allowFlowReversal=true
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={76,70})));
-  replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
+  // Use one IF97 state representation in sources, sensors and internal pipes.
+  replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1pT
     annotation (__Dymola_choicesAllMatching=true);
   Modelica.Fluid.Sources.FixedBoundary sink_con(
     redeclare package Medium = Medium_ext,
@@ -88,6 +90,21 @@ parameter Boolean allowFlowReversal=true
         origin={-78,-50})));
 
   AHP.AHP_hex_extended ahp(
+    // Specify the independent inventory, diagnostic integral and wall starts.
+    abs(m(fixed=true), U(fixed=true), vap(start=0, fixed=true), Wv(start=0, fixed=true)),
+    gen(m(fixed=true), U(fixed=true), vap(start=0, fixed=true), Wv(start=0, fixed=true)),
+    con(m(fixed=true), U(fixed=true)),
+    eva(m(fixed=true), U(fixed=true)),
+    heatCapacitor_abs(each T(fixed=true)),
+    heatCapacitor_gen(each T(fixed=true)),
+    heatCapacitor_con(each T(fixed=true)),
+    heatCapacitor_eva(each T(fixed=true)),
+    pipe_abs(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
+    pipe_gen(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
+    pipe_con(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
+    pipe_eva(massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial),
+    redeclare package Medium_ext = Medium_ext,
+    allowFlowReversal=allowFlowReversal,
     redeclare package Medium_l = Medium_l,
     redeclare package Medium_v = Medium_v,
     flashing_w_m_flow_nominal=0.005,
@@ -112,7 +129,6 @@ parameter Boolean allowFlowReversal=true
     m_abs=0.28,
     abs_p_start(displayUnit="Pa") = 676,
     abs_X_LiBr_start=0.5648,
-    abs(X_LiBr(fixed=true)),
     simpleHX_UA=3105/22.96)
     annotation (Placement(transformation(extent={{-22,2},{34,44}})));
   Modelica.Blocks.Sources.RealExpression control_level(y=ahp.gen.level)
@@ -145,6 +161,14 @@ parameter Boolean allowFlowReversal=true
   Modelica.Fluid.Sensors.Temperature temperature_eva_out(redeclare package
       Medium = Medium_ext)
     annotation (Placement(transformation(extent={{-110,-24},{-90,-4}})));
+initial equation
+  // The last pressure is already fixed by each sink; initialize the others.
+  for i in 1:ahp.nEle - 1 loop
+    der(ahp.pipe_abs.mediums[i].p) = 0;
+    der(ahp.pipe_gen.mediums[i].p) = 0;
+    der(ahp.pipe_con.mediums[i].p) = 0;
+    der(ahp.pipe_eva.mediums[i].p) = 0;
+  end for;
 equation
 
   connect(ahp.m_flow_sol, MassFlowRate.y) annotation (Line(points={{34,19},{60,
@@ -207,6 +231,7 @@ equation
 <p><br><b>References:</b></p>
 <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
 </html>"),
-    __Dymola_Commands(file="Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
+    __Dymola_Commands(file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
         "AHP_se_dynamic_Table63"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end AHPse_Dyn_heatport_extended;

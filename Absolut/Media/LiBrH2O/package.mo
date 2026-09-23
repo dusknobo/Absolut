@@ -160,7 +160,7 @@ package LiBrH2O "H2O + LiBr"
     "specificGibbsEnergy w.r.t. thermodynamic state | use setState_phX function for input"
   algorithm
     g := specificGibbsEnergy_TXp( state.T, state.X[1], state.p);
-    annotation(Inline=true,smoothOrder = 10, derivative=Absolut.Media.LiBrH2O.specificGibbsEnergy_TXp_der);
+    annotation(Inline=true,smoothOrder = 10);
   end specificGibbsEnergy;
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(coordinateSystem(preserveAspectRatio=false)),

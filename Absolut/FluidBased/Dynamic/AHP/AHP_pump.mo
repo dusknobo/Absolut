@@ -2,6 +2,8 @@ within Absolut.FluidBased.Dynamic.AHP;
 model AHP_pump
 
   parameter Integer nEle = 4 "discretization of pipe";
+  parameter Boolean allowFlowReversal=false
+    "Allow flow reversal in the external-fluid pipes";
 
   parameter Real n = 1
                       "
@@ -10,9 +12,9 @@ model AHP_pump
   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
   replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph
     annotation (__Dymola_choicesAllMatching=true);
-  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph annotation (
+  replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
      __Dymola_choicesAllMatching=true);
-  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph annotation (
+  replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT annotation (
      __Dymola_choicesAllMatching=true);
 
   Components.EvaporatorDyn_heatport eva(
@@ -190,6 +192,8 @@ model AHP_pump
     "mass flow rate of solution pump"
     annotation (Placement(transformation(extent={{280,-50},{240,-10}})));
   Modelica.Fluid.Pipes.DynamicPipe pipe_con(
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     allowFlowReversal=false,
     redeclare package Medium = Medium_ext,
     length=0.2,
@@ -206,6 +210,8 @@ model AHP_pump
         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
     annotation (Placement(transformation(extent={{-178,232},{-198,252}})));
   Modelica.Fluid.Pipes.DynamicPipe pipe_gen(
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     allowFlowReversal=allowFlowReversal,
     use_HeatTransfer=true,
     redeclare package Medium = Medium_ext,
@@ -231,6 +237,8 @@ model AHP_pump
     T_start(displayUnit="degC") = pipemass_gen_T_start)
     annotation (Placement(transformation(extent={{114,220},{94,200}})));
   Modelica.Fluid.Pipes.DynamicPipe pipe_abs(
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     allowFlowReversal=allowFlowReversal,
     redeclare package Medium = Medium_ext,
     length=0.2,
@@ -247,6 +255,8 @@ model AHP_pump
         Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer)
     annotation (Placement(transformation(extent={{186,-174},{166,-194}})));
   Modelica.Fluid.Pipes.DynamicPipe pipe_eva(
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     allowFlowReversal=allowFlowReversal,
     use_HeatTransfer=true,
     redeclare package Medium = Medium_ext,
@@ -508,13 +518,13 @@ model AHP_pump
         origin={88,44})));
   Modelica.Blocks.Sources.Constant const(k=1)
     annotation (Placement(transformation(extent={{158,12},{138,32}})));
-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
+  parameter Modelica.Units.SI.MassFlowRate
     m_flow_start_pipe_con=0.03047 "Start value for mass flow rate";
-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
+  parameter Modelica.Units.SI.MassFlowRate
     m_flow_start_pipe_gen=0.03047 "Start value for mass flow rate";
-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
+  parameter Modelica.Units.SI.MassFlowRate
     m_flow_start_pipe_eva=0.28 "Start value for mass flow rate";
-  parameter Modelica.Media.Interfaces.PartialMedium.MassFlowRate
+  parameter Modelica.Units.SI.MassFlowRate
     m_flow_start_pipe_abs=0.172 "Start value for mass flow rate";
   Modelica.Blocks.Sources.RealExpression UAeva(y=max(0.1, ((port_eva_a.m_flow/
         m_eva)^0.8))*eva_UA/nEle)

@@ -71,6 +71,8 @@ model AHP_se_eps
   Modelica.Blocks.Sources.RealExpression MassFlowRate(y=0.05)
     annotation (Placement(transformation(extent={{-40,-30},{-20,-10}})));
   SingleEffect_intern.AbsorberStatic abs(
+    useClosedLoopMassBalance=true,
+    useClosedLoopSaltBalance=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_sol,
     p_start(displayUnit="Pa") = 676,
@@ -155,6 +157,7 @@ equation
       StopTime=31536000,
       Interval=900,
       __Dymola_Algorithm="Dassl"),
-    __Dymola_Commands(file="Resources\Static\SingleEffect_intern\Validation\AHP_se_eps_Table61_plot.mos" "Plot",
-    file="Resources\Static\SingleEffect_intern\Validation\AHP_se_eps.mos" "Simulate and plot"));
+    __Dymola_Commands(file="modelica://Absolut/Resources/Static/SingleEffect_intern/Validation/AHP_se_eps_Table61_plot.mos" "Plot",
+    file="modelica://Absolut/Resources/Static/SingleEffect_intern/Validation/AHP_se_eps.mos" "Simulate and plot"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end AHP_se_eps;

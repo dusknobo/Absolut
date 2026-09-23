@@ -44,4 +44,5 @@ model GibbsSmoothOrder
       Evaluate=false,
       OutputCPUtime=true,
       OutputFlatModelica=true));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end GibbsSmoothOrder;

@@ -28,5 +28,6 @@ equation
     Documentation(info="<html>
 <p>Example calculate the temperature at the evaporator and generator, given the temperatures at the condenser and absorber, assuming a characteristic temperature difference DDT = 10 K.</p>
 </html>"),
-    __Dymola_Commands(file="Resources/Basic/DDT.mos" "Plot results"));
+    __Dymola_Commands(file="modelica://Absolut/Resources/Basic/DDT.mos" "Plot results"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end DDT10_AHT;

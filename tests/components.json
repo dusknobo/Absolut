@@ -1,0 +1,1757 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "case": "EER_HalfEffectAHP",
+      "model": "ComponentTests.EER_HalfEffectAHP",
+      "component": "Absolut.Basic.Blocks.EER_HalfEffectAHP",
+      "scenario": "Three analytic operating points and temperature steps",
+      "residual_limits": {
+        "r_eer": 1e-10
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "EER_SingleEffectAHP",
+      "model": "ComponentTests.EER_SingleEffectAHP",
+      "component": "Absolut.Basic.Blocks.EER_SingleEffectAHP",
+      "scenario": "Three analytic operating points and temperature steps",
+      "residual_limits": {
+        "r_eer": 1e-10,
+        "r_cop": 1e-10
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "EER_DoubleEffectAHP",
+      "model": "ComponentTests.EER_DoubleEffectAHP",
+      "component": "Absolut.Basic.Blocks.EER_DoubleEffectAHP",
+      "scenario": "Three analytic operating points and temperature steps",
+      "residual_limits": {
+        "r_eer": 1e-10
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "EER_TripleEffectAHP",
+      "model": "ComponentTests.EER_TripleEffectAHP",
+      "component": "Absolut.Basic.Blocks.EER_TripleEffectAHP",
+      "scenario": "Three analytic operating points and temperature steps",
+      "residual_limits": {
+        "r_eer": 1e-10
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "CarnotSingleEffectAHP",
+      "model": "ComponentTests.CarnotSingleEffectAHP",
+      "component": "Absolut.Basic.Blocks.CarnotSingleEffectAHP",
+      "scenario": "Reversible-cycle entropy balance and heating/cooling COP identity",
+      "residual_limits": {
+        "r_entropy": 1e-10,
+        "r_cop": 1e-10,
+        "r_energy": 1e-06
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "EER_CarnotSingleEffectAHP",
+      "model": "ComponentTests.EER_CarnotSingleEffectAHP",
+      "component": "Absolut.Basic.Blocks.EER_CarnotSingleEffectAHP",
+      "scenario": "Reversible-cycle entropy balance and heating/cooling COP identity",
+      "residual_limits": {
+        "r_entropy": 1e-10,
+        "r_cop": 1e-10
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "DDT_AHT",
+      "model": "ComponentTests.DDT_AHT",
+      "component": "Absolut.Basic.Blocks.DDT_AHT",
+      "scenario": "Three independent Duehring temperature-difference values",
+      "residual_limits": {
+        "r_ddt": 1e-10
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "Tfiring",
+      "model": "ComponentTests.Tfiring",
+      "component": "Absolut.Basic.Blocks.Tfiring",
+      "scenario": "Minimum firing temperature at three independent analytic reference points",
+      "residual_limits": {
+        "r_temperature": 1e-08
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "ZeroOrderSingleEffectAHP",
+      "model": "ComponentTests.ZeroOrderSingleEffectAHP",
+      "component": "Absolut.Basic.Blocks.ZeroOrderSingleEffectAHP",
+      "scenario": "Equal internal temperature lifts and analytic COP values",
+      "residual_limits": {
+        "r_eer": 1e-09,
+        "r_energy": 1e-06,
+        "r_cop": 1e-10
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "ZeroOrderSingleEffectAHP_ext",
+      "model": "ComponentTests.ZeroOrderSingleEffectAHP_ext",
+      "component": "Absolut.Basic.Blocks.ZeroOrderSingleEffectAHP_ext",
+      "scenario": "External UA network and three closed-form reference solutions",
+      "residual_limits": {
+        "r_eer": 1e-08,
+        "r_energy": 1e-05,
+        "r_cop": 1e-10
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "Pump",
+      "model": "ComponentTests.Pump",
+      "component": "Absolut.FluidBased.Static.Components.Pump",
+      "scenario": "Nominal flow, part load and zero flow; port enthalpy, work and outlet thermometer",
+      "residual_limits": {
+        "r_mass": 1e-10,
+        "r_energy": 1e-05,
+        "r_efficiency": 1e-08,
+        "r_temperature": 0.0001,
+        "r_inletTemperature": 0.0001,
+        "r_salt": 1e-10
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Forward flow at 100 to 500 kPa. PumpW inlet temperature uses the IF97 Region 1 backward-equation consistency limit of 0.025 K (IAPWS R7-97(2012), section 5.2.1, equation 12). Reverse flow is outside this fixture.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "PumpW",
+      "model": "ComponentTests.PumpW",
+      "component": "Absolut.FluidBased.Static.Components.PumpW",
+      "scenario": "Nominal flow, part load and zero flow; port enthalpy, work and outlet thermometer",
+      "residual_limits": {
+        "r_mass": 1e-10,
+        "r_energy": 1e-05,
+        "r_efficiency": 1e-08,
+        "r_temperature": 0.0001,
+        "r_inletTemperature": 0.025
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Forward flow at 100 to 500 kPa. PumpW inlet temperature uses the IF97 Region 1 backward-equation consistency limit of 0.025 K (IAPWS R7-97(2012), section 5.2.1, equation 12). Reverse flow is outside this fixture.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "Compressor",
+      "model": "ComponentTests.Compressor",
+      "component": "Absolut.FluidBased.Static.Components.Compressor",
+      "scenario": "Adiabatic compressor energy and isentropic efficiency; pressure ratio 2",
+      "residual_limits": {
+        "r_mass": 1e-10,
+        "r_energy": 0.01,
+        "r_efficiency": 0.01,
+        "r_ratio": 1e-08
+      },
+      "ranges": {
+        "dut.W": [
+          -1e-05,
+          null
+        ]
+      },
+      "excursions": {},
+      "notes": "Source steam is superheated; power must equal its enthalpy-flow rise.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "CompressorUnityRatio",
+      "model": "ComponentTests.CompressorUnityRatio",
+      "component": "Absolut.FluidBased.Static.Components.Compressor",
+      "scenario": "Adiabatic compressor energy and isentropic efficiency; pressure ratio 1",
+      "residual_limits": {
+        "r_mass": 1e-10,
+        "r_energy": 0.01,
+        "r_efficiency": 0.01,
+        "r_ratio": 1e-08,
+        "r_zeroPower": 1e-10,
+        "r_zeroEnthalpyRise": 1e-08
+      },
+      "ranges": {
+        "dut.W": [
+          -1e-05,
+          null
+        ]
+      },
+      "excursions": {},
+      "notes": "Source steam is superheated; power must equal its enthalpy-flow rise.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "FlashingWater",
+      "model": "ComponentTests.FlashingWater",
+      "component": "Absolut.FluidBased.Static.Components.FlashingWater",
+      "scenario": "Two cooling/heating cycles across flash onset, with valve opening step",
+      "residual_limits": {
+        "r_mass": 1e-10,
+        "r_energy": 0.05,
+        "r_quality": 1e-10,
+        "r_hydraulic": 1e-09
+      },
+      "ranges": {
+        "dut.Q": [
+          -1e-08,
+          1.00000001
+        ]
+      },
+      "excursions": {
+        "dut.Q": {
+          "min_at_most": 1e-08,
+          "max_at_least": 0.0001
+        }
+      },
+      "notes": "Forward liquid feed; 1000 Pa outlets. Both two-phase and subcooled regimes must actually occur in saved output.",
+      "stop": 240,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "FlashingLiBr",
+      "model": "ComponentTests.FlashingLiBr",
+      "component": "Absolut.FluidBased.Static.Components.FlashingLiBr",
+      "scenario": "Two cooling/heating cycles across flash onset, with valve opening step",
+      "residual_limits": {
+        "r_mass": 1e-10,
+        "r_energy": 0.05,
+        "r_quality": 1e-10,
+        "r_hydraulic": 1e-09,
+        "r_salt": 1e-08
+      },
+      "ranges": {
+        "dut.Q": [
+          -1e-08,
+          1.00000001
+        ]
+      },
+      "excursions": {
+        "dut.Q": {
+          "min_at_most": 1e-08,
+          "max_at_least": 0.0001
+        }
+      },
+      "notes": "Forward liquid feed; 1000 Pa outlets. Both two-phase and subcooled regimes must actually occur in saved output.",
+      "stop": 240,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "HEX_ConstantEffectiveness",
+      "model": "ComponentTests.HEX_ConstantEffectiveness",
+      "component": "Absolut.FluidBased.Static.Components.HEX.ConstantEffectiveness",
+      "scenario": "Capacity ratio 0.5; analytic heat duty at nominal, part and zero flow",
+      "residual_limits": {
+        "r_mass1": 1e-09,
+        "r_mass2": 1e-09,
+        "r_energy": 0.01,
+        "r_heat": 0.1
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Constant-property water, cp=4184 J/(kg.K). Capacity ratio 0.5 avoids the Buildings smoothing near ratio 1; plate UA scales with flow^0.8. Positive hot-side heat means cooling.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "HEX_PlateHeatExchangerEffectivenessNTU",
+      "model": "ComponentTests.HEX_PlateHeatExchangerEffectivenessNTU",
+      "component": "Absolut.FluidBased.Static.Components.HEX.PlateHeatExchangerEffectivenessNTU",
+      "scenario": "Capacity ratio 0.5; analytic heat duty at nominal, part and zero flow",
+      "residual_limits": {
+        "r_mass1": 1e-09,
+        "r_mass2": 1e-09,
+        "r_energy": 0.01,
+        "r_heat": 0.1
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Constant-property water, cp=4184 J/(kg.K). Capacity ratio 0.5 avoids the Buildings smoothing near ratio 1; plate UA scales with flow^0.8. Positive hot-side heat means cooling.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "HEX_simpleHX",
+      "model": "ComponentTests.HEX_simpleHX",
+      "component": "Absolut.FluidBased.Static.Components.HEX.simpleHX",
+      "scenario": "Capacity ratio 0.5; analytic heat duty at nominal, part and zero flow",
+      "residual_limits": {
+        "r_mass1": 1e-09,
+        "r_mass2": 1e-09,
+        "r_energy": 0.01,
+        "r_heat": 0.1
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Constant-property water, cp=4184 J/(kg.K). Capacity ratio 0.5 avoids the Buildings smoothing near ratio 1; plate UA scales with flow^0.8. Positive hot-side heat means cooling.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "AbsorberDyn_heatportClosed",
+      "model": "ComponentTests.AbsorberDyn_heatportClosed",
+      "component": "Absolut.FluidBased.Dynamic.Components.AbsorberDyn_heatport",
+      "scenario": "Sealed working-fluid volume with thermal excitation; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2,
+        "r_salt": 1e-05
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "AbsorberDyn_heatportThroughFlow",
+      "model": "ComponentTests.AbsorberDyn_heatportThroughFlow",
+      "component": "Absolut.FluidBased.Dynamic.Components.AbsorberDyn_heatport",
+      "scenario": "Mass/enthalpy through-flow with step; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2,
+        "r_salt": 1e-05
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "AbsorberDyn_internalHEXClosed",
+      "model": "ComponentTests.AbsorberDyn_internalHEXClosed",
+      "component": "Absolut.FluidBased.Dynamic.Components.AbsorberDyn_internalHEX",
+      "scenario": "Sealed working-fluid volume with thermal excitation; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2,
+        "r_salt": 1e-05
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "AbsorberDyn_internalHEXThroughFlow",
+      "model": "ComponentTests.AbsorberDyn_internalHEXThroughFlow",
+      "component": "Absolut.FluidBased.Dynamic.Components.AbsorberDyn_internalHEX",
+      "scenario": "Mass/enthalpy through-flow with step; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2,
+        "r_salt": 1e-05
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "CondenserDyn_heatportClosed",
+      "model": "ComponentTests.CondenserDyn_heatportClosed",
+      "component": "Absolut.FluidBased.Dynamic.Components.CondenserDyn_heatport",
+      "scenario": "Sealed working-fluid volume with thermal excitation; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "CondenserDyn_heatportThroughFlow",
+      "model": "ComponentTests.CondenserDyn_heatportThroughFlow",
+      "component": "Absolut.FluidBased.Dynamic.Components.CondenserDyn_heatport",
+      "scenario": "Mass/enthalpy through-flow with step; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "CondenserDyn_internalHEXClosed",
+      "model": "ComponentTests.CondenserDyn_internalHEXClosed",
+      "component": "Absolut.FluidBased.Dynamic.Components.CondenserDyn_internalHEX",
+      "scenario": "Sealed working-fluid volume with thermal excitation; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "CondenserDyn_internalHEXThroughFlow",
+      "model": "ComponentTests.CondenserDyn_internalHEXThroughFlow",
+      "component": "Absolut.FluidBased.Dynamic.Components.CondenserDyn_internalHEX",
+      "scenario": "Mass/enthalpy through-flow with step; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "EvaporatorDyn_heatportClosed",
+      "model": "ComponentTests.EvaporatorDyn_heatportClosed",
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport",
+      "scenario": "Sealed working-fluid volume with thermal excitation; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "EvaporatorDyn_heatportThroughFlow",
+      "model": "ComponentTests.EvaporatorDyn_heatportThroughFlow",
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport",
+      "scenario": "Mass/enthalpy through-flow with step; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "EvaporatorDyn_internalHEXClosed",
+      "model": "ComponentTests.EvaporatorDyn_internalHEXClosed",
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_internalHEX",
+      "scenario": "Sealed working-fluid volume with thermal excitation; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "EvaporatorDyn_internalHEXThroughFlow",
+      "model": "ComponentTests.EvaporatorDyn_internalHEXThroughFlow",
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_internalHEX",
+      "scenario": "Mass/enthalpy through-flow with step; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "GeneratorDyn_heatportClosed",
+      "model": "ComponentTests.GeneratorDyn_heatportClosed",
+      "component": "Absolut.FluidBased.Dynamic.Components.GeneratorDyn_heatport",
+      "scenario": "Sealed working-fluid volume with thermal excitation; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2,
+        "r_salt": 1e-05
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "GeneratorDyn_heatportThroughFlow",
+      "model": "ComponentTests.GeneratorDyn_heatportThroughFlow",
+      "component": "Absolut.FluidBased.Dynamic.Components.GeneratorDyn_heatport",
+      "scenario": "Mass/enthalpy through-flow with step; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2,
+        "r_salt": 1e-05
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "GeneratorDyn_internalHEXClosed",
+      "model": "ComponentTests.GeneratorDyn_internalHEXClosed",
+      "component": "Absolut.FluidBased.Dynamic.Components.GeneratorDyn_internalHEX",
+      "scenario": "Sealed working-fluid volume with thermal excitation; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2,
+        "r_salt": 1e-05
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "GeneratorDyn_internalHEXThroughFlow",
+      "model": "ComponentTests.GeneratorDyn_internalHEXThroughFlow",
+      "component": "Absolut.FluidBased.Dynamic.Components.GeneratorDyn_internalHEX",
+      "scenario": "Mass/enthalpy through-flow with step; integrated inventory checks",
+      "residual_limits": {
+        "r_mass": 1e-05,
+        "r_energy": 0.2,
+        "r_salt": 1e-05
+      },
+      "ranges": {
+        "volumeFraction": [
+          0.001,
+          0.999
+        ],
+        "dut.T": [
+          273.15,
+          450
+        ],
+        "dut.p": [
+          611.657,
+          100000
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "Mass and internal energy are the library default states. Independent boundary-flux integrals; no balance laws added to DUT.",
+      "stop": 60,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "Base_LMTD",
+      "model": "ComponentTests.Base_LMTD",
+      "component": "Absolut.FluidBased.Static.BaseClasses.LMTD",
+      "scenario": "Equal, unequal, zero, negative and nearly equal terminal temperature differences",
+      "residual_limits": {
+        "r_equal": 1e-10,
+        "r_bound": 1e-09,
+        "r_reference": 1e-09,
+        "r_near": 1e-09,
+        "r_zeroLimit": 1e-10
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Negative differences check the documented numerical fallback only; no heat-transfer accuracy claim in that regime.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "Base_ChenMTD",
+      "model": "ComponentTests.Base_ChenMTD",
+      "component": "Absolut.FluidBased.Static.BaseClasses.ChenMTD",
+      "scenario": "Equal, unequal, zero, negative and nearly equal terminal temperature differences",
+      "residual_limits": {
+        "r_equal": 1e-10,
+        "r_bound": 1e-09,
+        "r_reference": 0.01,
+        "r_near": 1e-09
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Negative differences check the documented numerical fallback only; no heat-transfer accuracy claim in that regime.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "Base_MTD",
+      "model": "ComponentTests.Base_MTD",
+      "component": "Absolut.FluidBased.Static.BaseClasses.MTD",
+      "scenario": "Equal, unequal, zero, negative and nearly equal terminal temperature differences",
+      "residual_limits": {
+        "r_equal": 1e-10,
+        "r_bound": 1e-09,
+        "r_reference": 1e-09,
+        "r_near": 1e-09
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Negative differences check the documented numerical fallback only; no heat-transfer accuracy claim in that regime.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "Base_MTDChen",
+      "model": "ComponentTests.Base_MTDChen",
+      "component": "Absolut.FluidBased.Static.BaseClasses.MTD",
+      "scenario": "Equal, unequal, zero, negative and nearly equal terminal temperature differences",
+      "residual_limits": {
+        "r_equal": 1e-10,
+        "r_bound": 1e-09,
+        "r_reference": 0.01,
+        "r_near": 1e-09
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Negative differences check the documented numerical fallback only; no heat-transfer accuracy claim in that regime.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "Base_MTDEvents",
+      "model": "ComponentTests.Base_MTDEvents",
+      "component": "Absolut.FluidBased.Static.BaseClasses.MTD",
+      "scenario": "Equal, unequal, zero, negative and nearly equal terminal temperature differences",
+      "residual_limits": {
+        "r_equal": 1e-10,
+        "r_bound": 1e-09,
+        "r_reference": 1e-09,
+        "r_near": 1e-09
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Negative differences check the documented numerical fallback only; no heat-transfer accuracy claim in that regime.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "Base_MTDHomotopy",
+      "model": "ComponentTests.Base_MTDHomotopy",
+      "component": "Absolut.FluidBased.Static.BaseClasses.MTD",
+      "scenario": "Equal, unequal, zero, negative and nearly equal terminal temperature differences",
+      "residual_limits": {
+        "r_equal": 1e-10,
+        "r_bound": 1e-09,
+        "r_reference": 1e-09,
+        "r_near": 1e-09
+      },
+      "ranges": {},
+      "excursions": {},
+      "notes": "Negative differences check the documented numerical fallback only; no heat-transfer accuracy claim in that regime.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "SingleEffect_intern_AbsorberStatic",
+      "model": "ComponentTests.SingleEffect_intern_AbsorberStatic",
+      "component": "Absolut.FluidBased.Static.SingleEffect_intern.AbsorberStatic",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_salt": 1e-08,
+        "r_duty": 0.01
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l_b.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          1e-05,
+          100000000.0
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "SingleEffect_intern_CondenserStatic",
+      "model": "ComponentTests.SingleEffect_intern_CondenserStatic",
+      "component": "Absolut.FluidBased.Static.SingleEffect_intern.CondenserStatic",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_duty": 0.01
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_v.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          1e-05,
+          100000000.0
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "SingleEffect_intern_EvaporatorStatic",
+      "model": "ComponentTests.SingleEffect_intern_EvaporatorStatic",
+      "component": "Absolut.FluidBased.Static.SingleEffect_intern.EvaporatorStatic",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_duty": 0.01
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_v.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          -100000000.0,
+          -1e-05
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "SingleEffect_intern_GeneratorStatic",
+      "model": "ComponentTests.SingleEffect_intern_GeneratorStatic",
+      "component": "Absolut.FluidBased.Static.SingleEffect_intern.GeneratorStatic",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_salt": 1e-08,
+        "r_duty": 0.01
+      },
+      "ranges": {
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l_b.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          -100000000.0,
+          -1e-05
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "SingleEffect_UAfixed_AbsorberStatic_wHT_UAfix",
+      "model": "ComponentTests.SingleEffect_UAfixed_AbsorberStatic_wHT_UAfix",
+      "component": "Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_salt": 1e-08,
+        "r_energy": 0.05,
+        "r_externalMass": 1e-09
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l_b.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          1e-05,
+          100000000.0
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ],
+        "dut.port_v.m_flow": [
+          1e-08,
+          null
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "SingleEffect_UAfixed_CondenserStatic_wHT_UAfix",
+      "model": "ComponentTests.SingleEffect_UAfixed_CondenserStatic_wHT_UAfix",
+      "component": "Absolut.FluidBased.Static.SingleEffect_UAfixed.CondenserStatic_wHT_UAfix",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_energy": 0.05,
+        "r_externalMass": 1e-09
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_v.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          1e-05,
+          100000000.0
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "SingleEffect_UAfixed_EvaporatorStatic_wHT_UAfix",
+      "model": "ComponentTests.SingleEffect_UAfixed_EvaporatorStatic_wHT_UAfix",
+      "component": "Absolut.FluidBased.Static.SingleEffect_UAfixed.EvaporatorStatic_wHT_UAfix",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_energy": 0.05,
+        "r_externalMass": 1e-09
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_v.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          -100000000.0,
+          -1e-05
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "SingleEffect_UAfixed_GeneratorStatic_wHT_UAfix",
+      "model": "ComponentTests.SingleEffect_UAfixed_GeneratorStatic_wHT_UAfix",
+      "component": "Absolut.FluidBased.Static.SingleEffect_UAfixed.GeneratorStatic_wHT_UAfix",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_salt": 1e-08,
+        "r_energy": 0.05,
+        "r_externalMass": 1e-09
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l_b.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          -100000000.0,
+          -1e-05
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "DoubleEffect_CondenserStatic_de_UAfix",
+      "model": "ComponentTests.DoubleEffect_CondenserStatic_de_UAfix",
+      "component": "Absolut.FluidBased.Static.DoubleEffect.CondenserStatic_de_UAfix",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_energy": 0.05,
+        "r_externalMass": 1e-09
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_v.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          1e-05,
+          100000000.0
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "DoubleEffect_LowGeneratorStatic",
+      "model": "ComponentTests.DoubleEffect_LowGeneratorStatic",
+      "component": "Absolut.FluidBased.Static.DoubleEffect.LowGeneratorStatic",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_salt": 1e-08,
+        "r_duty": 0.01
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l_b.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          -100000000.0,
+          -1e-05
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "DoubleEffect_LowGeneratorStatic_serie",
+      "model": "ComponentTests.DoubleEffect_LowGeneratorStatic_serie",
+      "component": "Absolut.FluidBased.Static.DoubleEffect.LowGeneratorStatic_serie",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_salt": 1e-08,
+        "r_duty": 0.01
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_high.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l_b.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          -100000000.0,
+          -1e-05
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "TypeII_AbsorberStatic_wHT_UAfix_TypeII",
+      "model": "ComponentTests.TypeII_AbsorberStatic_wHT_UAfix_TypeII",
+      "component": "Absolut.FluidBased.Static.TypeII.AbsorberStatic_wHT_UAfix_TypeII",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_salt": 1e-08,
+        "r_energy": 0.05,
+        "r_externalMass": 1e-09
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l_b.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          1e-05,
+          100000000.0
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ],
+        "dut.port_v.m_flow": [
+          1e-08,
+          null
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "TypeII_AbsorberStatic_wHT_UAfix_TypeII_ext",
+      "model": "ComponentTests.TypeII_AbsorberStatic_wHT_UAfix_TypeII_ext",
+      "component": "Absolut.FluidBased.Static.TypeII.AbsorberStatic_wHT_UAfix_TypeII_ext",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_salt": 1e-08,
+        "r_energy": 0.05,
+        "r_externalMass": 1e-09
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l_b.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          1e-05,
+          100000000.0
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ],
+        "dut.port_v.m_flow": [
+          1e-08,
+          null
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "TypeII_EvaporatorStatic_wHT_UAfix_TypeII",
+      "model": "ComponentTests.TypeII_EvaporatorStatic_wHT_UAfix_TypeII",
+      "component": "Absolut.FluidBased.Static.TypeII.EvaporatorStatic_wHT_UAfix_TypeII",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_energy": 0.05,
+        "r_externalMass": 1e-09
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_v.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          -100000000.0,
+          -1e-05
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "TypeII_GeneratorStatic_wHT_UAfix_TypeII",
+      "model": "ComponentTests.TypeII_GeneratorStatic_wHT_UAfix_TypeII",
+      "component": "Absolut.FluidBased.Static.TypeII.GeneratorStatic_wHT_UAfix_TypeII",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_salt": 1e-08,
+        "r_energy": 0.05,
+        "r_externalMass": 1e-09
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l_b.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          -100000000.0,
+          -1e-05
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "Resorption_AbsorberStatic_wHT_UAfix_Resorption_ext",
+      "model": "ComponentTests.Resorption_AbsorberStatic_wHT_UAfix_Resorption_ext",
+      "component": "Absolut.FluidBased.Static.Resorption.AbsorberStatic_wHT_UAfix_Resorption_ext",
+      "scenario": "Standalone steady vessel with physical fluid boundaries and a load/temperature step",
+      "residual_limits": {
+        "r_mass": 1e-08,
+        "r_salt": 1e-08,
+        "r_energy": 0.05,
+        "r_externalMass": 1e-09
+      },
+      "ranges": {
+        "dut.T": [
+          273.15,
+          500
+        ],
+        "dut.port_l_a.m_flow": [
+          1e-08,
+          null
+        ],
+        "dut.port_l_b.m_flow": [
+          null,
+          -1e-08
+        ],
+        "dut.Hb_flow": [
+          1e-05,
+          100000000.0
+        ],
+        "dut.X_LiBr": [
+          0.4,
+          0.7
+        ],
+        "dut.port_v.m_flow": [
+          1e-08,
+          null
+        ]
+      },
+      "excursions": {},
+      "notes": "EnthalpyBoundary leaves flow and pressure unconstrained; it does not impose DUT conservation laws. A UA absorber solves its steam intake from the prescribed pressure, solution feed and cooling-water conditions. Auxiliary flow ports are sealed by zero-flow sources. Both inputs T_c and Hb_flow_in are supplied for the low generator, allowing throughput to be solved.",
+      "stop": 10,
+      "tolerance": 1e-08
+    },
+    {
+      "case": "EvaporatorsSeriesNominal",
+      "model": "ComponentTests.EvaporatorsSeriesNominal",
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport",
+      "scenario": "Two evaporators in refrigerant-vapor series: Nominal",
+      "residual_limits": {
+        "r_mass1": 1e-05,
+        "r_mass2": 1e-05,
+        "r_massTotal": 1e-05,
+        "r_energy1": 2,
+        "r_energy2": 2,
+        "r_energyTotal": 2,
+        "r_seriesMass": 1e-10,
+        "r_seriesEnergy": 1e-05
+      },
+      "ranges": {
+        "eva1.T": [
+          273.16,
+          310
+        ],
+        "eva2.T": [
+          273.16,
+          310
+        ],
+        "eva1.p": [
+          611.657,
+          4000
+        ],
+        "eva2.p": [
+          611.657,
+          4000
+        ],
+        "liquidFraction1": [
+          0.4,
+          0.6
+        ],
+        "liquidFraction2": [
+          0.4,
+          0.6
+        ],
+        "m_feed": [
+          0.00019,
+          0.00041
+        ],
+        "m_series": [
+          0.0001,
+          0.001
+        ],
+        "m_out": [
+          0.0002,
+          0.002
+        ],
+        "dp_series": [
+          1,
+          300
+        ],
+        "eva1.Qb_flow": [
+          999,
+          1401
+        ],
+        "eva2.Qb_flow": [
+          799,
+          1101
+        ]
+      },
+      "excursions": {
+        "massChange2": {
+          "min_at_most": -0.25
+        }
+      },
+      "notes": "Liquid feed enters stage 1 only; stage 2 consumes its initial charge. Vapor connectors are joined through an adiabatic resistance. Per-stage and overall boundary-flux inventory checks; no added DUT balance equations.",
+      "stop": 1200,
+      "tolerance": 1e-08,
+      "strict_initialization": true
+    },
+    {
+      "case": "EvaporatorsSeriesHeatStep",
+      "model": "ComponentTests.EvaporatorsSeriesHeatStep",
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport",
+      "scenario": "Two evaporators in refrigerant-vapor series: HeatStep",
+      "residual_limits": {
+        "r_mass1": 1e-05,
+        "r_mass2": 1e-05,
+        "r_massTotal": 1e-05,
+        "r_energy1": 2,
+        "r_energy2": 2,
+        "r_energyTotal": 2,
+        "r_seriesMass": 1e-10,
+        "r_seriesEnergy": 1e-05
+      },
+      "ranges": {
+        "eva1.T": [
+          273.16,
+          310
+        ],
+        "eva2.T": [
+          273.16,
+          310
+        ],
+        "eva1.p": [
+          611.657,
+          4000
+        ],
+        "eva2.p": [
+          611.657,
+          4000
+        ],
+        "liquidFraction1": [
+          0.4,
+          0.6
+        ],
+        "liquidFraction2": [
+          0.4,
+          0.6
+        ],
+        "m_feed": [
+          0.00019,
+          0.00041
+        ],
+        "m_series": [
+          0.0001,
+          0.001
+        ],
+        "m_out": [
+          0.0002,
+          0.002
+        ],
+        "dp_series": [
+          1,
+          300
+        ],
+        "eva1.Qb_flow": [
+          999,
+          1401
+        ],
+        "eva2.Qb_flow": [
+          799,
+          1101
+        ]
+      },
+      "excursions": {
+        "massChange2": {
+          "min_at_most": -0.25
+        },
+        "m_series": {
+          "min_at_most": 0.00043,
+          "max_at_least": 0.0005
+        },
+        "m_out": {
+          "min_at_most": 0.0008,
+          "max_at_least": 0.00095
+        }
+      },
+      "notes": "Liquid feed enters stage 1 only; stage 2 consumes its initial charge. Vapor connectors are joined through an adiabatic resistance. Per-stage and overall boundary-flux inventory checks; no added DUT balance equations.",
+      "stop": 1200,
+      "tolerance": 1e-08,
+      "strict_initialization": true
+    },
+    {
+      "case": "EvaporatorsSeriesFeedStep",
+      "model": "ComponentTests.EvaporatorsSeriesFeedStep",
+      "component": "Absolut.FluidBased.Dynamic.Components.EvaporatorDyn_heatport",
+      "scenario": "Two evaporators in refrigerant-vapor series: FeedStep",
+      "residual_limits": {
+        "r_mass1": 1e-05,
+        "r_mass2": 1e-05,
+        "r_massTotal": 1e-05,
+        "r_energy1": 2,
+        "r_energy2": 2,
+        "r_energyTotal": 2,
+        "r_seriesMass": 1e-10,
+        "r_seriesEnergy": 1e-05
+      },
+      "ranges": {
+        "eva1.T": [
+          273.16,
+          310
+        ],
+        "eva2.T": [
+          273.16,
+          310
+        ],
+        "eva1.p": [
+          611.657,
+          4000
+        ],
+        "eva2.p": [
+          611.657,
+          4000
+        ],
+        "liquidFraction1": [
+          0.4,
+          0.6
+        ],
+        "liquidFraction2": [
+          0.4,
+          0.6
+        ],
+        "m_feed": [
+          0.00019,
+          0.00041
+        ],
+        "m_series": [
+          0.0001,
+          0.001
+        ],
+        "m_out": [
+          0.0002,
+          0.002
+        ],
+        "dp_series": [
+          1,
+          300
+        ],
+        "eva1.Qb_flow": [
+          999,
+          1401
+        ],
+        "eva2.Qb_flow": [
+          799,
+          1101
+        ]
+      },
+      "excursions": {
+        "massChange2": {
+          "min_at_most": -0.25
+        },
+        "m_feed": {
+          "min_at_most": 0.00021,
+          "max_at_least": 0.00039
+        },
+        "massChange1": {
+          "min_at_most": -0.07
+        }
+      },
+      "notes": "Liquid feed enters stage 1 only; stage 2 consumes its initial charge. Vapor connectors are joined through an adiabatic resistance. Per-stage and overall boundary-flux inventory checks; no added DUT balance equations.",
+      "stop": 1200,
+      "tolerance": 1e-08,
+      "strict_initialization": true
+    }
+  ]
+}

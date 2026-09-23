@@ -72,5 +72,6 @@ equation
 <p>[1] Keith E. Herold, Reinhard Radermacher, Sanford A. Klein. Absorption chillers and heat pumps. ISBN 978-1-4987-1435-8.</p>
 </html>"),
     __Dymola_Commands(
-      file="Resources/Basic/COP.mos" "Plot COP", file="Resources/Basic/COPandTemperatures.mos" "Plot COP and Temperatures"));
+      file="modelica://Absolut/Resources/Basic/COP.mos" "Plot COP", file="modelica://Absolut/Resources/Basic/COPandTemperatures.mos" "Plot COP and Temperatures"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end CoolingCOP;

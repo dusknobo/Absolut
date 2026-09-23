@@ -63,4 +63,5 @@ model der_derT_Gibbs
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end der_derT_Gibbs;

@@ -1,12 +1,12 @@
 within Absolut.FluidBased.Dynamic.Components;
 model EvaporatorDyn_internalHEX "Evaporator with heat Transfer"
 
-    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2ph;
-    replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1ph;
+    replaceable package Medium_v = Modelica.Media.Water.WaterIF97_R2pT;
+    replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT;
         replaceable package Medium_ext = Modelica.Media.Water.WaterIF97_R1ph annotation (__Dymola_choicesAllMatching=true);
 
- parameter Boolean m_state = false "use mass as a state" annotation(Dialog(tab="Advanced"));
- parameter Boolean U_state = false "use U as a state" annotation(Dialog(tab="Advanced"));
+ parameter Boolean m_state = true "use mass as a state" annotation(Dialog(tab="Advanced"));
+ parameter Boolean U_state = true "use U as a state" annotation(Dialog(tab="Advanced"));
  parameter Boolean p_state = false "use p as a state" annotation(Dialog(tab="Advanced"));
 
  // Start values...

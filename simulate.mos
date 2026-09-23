@@ -1,0 +1,11 @@
+// From this directory: omc simulate.mos
+// The Python verifier provides the complete suite and machine-readable reports.
+runScript("load.mos");
+mkdir("build");
+mkdir("build/manual");
+cd("build/manual");
+(t0, t1, tol, n, dt) := getSimulationOptions(Absolut.Basic.Examples.CoolingCOP);
+simulate(Absolut.Basic.Examples.CoolingCOP,
+  startTime=t0, stopTime=t1, tolerance=tol, numberOfIntervals=n,
+  method="dassl", outputFormat="csv", fileNamePrefix="CoolingCOP");
+getErrorString();

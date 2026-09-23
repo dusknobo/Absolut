@@ -2,6 +2,7 @@ within Absolut.FluidBased.Dynamic.Components.Validation;
 model AHPse_Dyn_pump_extended
   "Single stage absorption heat pump model (Fixed UA values at main heat exchangers. Solution heat echanger using effectivenes)"
 extends Modelica.Icons.Example;
+  inner Modelica.Fluid.System system "System defaults made explicit for OpenModelica";
 
   replaceable package Medium_sol = Absolut.Media.LiBrH2O;
   replaceable package Medium_l = Modelica.Media.Water.WaterIF97_R1pT annotation (
@@ -208,6 +209,7 @@ equation
 <p><br><b>References:</b></p>
 <p>[1] Herold, K.E., Radermacher, R., Klein, S.A. ABSORPTION CHILLERS AND HEAT PUMPS. ISBN-13: 978-1-4987-1435-8 </p>
 </html>"),
-    __Dymola_Commands(file="Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
+    __Dymola_Commands(file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table61_plot.mos" "AHP_se_dyn_Table61", file="modelica://Absolut/Resources/Dynamic/Validation/AHP_se_dynamic_Table63.mos"
         "AHP_se_dynamic_Table63"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end AHPse_Dyn_pump_extended;

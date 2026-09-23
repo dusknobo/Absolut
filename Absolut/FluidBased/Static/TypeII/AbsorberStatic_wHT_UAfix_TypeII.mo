@@ -70,6 +70,11 @@ Modelica.Blocks.Interfaces.RealOutput Hb_flow( unit="W") "Heat flow across bound
   Modelica.Units.SI.MassFlowRate m2=port_v.m_flow;
 
 equation
+
+  // Whole-vessel conservation, including the final liquid outlet.
+  0 = port_l_a.m_flow + port_l_b.m_flow + port_v.m_flow;
+  0 = port_l_a.m_flow*(1 - actualStream(port_l_a.Xi_outflow[1]))
+    + port_l_b.m_flow*(1 - actualStream(port_l_b.Xi_outflow[1]));
   // Mass balance
   X_H2O = 1 - X_LiBr;
 

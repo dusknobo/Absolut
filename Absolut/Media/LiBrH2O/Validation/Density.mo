@@ -47,4 +47,5 @@ equation
 <p><br><b>References:</b></p>
 <p>[1] S.V. Stankus (2007) The Density of Aqueous Solutions of Lithium Bromide at High Temperatures and Concentrations. Vol. 45, No. 3. DOI: 10.1134/S0018151X07030212</p>
 </html>"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end Density;

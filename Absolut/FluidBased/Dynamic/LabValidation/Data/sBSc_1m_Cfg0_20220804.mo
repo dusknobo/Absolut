@@ -2,6 +2,9 @@ within Absolut.FluidBased.Dynamic.LabValidation.Data;
 model sBSc_1m_Cfg0_20220804
 
 // file: sBSc_1m_Cfg0_20220804_T59_corrected_fromstart.txt
+parameter String dataFile=""
+  "Path to the experimental table (not distributed with Absolut v1.0.0)"
+  annotation(Dialog(loadSelector(filter="Text files (*.txt)", caption="Select experimental data")));
 
 Modelica.Units.SI.MassFlowRate m_dot1 = Vd_HT_clamp85 * Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.density(           Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.setState_pTX(           200000,
         T_HT_RL_pt84));
@@ -420,7 +423,7 @@ Real stationary= datareader.y[ 159]  "Indicate which stationary point it is";
   Modelica.Blocks.Sources.CombiTimeTable datareader(
     tableOnFile=true,
     tableName="data",
-    fileName="... File cannot yet be shared. Details are under discussion",
+    fileName=dataFile,
     columns=2:160)
     annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
 
@@ -435,4 +438,5 @@ equation
       Interval=60,
       Tolerance=1e-06,
       __Dymola_Algorithm="Dassl"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end sBSc_1m_Cfg0_20220804;

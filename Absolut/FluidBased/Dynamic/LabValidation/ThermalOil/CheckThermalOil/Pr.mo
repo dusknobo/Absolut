@@ -46,8 +46,7 @@ equation
   Re_oil = rho_oil * v_oil * A / eta_oil;
 
   nu_w = eta_w/rho_w;
-  nu_oil =
-    Absolut.FluidBased.Dynamic.LabValidation.ThermalOil.kinematicViscosity(T);
+  nu_oil = eta_oil/rho_oil;
 
   eta_w = Modelica.Media.Water.WaterIF97_pT.dynamicViscosity(state_w);
   eta_oil =
@@ -75,4 +74,5 @@ equation
       __Dymola_NumberOfIntervals=100,
       Tolerance=1e-06,
       __Dymola_Algorithm="Dassl"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end Pr;

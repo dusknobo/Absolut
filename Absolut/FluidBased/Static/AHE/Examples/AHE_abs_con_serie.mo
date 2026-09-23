@@ -49,6 +49,8 @@ extends Modelica.Icons.Example;
   Modelica.Blocks.Sources.RealExpression MassFlowRate(y=0.05)
     annotation (Placement(transformation(extent={{-40,-30},{-20,-10}})));
   Absolut.FluidBased.Static.SingleEffect_UAfixed.AbsorberStatic_wHT_UAfix abs(
+    useClosedLoopMassBalance=true,
+    useClosedLoopSaltBalance=true,
     redeclare package Medium_v = Medium_v,
     redeclare package Medium_l = Medium_sol,
     redeclare package Medium_ext = Medium_ext,
@@ -218,5 +220,6 @@ equation
       StopTime=61,
       Interval=0.1,
       Tolerance=1e-07),
-    __Dymola_Commands(file="Resources\Static\AHE\Examples\AHE temperatures.mos" "Show AHE temperatures"));
+    __Dymola_Commands(file="modelica://Absolut/Resources/Static/AHE/Examples/AHE temperatures.mos" "Show AHE temperatures"));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end AHE_abs_con_serie;

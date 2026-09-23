@@ -1,0 +1,53 @@
+{
+  "timestamp_utc": "2026-09-23T13:37:38.929607+00:00",
+  "compiler": "OpenModelica v1.27.0-dev-390-g7f4d387df9 (64-bit)",
+  "modelica": "4.0.0",
+  "buildings": "12.0.0",
+  "mode": "simulate",
+  "translation_flags": "--preOptModules-=evalFunc",
+  "method": "dassl",
+  "simulation_flags": "",
+  "max_output_intervals": 2000,
+  "source_sha256": "abb1525064244fc19fade165e465d4558bea960f72aaffd9a9cffb4f33e437a1",
+  "results": [
+    {
+      "model": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_internalHEX",
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 64.02,
+      "log": "build\\sim\\dynamic_variants\\fb4e78cc6e\\omc.log",
+      "status": "pass",
+      "errors": [],
+      "expected_stop": 86400.0,
+      "original_intervals": 863998,
+      "output_intervals": 2000,
+      "final_time": 86400.0,
+      "rows": 2002,
+      "finite": true,
+      "result": "build\\sim\\dynamic_variants\\fb4e78cc6e\\model_res.csv"
+    },
+    {
+      "model": "Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_pump_extended",
+      "returncode": 0,
+      "timeout": false,
+      "seconds": 86.78,
+      "log": "build\\sim\\dynamic_variants\\91fbef7085\\omc.log",
+      "status": "pass",
+      "errors": [
+        "Error: Initialization problem is structural singular. Please, check the initial conditions."
+      ],
+      "expected_stop": 86400.0,
+      "original_intervals": 863998,
+      "output_intervals": 2000,
+      "final_time": 86400.0,
+      "rows": 2003,
+      "finite": true,
+      "result": "build\\sim\\dynamic_variants\\91fbef7085\\model_res.csv"
+    }
+  ],
+  "summary": {
+    "pass": 2,
+    "fail": 0,
+    "blocked": 0
+  }
+}

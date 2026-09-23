@@ -1,0 +1,65 @@
+{
+  "source_sha256": "abb1525064244fc19fade165e465d4558bea960f72aaffd9a9cffb4f33e437a1",
+  "artifacts": [
+    {
+      "modelica": "4.0.0",
+      "case": "EvaporatorsSeriesFeedStep",
+      "csv": "reports/artifacts/4.0.0/EvaporatorsSeriesFeedStep/selected_results.csv",
+      "csv_sha256": "d6dbe37d7c1b96f263605513e15c4b344cdebf4cae987a0949b0555c10a39432",
+      "log": "reports/artifacts/4.0.0/EvaporatorsSeriesFeedStep/omc.log",
+      "log_sha256": "f1957534758df6d2dc172316c9e90678f942c162006856a8d2c7f74077c8d85c",
+      "original_result_sha256": "a0afec409ef0d9da74a13475a31e59b83aabb222c0fd031355a176f2930a1c2e",
+      "scope": "Selected original saved columns, without interpolation or rounding."
+    },
+    {
+      "modelica": "4.0.0",
+      "case": "EvaporatorsSeriesHeatStep",
+      "csv": "reports/artifacts/4.0.0/EvaporatorsSeriesHeatStep/selected_results.csv",
+      "csv_sha256": "cd293ad7daaee1995a6a301f05ef252c08f0d3406bb6217e305c8a0d9b63c44c",
+      "log": "reports/artifacts/4.0.0/EvaporatorsSeriesHeatStep/omc.log",
+      "log_sha256": "5695c7fe681489d959ec7f2a9ad7656f4a5640778005bc196fd8d49b9d85b236",
+      "original_result_sha256": "a7b50394a241b31399856820b8e194ade91ff8deac1104ad7148a1ff24483375",
+      "scope": "Selected original saved columns, without interpolation or rounding."
+    },
+    {
+      "modelica": "4.0.0",
+      "case": "EvaporatorsSeriesNominal",
+      "csv": "reports/artifacts/4.0.0/EvaporatorsSeriesNominal/selected_results.csv",
+      "csv_sha256": "1c6ff3de0b2e4119cbcca6c0c89bff822a531c6a6605ba179d15411458cc9584",
+      "log": "reports/artifacts/4.0.0/EvaporatorsSeriesNominal/omc.log",
+      "log_sha256": "cd394b4be6fd7b25c5ed75cd00fb8e9e8d23082c918e616fd792d7fcae3d1bf4",
+      "original_result_sha256": "960832de711b38e6858c749581dcec22cf0daf092a4aed1adad2c92924ae6d9e",
+      "scope": "Selected original saved columns, without interpolation or rounding."
+    },
+    {
+      "modelica": "4.1.0",
+      "case": "EvaporatorsSeriesFeedStep",
+      "csv": "reports/artifacts/4.1.0/EvaporatorsSeriesFeedStep/selected_results.csv",
+      "csv_sha256": "d6dbe37d7c1b96f263605513e15c4b344cdebf4cae987a0949b0555c10a39432",
+      "log": "reports/artifacts/4.1.0/EvaporatorsSeriesFeedStep/omc.log",
+      "log_sha256": "6cd737c78e345f3d93aeacdd4214174aa29d6688ee5d0e3d6872fa59a63e7d5e",
+      "original_result_sha256": "a0afec409ef0d9da74a13475a31e59b83aabb222c0fd031355a176f2930a1c2e",
+      "scope": "Selected original saved columns, without interpolation or rounding."
+    },
+    {
+      "modelica": "4.1.0",
+      "case": "EvaporatorsSeriesHeatStep",
+      "csv": "reports/artifacts/4.1.0/EvaporatorsSeriesHeatStep/selected_results.csv",
+      "csv_sha256": "cd293ad7daaee1995a6a301f05ef252c08f0d3406bb6217e305c8a0d9b63c44c",
+      "log": "reports/artifacts/4.1.0/EvaporatorsSeriesHeatStep/omc.log",
+      "log_sha256": "c5913cd13976e7ddd51e2c51972e262e752dd3a872409b038471b37c40039331",
+      "original_result_sha256": "a7b50394a241b31399856820b8e194ade91ff8deac1104ad7148a1ff24483375",
+      "scope": "Selected original saved columns, without interpolation or rounding."
+    },
+    {
+      "modelica": "4.1.0",
+      "case": "EvaporatorsSeriesNominal",
+      "csv": "reports/artifacts/4.1.0/EvaporatorsSeriesNominal/selected_results.csv",
+      "csv_sha256": "1c6ff3de0b2e4119cbcca6c0c89bff822a531c6a6605ba179d15411458cc9584",
+      "log": "reports/artifacts/4.1.0/EvaporatorsSeriesNominal/omc.log",
+      "log_sha256": "0aceb50de07c98b07a92d84c934f09a511ca334f20bc1f7afba3cedf93fbd670",
+      "original_result_sha256": "960832de711b38e6858c749581dcec22cf0daf092a4aed1adad2c92924ae6d9e",
+      "scope": "Selected original saved columns, without interpolation or rounding."
+    }
+  ]
+}

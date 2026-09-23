@@ -52,4 +52,5 @@ model derp_Gibbs
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
+  annotation(__OpenModelica_commandLineOptions="--preOptModules-=evalFunc");
 end derp_Gibbs;

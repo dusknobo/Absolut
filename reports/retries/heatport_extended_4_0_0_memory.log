@@ -1,0 +1,14 @@
+"OpenModelica v1.27.0-dev-390-g7f4d387df9 (64-bit)"
+
+
+
+
+""
+MSL_VERSION=4.0.0
+
+true
+
+"Warning: Out of memory! Faking a stack overflow.
+Error: Stack overflow occurred while evaluating simulate(Absolut.FluidBased.Dynamic.Components.Validation.AHPse_Dyn_heatport_extended, startTime = 0, stopTime = 86400, numberOfIntervals = 500, tolerance = 1e-7, method = \"dassl\", outputFormat = \"csv\", fileNamePrefix = \"model\"):
+[bt] #1 [... unsupported platform for backtraces]
+"
